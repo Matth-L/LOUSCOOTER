@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ParcAuto {
+    static Scanner scan = new Scanner(System.in);
 
     static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
         for (int i = 0; i < tabScooter.size(); i++) {
@@ -22,9 +23,7 @@ public class ParcAuto {
         System.out.println("marque : " + scooterDemande.getMarque());
         System.out.println("modele : " + scooterDemande.getModele());
         System.out.println("kiolmetrage : " + scooterDemande.getKilometrage());
-        if (scooterDemande.getEtat())
-
-        {
+        if (scooterDemande.getEtat()) {
             System.out.println("etat : Libre");
         } else {
             System.out.println("etat : Occupé");
@@ -37,14 +36,13 @@ public class ParcAuto {
 
     void afficheStat5() {
         // permet d'afficher :
-    //Le Nombre total de scooters
-    // Le Nombre de scooters en location et leur N° d’identification,
-    //Le Nombre de scooters disponibles et leur N° d’identification,
-    //Le kilométrage moyen de l’ensemble des scooter
+        // Le Nombre total de scooters
+        // Le Nombre de scooters en location et leur N° d’identification,
+        // Le Nombre de scooters disponibles et leur N° d’identification,
+        // Le kilométrage moyen de l’ensemble des scooter
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
         // pour ajouter des scooters dans la base de donnée il faut faire
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
         // tabScooter.add()
@@ -75,7 +73,6 @@ public class ParcAuto {
                 // si c'est 6 ça close de base si on le rappel pas
         }
 
-        scan.close();
     }
 
 }
