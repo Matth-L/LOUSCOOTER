@@ -32,11 +32,15 @@ public class ParcAuto {
     }
 
     void afficheAll4() {
-
+        // affiche tous les soucteurs disopnibles ou non.
     }
 
     void afficheStat5() {
-
+        // permet d'afficher :
+    //Le Nombre total de scooters
+    // Le Nombre de scooters en location et leur N° d’identification,
+    //Le Nombre de scooters disponibles et leur N° d’identification,
+    //Le kilométrage moyen de l’ensemble des scooter
     }
 
     public static void main(String[] args) {
