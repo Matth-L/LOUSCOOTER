@@ -1,6 +1,6 @@
 public class Scooter {
     private int id;
-    private boolean etat;
+    private boolean etat;//True louer, False non louer
     private int kilometrage;
     private String marque;
     private String modele;
@@ -34,5 +34,23 @@ public class Scooter {
     }
     public void setModele (String x){
         this.modele=x;
+    }
+
+    public void louer (){
+        if (!this.etat){
+            this.etat=true;
+            System.out.println("votre action c'est bien dérouler");
+        }else{
+            System.out.println("Ce scouteur est déjà louer");
+        }
+    }
+
+    public void retour(){
+        if(this.etat){
+            this.etat=false;
+            System.out.println("le scouteur a bien été rendu");
+        }else{
+            System.out.println("error le scouteur n'a jamais était en état de location");
+        }
     }
 }
