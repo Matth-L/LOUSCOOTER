@@ -38,7 +38,7 @@ public class ParcAuto {
     }
 
     void afficheStat5() {
-        // permet d'afficher :
+    // permet d'afficher :
     //Le Nombre total de scooters
     // Le Nombre de scooters en location et leur N° d’identification,
     //Le Nombre de scooters disponibles et leur N° d’identification,
