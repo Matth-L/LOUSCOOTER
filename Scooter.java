@@ -26,4 +26,13 @@ public class Scooter {
     public void setEtat (boolean x){
         this.etat=x;
     }
+    public void setKilometrage (int x){
+        this.kilometrage=x;
+    }
+    public void setMarque(String x){
+        this.marque=x;
+    }
+    public void setModele (String x){
+        this.modele=x;
+    }
 }
