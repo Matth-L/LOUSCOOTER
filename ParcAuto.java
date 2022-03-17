@@ -1,13 +1,22 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicTabbedPaneUI.TabSelectionHandler;
-
 public class ParcAuto {
 
     static ArrayList<Scooter> tabScooter;// L'arrayList qui va servir pour le tableau d'objet
 
     void afficheScooter3(int id) {
+        // tabScooter.get(id) => tabScooter[id] pour une Arraylist
+        Scooter scooterDemande = tabScooter.get(id);
+        System.out.println("id :" + scooterDemande.getId());
+        System.out.println("marque : " + scooterDemande.getMarque());
+        System.out.println("modele : " + scooterDemande.getModele());
+        System.out.println("kiolmetrage : " + scooterDemande.getKilometrage());
+        if (scooterDemande.getEtat()) {
+            System.out.println("etat : Libre");
+        } else {
+            System.out.println("etat : Occupé");
+        }
     }
 
     void afficheAll4() {
