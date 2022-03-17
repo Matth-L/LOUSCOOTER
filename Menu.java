@@ -1,4 +1,4 @@
-public class Menu extends Main {
+public class Menu extends ParcAuto {
     public void menu() {
         String[] option = { "1 : Louer", "2 : Retour ", "3 : Etat", "4 : Quitter" };
         for (int i = 0; i < option.length; i++) {
