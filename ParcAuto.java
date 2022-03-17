@@ -5,14 +5,28 @@ public class ParcAuto {
 
     static ArrayList<Scooter> tabScooter;// L'arrayList qui va servir pour le tableau d'objet
 
-    void afficheScooter3(int id) {
-        // tabScooter.get(id) => tabScooter[id] pour une Arraylist
-        Scooter scooterDemande = tabScooter.get(id);
+    static Scooter getScooter(int id) {
+        for (int i = 0; i < tabScooter.size(); i++) {
+            if (id == tabScooter.get(i).getId()) {
+                return tabScooter.get(i);
+            }
+        }
+        return null;
+    }
+
+    static void afficheScooter3(int id) {
+
+        Scooter scooterDemande = getScooter(id);
+        if (scooterDemande == null) {
+            // fonction demander id
+        }
         System.out.println("id :" + scooterDemande.getId());
         System.out.println("marque : " + scooterDemande.getMarque());
         System.out.println("modele : " + scooterDemande.getModele());
         System.out.println("kiolmetrage : " + scooterDemande.getKilometrage());
-        if (scooterDemande.getEtat()) {
+        if (scooterDemande.getEtat())
+
+        {
             System.out.println("etat : Libre");
         } else {
             System.out.println("etat : Occupé");
@@ -33,8 +47,16 @@ public class ParcAuto {
         tabScooter = new ArrayList<Scooter>();
         // tabScooter.add()
 
+        Scooter a = new Scooter();
+        a.setId(0);
+        a.setKilometrage(0);
+        a.setMarque("honda");
+        a.setModele("x");
+        a.setEtat(true);
         Menu affiche = new Menu(); // affiche le menu
         int val = 1;
+        tabScooter.add(a);
+        afficheScooter3(0);
         while (val != 6) {
             // nettoie la console
             System.out.print("\033[H\033[2J");
