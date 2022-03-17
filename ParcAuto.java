@@ -57,15 +57,22 @@ public class ParcAuto {
         int val = 1;
         tabScooter.add(a);
         afficheScooter3(0);
-        while (val != 6) {
-            // nettoie la console
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            // menu
-            affiche.menu();
-            System.out.print("Entrez un nombre : ");
-            val = scan.nextInt();
+        // nettoie la console
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        // menu
+        affiche.menu();
+        System.out.print("Entrez un nombre : ");
+        val = scan.nextInt();
+        switch (val) {
+            case 1: // demander le scan et changer l'état
+            case 2: // retour scooter
+            case 3: /// etat
+            case 4: // afficher état du parc des scooters
+            case 5: // saisie du parc des scooters
+                // si c'est 6 ça close de base si on le rappel pas
         }
+
         scan.close();
     }
 
