@@ -39,18 +39,18 @@ public class Scooter {
     public void louer (){
         if (!this.etat){
             this.etat=true;
-            System.out.println("votre action c'est bien dérouler");
+            System.out.println("Votre action c'est bien déroulé");
         }else{
-            System.out.println("Ce scouteur est déjà louer");
+            System.out.println("Ce scouteur est déjà loué");
         }
     }
 
     public void retour(){
         if(this.etat){
             this.etat=false;
-            System.out.println("le scouteur a bien été rendu");
+            System.out.println("Le scouteur a bien été rendu");
         }else{
-            System.out.println("error le scouteur n'a jamais était en état de location");
+            System.out.println("Le scouteur n'a jamais été en état de location");
         }
     }
 }
