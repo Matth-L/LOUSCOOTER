@@ -157,7 +157,7 @@ public class ParcAuto extends BaseDonne{
         val = scan.nextInt();
         switch (val) {
             case 1: // louer le scooter
-            choix1(tabScooter);
+                choix1(tabScooter);
                 break;
             case 2:// retour scooter
                 choix2(tabScooter);
