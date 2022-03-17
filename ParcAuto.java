@@ -31,7 +31,7 @@ public class ParcAuto {
     }
 
     void afficheAll4() {
-        // affiche tous les soucteurs disopnibles ou non.
+        // affiche tous les scooters disopnibles ou non.
     }
 
     void afficheStat5() {
