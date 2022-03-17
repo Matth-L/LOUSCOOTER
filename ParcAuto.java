@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class ParcAuto {
 
-    static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
+    static ArrayList<Scooter> tabScooter;// L'arrayList qui va servir pour le tableau d'objet
+
+    static Scooter getScooter(int id) {
         for (int i = 0; i < tabScooter.size(); i++) {
             if (id == tabScooter.get(i).getId()) {
                 return tabScooter.get(i);
@@ -12,9 +14,9 @@ public class ParcAuto {
         return null;
     }
 
-    static void afficheScooter3(ArrayList<Scooter> tabScooter, int id) {
+    static void afficheScooter3(int id) {
 
-        Scooter scooterDemande = getScooter(tabScooter, id);
+        Scooter scooterDemande = getScooter(id);
         if (scooterDemande == null) {
             // fonction demander id
         }
@@ -46,7 +48,7 @@ public class ParcAuto {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         // pour ajouter des scooters dans la base de donnée il faut faire
-        ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
+        tabScooter = new ArrayList<Scooter>();
         // tabScooter.add()
 
         Scooter a = new Scooter();
@@ -58,7 +60,7 @@ public class ParcAuto {
         Menu affiche = new Menu(); // affiche le menu
         int val = 1;
         tabScooter.add(a);
-        afficheScooter3(tabScooter, 0);
+        afficheScooter3(0);
         // nettoie la console
         System.out.print("\033[H\033[2J");
         System.out.flush();
