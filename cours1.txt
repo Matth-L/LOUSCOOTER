@@ -1,0 +1,12 @@
+Interface graphique:
+
+Modèle: diagramme de classe => prog de ce diagramme de classe.
+
+Obj: enrichir ce modèle par une iterface graphique sans touché au diagramme.
+
+On devra avoire 3 package séparé:
+    -modèle
+    -vues
+    -contrôleurs
+
+tout ce qu'on veut mettre dans l'interface graphique doit être présent dans Jpane à l'aide d ela méthode de getcontentepaint sinon ce ne sera jamais afficher 
