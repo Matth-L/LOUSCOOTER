@@ -48,8 +48,9 @@ public class Scooter {
     public void retour(){
         if(this.etat){
             this.etat=false;
+            System.out.println("le scouteur a bien été rendu");
         }else{
-            System.out.println("error");
+            System.out.println("error le scouteur n'a jamais était en état de location");
         }
     }
 }
