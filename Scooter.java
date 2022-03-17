@@ -4,7 +4,16 @@ public class Scooter {
     private int kilometrage;
     private String marque;
     private String modele;
+    Scooter(){
 
+    }
+    Scooter(int nb , boolean e , int km , String mar, String mod){
+        id = nb ;
+        etat =e ;
+        kilometrage = km;
+        marque = mar;
+        modele = mod;
+    }
     public int getId (){
         return this.id;
     }
