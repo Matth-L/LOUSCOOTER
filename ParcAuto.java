@@ -195,7 +195,6 @@ public class ParcAuto extends BaseDonne {
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("bdScooter.txt");
         Scanner scan = new Scanner(file); // il faut créer un scanner pour le fichier
-        int count = 0;
         while ((scan.hasNextLine()) && !(scan.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tout les scooter s'appelle temp mais ils ont quand meme
@@ -210,7 +209,6 @@ public class ParcAuto extends BaseDonne {
             temp.setMarque(scan.nextLine());
             temp.setModele(scan.nextLine());
             tab.add(temp);
-            count++;
         }
         scan.close();
     }
