@@ -186,7 +186,7 @@ public class ParcAuto extends BaseDonne {
                 afficheStat5(tabScooter);
                 break;
             case 6:
-                saveDB(tabScooter);
+                saveDB(tabScooter); // quand on quitte ça sauvegarde dans la bd avant
 
         }
     }
@@ -194,23 +194,24 @@ public class ParcAuto extends BaseDonne {
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("bdScooter.txt");
-        Scanner scan = new Scanner(file); // il faut créer un scanner pour le fichier
-        while ((scan.hasNextLine()) && !(scan.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tout les scooter s'appelle temp mais ils ont quand meme
-                                          // chacun des attributs propres a eux meme
-            temp.setId(scan.nextInt());
-            scan.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-                             // next Boolean etc il ne fait pas le \n seul
-            temp.setEtat(scan.nextBoolean());
-            scan.nextLine();
-            temp.setKilometrage(scan.nextInt());
-            scan.nextLine();
-            temp.setMarque(scan.nextLine());
-            temp.setModele(scan.nextLine());
+            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
+                                          // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
+                                          // mérite d'être corrigé
+            temp.setId(sc.nextInt());
+            sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
+                           // next Boolean etc il ne fait pas le \n seul
+            temp.setEtat(sc.nextBoolean());
+            sc.nextLine();
+            temp.setKilometrage(sc.nextInt());
+            sc.nextLine();
+            temp.setMarque(sc.nextLine());
+            temp.setModele(sc.nextLine());
             tab.add(temp);
         }
-        scan.close();
+        sc.close();
     }
 
     static void saveDB(ArrayList<Scooter> tab) throws IOException { // permet de sauvegarder les scooters dans un txt
@@ -219,6 +220,7 @@ public class ParcAuto extends BaseDonne {
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         for (int count = 0; count < tab.size(); count++) {
+            // écrit les attributs de chaque scooters
             pw.println(tab.get(count).getId());
             pw.println(tab.get(count).getEtat());
             pw.println(tab.get(count).getKilometrage());
@@ -230,7 +232,7 @@ public class ParcAuto extends BaseDonne {
         pw.close(); // sans ça rien n'est écrit dans le txt
     }
 
-    static void setScooterInDB(ArrayList<Scooter> tab) {
+    static void setScooterInDB(ArrayList<Scooter> tab) { // pour rajouter les scooters aux tab
         tab.add(a);
         tab.add(b);
         tab.add(c);
@@ -244,10 +246,11 @@ public class ParcAuto extends BaseDonne {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { // plein de throws ont été rajouté automatiquement a
+                                                                // cause de la lecture du fichier
         // pour ajouter des scooters dans la base de donnée il faut faire
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        getDB(tabScooter);
+        getDB(tabScooter); // va chercher les informations a partir du fichier txt
         flush();
         aMenu(tabScooter);
         flush();
