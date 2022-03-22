@@ -1,3 +1,4 @@
+import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +6,7 @@ public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
     static Menu affiche = new Menu(); // affiche le menu
 
-    static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
+    static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) { // rend un Scooter a partir de son id
         for (int i = 0; i < tabScooter.size(); i++) {
             if (id == tabScooter.get(i).getId()) {
                 return tabScooter.get(i);
@@ -16,7 +17,7 @@ public class ParcAuto extends BaseDonne {
 
     static public int demandeId() {
         int id;
-        System.out.println("Veillez rentrer l'id du scouteur: ");
+        System.out.println("Veuillez entrez l'id du scooter: ");
         id = scan.nextInt();
         return id;
     }
@@ -34,7 +35,7 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
-    static void afficheAll4(ArrayList<Scooter> tabScooter) {
+    static void afficheAll4(ArrayList<Scooter> tabScooter) throws IOException {
         // affiche tous les scooters
         for (int i = 0; i < tabScooter.size(); i++) {
             afficheScooter3(tabScooter.get(i));
@@ -42,7 +43,7 @@ public class ParcAuto extends BaseDonne {
         aMenu(tabScooter);
     }
 
-    static void afficheStat5(ArrayList<Scooter> tabScooter) {
+    static void afficheStat5(ArrayList<Scooter> tabScooter) throws IOException {
 
         int louer = 0;
         int kilometrage = 0;
@@ -63,7 +64,7 @@ public class ParcAuto extends BaseDonne {
         aMenu(tabScooter);
     }
 
-    static void choix1(ArrayList<Scooter> tabScooter) {
+    static void choix1(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
@@ -94,7 +95,7 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
-    static void choix2(ArrayList<Scooter> tabScooter) {
+    static void choix2(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
@@ -125,7 +126,7 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
-    static void choix3(ArrayList<Scooter> tabScooter) {
+    static void choix3(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
@@ -161,7 +162,7 @@ public class ParcAuto extends BaseDonne {
         System.out.flush();
     }
 
-    static void aMenu(ArrayList<Scooter> tabScooter) {
+    static void aMenu(ArrayList<Scooter> tabScooter) throws IOException {
         int valInput = 1;
         // menu
         affiche.menu();
@@ -185,21 +186,70 @@ public class ParcAuto extends BaseDonne {
                 afficheStat5(tabScooter);
                 break;
             case 6:
+                saveDB(tabScooter);
 
         }
     }
 
-    public static void main(String[] args) {
+    // crée le tableau a partir de la bd
+    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
+        File file = new File("bdScooter.txt");
+        Scanner scan = new Scanner(file); // il faut créer un scanner pour le fichier
+        int count = 0;
+        while ((scan.hasNextLine()) && !(scan.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+            // tant qu'on est toujours dans le meme scooter
+            Scooter temp = new Scooter(); // le pb c'est que tout les scooter s'appelle temp mais ils ont quand meme
+                                          // chacun des attributs propres a eux meme
+            temp.setId(scan.nextInt());
+            scan.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
+                             // next Boolean etc il ne fait pas le \n seul
+            temp.setEtat(scan.nextBoolean());
+            scan.nextLine();
+            temp.setKilometrage(scan.nextInt());
+            scan.nextLine();
+            temp.setMarque(scan.nextLine());
+            temp.setModele(scan.nextLine());
+            tab.add(temp);
+            count++;
+        }
+        scan.close();
+    }
+
+    static void saveDB(ArrayList<Scooter> tab) throws IOException { // permet de sauvegarder les scooters dans un txt
+        File file = new File("bdScooter.txt"); // écrase les données précedents par contre pour les garder il faut
+                                               // mettre true après le nom du fichier
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+        for (int count = 0; count < tab.size(); count++) {
+            pw.println(tab.get(count).getId());
+            pw.println(tab.get(count).getEtat());
+            pw.println(tab.get(count).getKilometrage());
+            pw.println(tab.get(count).getMarque());
+            pw.println(tab.get(count).getModele());
+            // on pourrait mettre un marqueur de fin pour les scooters mais bon
+        }
+        pw.println("EOF"); // End of File
+        pw.close(); // sans ça rien n'est écrit dans le txt
+    }
+
+    static void setScooterInDB(ArrayList<Scooter> tab) {
+        tab.add(a);
+        tab.add(b);
+        tab.add(c);
+        tab.add(d);
+        tab.add(e);
+        tab.add(f);
+        tab.add(g);
+        tab.add(h);
+        tab.add(i);
+        tab.add(j);
+
+    }
+
+    public static void main(String[] args) throws IOException {
         // pour ajouter des scooters dans la base de donnée il faut faire
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // test de la base de donnée
-        tabScooter.add(a);
-        tabScooter.add(b);
-        tabScooter.add(c);
-        tabScooter.add(f);
-        tabScooter.add(e);
-        tabScooter.add(k);
-        // nettoie la console
+        getDB(tabScooter);
         flush();
         aMenu(tabScooter);
         flush();
