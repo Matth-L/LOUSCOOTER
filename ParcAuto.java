@@ -30,19 +30,19 @@ public class ParcAuto extends BaseDonne {
         valInput = scan.nextInt();
         switch (valInput) {
             case 1: // louer le scooter
-                affiche.choix1(tabScooter);
+                affiche.louerScooter(tabScooter);
                 break;
             case 2:// retour scooter
-                affiche.choix2(tabScooter);
+                affiche.retourScooter(tabScooter);
                 break;
             case 3: /// etat
-                affiche.choix3(tabScooter);
+                affiche.afficheScooter(tabScooter);
                 break;
             case 4: // afficher état du parc des scooters
-                affiche.afficheAll4(tabScooter);
+                affiche.afficheParc(tabScooter);
                 break;
             case 5: // saisie du parc des scooters
-                affiche.afficheStat5(tabScooter);
+                affiche.afficheStatParc(tabScooter);
                 break;
             case 6:
                 saveDB(tabScooter);
