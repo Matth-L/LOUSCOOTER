@@ -28,7 +28,6 @@ public class ParcAuto extends BaseDonne {
         affiche.mainMenu();
         System.out.print("Entrez un nombre : ");
         valInput = scan.nextInt();
-        affiche.flush();
         switch (valInput) {
             case 1: // louer le scooter
                 affiche.choix1(tabScooter);
@@ -105,26 +104,26 @@ public class ParcAuto extends BaseDonne {
         PrintWriter pw = new PrintWriter(fw);
         for (int count = 0; count < tab.size(); count++) {
             // écrit les attributs de chaque scooters
+            System.out.println(count);
             pw.println(tab.get(count).getId());
             pw.println(tab.get(count).getEtat());
             pw.println(tab.get(count).getKilometrage());
             pw.println(tab.get(count).getMarque());
             pw.println(tab.get(count).getModele());
-            pw.println("EOS");
+            pw.println("EOS"); // End of Scooter
         }
         pw.println("EOF"); // End of File
         pw.close(); // sans ça rien n'est écrit dans le txt
     }
 
-    public static void main(String[] args) throws IOException { // plein de throws ont été rajouté automatiquement a
-                                                                // cause de la lecture du fichier
+    public static void main(String[] args) throws IOException {
+        // ArrayList<Scooter> debuttabScooter = new ArrayList<Scooter>();
+        // setScooterInDB(debuttabScooter);
+        // System.out.println(debuttabScooter.size());
+        // saveDB(debuttabScooter);
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // setScooterInDB(tabScooter);
-        // saveDB(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
-        affiche.flush();
         aMenu(tabScooter);
-        affiche.flush();
     }
 
 }

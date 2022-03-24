@@ -61,7 +61,7 @@ public class Scooter {
 
     public void louer() {
         if (!this.etat) {
-            this.etat = true;
+            this.setEtat(true);
             System.out.println("Votre action c'est bien déroulé. Très bon choix!");
         } else {
             System.out.println("Ce scooter est déjà loué...");
@@ -69,16 +69,15 @@ public class Scooter {
     }
 
     public void retour() {
-        Scanner sccan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         if (this.etat) {
             System.out.println("Entrez le nb de km effectué : ");
-            int i = sccan.nextInt();
-            this.setKilometrage(this.kilometrage + i);
-            System.out.println(i);
-            this.etat = false;
+            this.setKilometrage(this.kilometrage + scan.nextInt());
+            this.setEtat(false);
             System.out.println("Le scooter a bien été rendu. Au plaisir de vous revoir!");
         } else {
             System.out.println("Le scooter n'a jamais été en état de location ... ");
         }
+        // ! scan.close(); fait crash le programme
     }
 }
