@@ -68,7 +68,7 @@ public class ParcAuto extends BaseDonne {
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
-                                          // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
+                                          // chacun des attributs propres a eux meme a voir si ça pose 5pb et si ça
                                           // mérite d'être corrigé
             testEOS(tmp = sc.nextLine());
             temp.setId(Integer.parseInt(tmp));
@@ -104,7 +104,6 @@ public class ParcAuto extends BaseDonne {
         PrintWriter pw = new PrintWriter(fw);
         for (int count = 0; count < tab.size(); count++) {
             // écrit les attributs de chaque scooters
-            System.out.println(count);
             pw.println(tab.get(count).getId());
             pw.println(tab.get(count).getEtat());
             pw.println(tab.get(count).getKilometrage());
@@ -123,7 +122,10 @@ public class ParcAuto extends BaseDonne {
         // saveDB(debuttabScooter);
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
+        System.out.print("\033[H\033[2J");
+        affiche.flushS();
         aMenu(tabScooter);
+        affiche.flushS();
     }
 
 }
