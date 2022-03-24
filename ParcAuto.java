@@ -1,6 +1,8 @@
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.*;
+import java.lang.*;
 
 public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
@@ -50,25 +52,42 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
+    static void testEOS(String s){
+        if(s=="EOS"){
+            System.err.println("base de donnée corrompue");
+            System.exit(1);
+        }
+    }
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("bdScooter.txt");
+        String tmp;
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
                                           // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
                                           // mérite d'être corrigé
-            temp.setId(sc.nextInt());
-            sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-                           // next Boolean etc il ne fait pas le \n seul
-            temp.setEtat(sc.nextBoolean());
-            sc.nextLine();
-            temp.setKilometrage(sc.nextInt());
-            sc.nextLine();
-            temp.setMarque(sc.nextLine());
-            temp.setModele(sc.nextLine());
+            tmp = sc.nextLine();
+            testEOS(tmp);
+            temp.setId(Integer.parseInt(tmp));
+            tmp = sc.nextLine();
+            testEOS(tmp);
+            temp.setEtat(Boolean.parseBoolean(tmp));
+            tmp=sc.nextLine();
+            testEOS(tmp);
+            temp.setKilometrage(Integer.parseInt(tmp));
+            tmp=sc.nextLine();  
+            testEOS(tmp);
+            temp.setMarque(tmp);
+            tmp=sc.nextLine();  
+            testEOS(tmp);
+            temp.setModele(tmp);
             tab.add(temp);
+            if(sc.nextLine()!="EOS"){ // si le fichier ne comprend pas un EOS a la fin 
+                System.err.println("base de donnée corrompue");
+                System.exit(1);
+            }
         }
         sc.close();
     }
@@ -86,7 +105,7 @@ public class ParcAuto extends BaseDonne {
             pw.println(tab.get(count).getKilometrage());
             pw.println(tab.get(count).getMarque());
             pw.println(tab.get(count).getModele());
-            // on pourrait mettre un marqueur de fin pour les scooters mais bon
+            pw.println("EOS");
         }
         pw.println("EOF"); // End of File
         pw.close(); // sans ça rien n'est écrit dans le txt
