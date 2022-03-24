@@ -47,7 +47,6 @@ public class ParcAuto extends BaseDonne {
                 break;
             case 6:
                 saveDB(tabScooter); // quand on quitte ça sauvegarde dans la bd avant
-
         }
     }
 
