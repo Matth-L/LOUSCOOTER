@@ -1,8 +1,6 @@
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
-// import java.util.*;
-// import java.lang.*;
 
 public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
@@ -48,7 +46,11 @@ public class ParcAuto extends BaseDonne {
                 affiche.afficheStat5(tabScooter);
                 break;
             case 6:
-                saveDB(tabScooter); // quand on quitte ça sauvegarde dans la bd avant
+                saveDB(tabScooter);
+                break; // quand on quitte ça sauvegarde dans la bd avant
+            default:
+                aMenu(tabScooter);
+                break;
         }
     }
 
@@ -62,8 +64,8 @@ public class ParcAuto extends BaseDonne {
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("bdScooter.txt");
-        String tmp;
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        String tmp;
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
