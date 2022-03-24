@@ -1,8 +1,8 @@
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.*;
-import java.lang.*;
+// import java.util.*;
+// import java.lang.*;
 
 public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
@@ -52,12 +52,13 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
-    static void testEOS(String s){
-        if(s=="EOS"){
+    static void testEOS(String s) {
+        if (s.equals("EOS")) {
             System.err.println("base de donnée corrompue");
             System.exit(1);
         }
     }
+
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("bdScooter.txt");
@@ -68,24 +69,26 @@ public class ParcAuto extends BaseDonne {
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
                                           // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
                                           // mérite d'être corrigé
-            tmp = sc.nextLine();
-            testEOS(tmp);
+            testEOS(tmp = sc.nextLine());
             temp.setId(Integer.parseInt(tmp));
-            tmp = sc.nextLine();
-            testEOS(tmp);
+
+            testEOS(tmp = sc.nextLine());
             temp.setEtat(Boolean.parseBoolean(tmp));
-            tmp=sc.nextLine();
-            testEOS(tmp);
+
+            testEOS(tmp = sc.nextLine());
             temp.setKilometrage(Integer.parseInt(tmp));
-            tmp=sc.nextLine();  
-            testEOS(tmp);
+
+            testEOS(tmp = sc.nextLine());
             temp.setMarque(tmp);
-            tmp=sc.nextLine();  
-            testEOS(tmp);
+
+            testEOS(tmp = sc.nextLine());
             temp.setModele(tmp);
             tab.add(temp);
-            if(sc.nextLine()!="EOS"){ // si le fichier ne comprend pas un EOS a la fin 
-                System.err.println("base de donnée corrompue");
+
+            tmp = sc.nextLine();
+
+            if (!(tmp.equals("EOS"))) { // si le fichier ne comprend pas un EOS a la fin
+                System.err.println("base de donnée pas bonne ");
                 System.exit(1);
             }
         }
@@ -114,7 +117,8 @@ public class ParcAuto extends BaseDonne {
     public static void main(String[] args) throws IOException { // plein de throws ont été rajouté automatiquement a
                                                                 // cause de la lecture du fichier
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // si on veut remplir la bd il faut utiliser setScooterInDB
+        // setScooterInDB(tabScooter);
+        // saveDB(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
         affiche.flush();
         aMenu(tabScooter);

@@ -13,7 +13,7 @@ public class BaseDonne {
     static Scooter j = new Scooter(72, true, 40, "Honda", "A");
     static Scooter k = new Scooter(14, false, 40, "Honda", "A");
 
-    void setScooterInDB(ArrayList<Scooter> tab) { // pour rajouter les scooters aux tab
+    static void setScooterInDB(ArrayList<Scooter> tab) { // pour rajouter les scooters aux tab
         tab.add(a);
         tab.add(b);
         tab.add(c);
