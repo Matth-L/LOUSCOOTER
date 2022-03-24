@@ -78,6 +78,6 @@ public class Scooter {
         } else {
             System.out.println("Le scooter n'a jamais été en état de location ... ");
         }
-        // ! scan.close(); fait crash le programme
+        // ! scan.close(); fait crash le programme.
     }
 }
