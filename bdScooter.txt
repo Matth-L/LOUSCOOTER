@@ -1,12 +1,12 @@
 1
 true
-40
+45
 Honda
 A
 EOS
 2
-true
-40
+false
+50
 Yamaha
 A
 EOS
