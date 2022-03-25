@@ -36,8 +36,8 @@ public class BaseDonne {
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
-                                          // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
-                                          // mérite d'être corrigé
+            // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
+            // mérite d'être corrigé
             temp.setId(sc.nextInt());
             sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
                            // next Boolean etc il ne fait pas le \n seul
@@ -63,6 +63,7 @@ public class BaseDonne {
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données précedents, pour les garder il faut
         // mettre true après le nom du fichier
+        System.out.println(file);
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         for (Scooter s : tab) {
