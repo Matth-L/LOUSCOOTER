@@ -18,19 +18,15 @@ public class ParcAuto extends BaseDonne {
     }
 
     static public int demandeId() {
-        int id;
         System.out.println("Veuillez entrez l'id du scooter: ");
-        id = scan.nextInt();
-        return id;
+        return scan.nextInt();
     }
 
     static void choixMenu(ArrayList<Scooter> tabScooter) throws IOException {
-        int valInput = 1;
         // menu
         affiche.mainMenu();
         System.out.print("Entrez un nombre : ");
-        valInput = scan.nextInt();
-        switch (valInput) {
+        switch (scan.nextInt()) {
             case 1: // louer le scooter
                 affiche.louerScooter(tabScooter);
                 break;

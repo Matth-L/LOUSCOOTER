@@ -28,8 +28,7 @@ public class Menu extends ParcAuto {
     }
 
     void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
-        Scooter S;
-        S = getScooter(tabScooter, demandeId());
+        Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {
             S.louer();
             choixMenu(tabScooter);
@@ -90,18 +89,15 @@ public class Menu extends ParcAuto {
     }
 
     void afficheScooter(ArrayList<Scooter> tabScooter) throws IOException {
-        Scooter S;
-        S = getScooter(tabScooter, demandeId());
+        Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {
             choixMenu(tabScooter);
             clearBoard();
         } else {
-            int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) quitter ");
-            choix = scan.nextInt();
-            switch (choix) {
+            switch (scan.nextInt()) {
                 case 1:
                     afficheScooter(tabScooter);
                     break;
