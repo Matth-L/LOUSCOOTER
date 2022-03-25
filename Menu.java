@@ -13,12 +13,14 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void flushS() {
+    void flushS() {// se mettre au plus bas dans l'interface de commande(retire le texte des
+                   // actions précédentes)
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    void clearBoard() {
+    void clearBoard() { // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
+                        // un touche sauf espace puis affiche le menu.
         System.out.println("appuyer sur n'importe quelle touche pour retourner au menu");
         scan.nextLine();
         scan.nextLine();
@@ -27,15 +29,18 @@ public class Menu extends ParcAuto {
 
     }
 
+    // fct qui permet de louer un scouteur avec une id rentré par l'utilisateur
     void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
-        if (S != null) {
+        if (S != null) {// on vérifie que l'id du scouteur existe
             S.louer();
             choixMenu(tabScooter);
-        } else {
+        } else { // l'id n'existe pas, l'utilisateur à le choix entre rentré une nvelle id ou
+                 // retourné au menu. On traite le cas d'une mauvaise touche comme un retour au
+                 // menu.
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
-                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) Quittez le programme ");
+                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
             switch (scan.nextInt()) {
                 case 1:
                     louerScooter(tabScooter);
@@ -52,6 +57,8 @@ public class Menu extends ParcAuto {
         }
     }
 
+    // fct qui permet de rendre un scouteur ap la location en donnant l'id du
+    // scouteur puis en rentrant les km parcourus.
     void retourScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
@@ -62,7 +69,7 @@ public class Menu extends ParcAuto {
         } else {
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
-                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) quitter ");
+                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
             switch (scan.nextInt()) {
                 case 1:
                     retourScooter(tabScooter);
@@ -70,9 +77,6 @@ public class Menu extends ParcAuto {
                 case 2:
                     // retourner au menu
                     choixMenu(tabScooter);
-                    break;
-                case 3:
-                    // quitter
                     break;
                 default:
                     choixMenu(tabScooter);
@@ -82,6 +86,7 @@ public class Menu extends ParcAuto {
         }
     }
 
+    // ! fct inutile !?!
     void afficheScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {
@@ -99,9 +104,6 @@ public class Menu extends ParcAuto {
                     // retourner au menu
                     choixMenu(tabScooter);
                     break;
-                case 3:
-                    // quitter
-                    break;
                 default:
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
@@ -110,6 +112,7 @@ public class Menu extends ParcAuto {
         }
     }
 
+    // affiche les info du couteur renté en param.
     void infoScooter(Scooter scooterDemande) {
 
         System.out.println("id :" + scooterDemande.getId());
@@ -124,6 +127,7 @@ public class Menu extends ParcAuto {
 
     }
 
+    // affiche les info de tous les scouteurs
     void afficheParc(ArrayList<Scooter> tabScooter) throws IOException {
         for (Scooter s : tabScooter) {
             infoScooter(s);
@@ -132,6 +136,7 @@ public class Menu extends ParcAuto {
         choixMenu(tabScooter);
     }
 
+    // affiche les statistiques du parc de scouteur
     void afficheStatParc(ArrayList<Scooter> tabScooter) throws IOException {
         int louer = 0;
         int kilometrage = 0;
