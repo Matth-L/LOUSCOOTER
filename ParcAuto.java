@@ -46,6 +46,7 @@ public class ParcAuto extends BaseDonne {
                 saveDB(tabScooter);
                 break; // quand on quitte ça sauvegarde dans la bd avant
             default:
+                System.out.println("Veuillez entrez un nombre correcte ... ");
                 choixMenu(tabScooter);
                 break;
         }
