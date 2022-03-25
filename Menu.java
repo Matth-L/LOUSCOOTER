@@ -127,7 +127,6 @@ public class Menu extends ParcAuto {
     }
 
     void afficheParc(ArrayList<Scooter> tabScooter) throws IOException {
-        // affiche tous les scooters
         for (Scooter s : tabScooter) {
             infoScooter(s);
 
@@ -138,7 +137,6 @@ public class Menu extends ParcAuto {
     void afficheStatParc(ArrayList<Scooter> tabScooter) throws IOException {
         int louer = 0;
         int kilometrage = 0;
-        // Le Nombre total de scooters
         System.out.println("Nombre total de scooter : " + tabScooter.size());
         // Le Nombre de scooters en location et leur N° d’identification,
         for (Scooter scoot : tabScooter) {
