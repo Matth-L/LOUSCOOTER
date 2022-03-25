@@ -1,3 +1,5 @@
+package console;
+
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
