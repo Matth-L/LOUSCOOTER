@@ -1,14 +1,18 @@
 import java.util.Scanner;
 
 public class Scooter {
+    static int countScoot = 0;
     private int id;
     private boolean etat;// True louer, False non louer
     private int kilometrage;
     private String marque;
     private String modele;
 
-    Scooter() {
-
+    Scooter() { // pour le mode admin pas encore testé
+        countScoot++;
+        id = countScoot;
+        etat = false;
+        kilometrage = 0;
     }
 
     Scooter(int nb, boolean e, int km, String mar, String mod) {
