@@ -1,7 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
+//tout ce qui est dans le menu ou affiche est la 
 public class Menu extends ParcAuto {
+
     public void mainMenu() {
         String[] option = { "1 : Louer un scooter", "2 : Retour d'un scooter ", "3 : Etat d'un scooter",
                 "4 : Affichage de l'état du parc des scooters ", "5 : Saisie du parc des scooters ",
@@ -21,7 +23,7 @@ public class Menu extends ParcAuto {
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
             S.louer();
-            aMenu(tabScooter);
+            choixMenu(tabScooter);
         } else {
             int choix; // si id fausse!
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -34,13 +36,13 @@ public class Menu extends ParcAuto {
                     break;
                 case 2:
                     // retourner au menu
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     break;
                 case 3:
                     // quitter
                     break;
                 default:
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
             }
@@ -52,7 +54,7 @@ public class Menu extends ParcAuto {
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
             S.retour();
-            aMenu(tabScooter);
+            choixMenu(tabScooter);
         } else {
             int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -65,13 +67,13 @@ public class Menu extends ParcAuto {
                     break;
                 case 2:
                     // retourner au menu
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     break;
                 case 3:
                     // quitter
                     break;
                 default:
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
             }
@@ -83,7 +85,7 @@ public class Menu extends ParcAuto {
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
             afficheScooter3(S);
-            aMenu(tabScooter);
+            choixMenu(tabScooter);
         } else {
             int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -96,13 +98,13 @@ public class Menu extends ParcAuto {
                     break;
                 case 2:
                     // retourner au menu
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     break;
                 case 3:
                     // quitter
                     break;
                 default:
-                    aMenu(tabScooter);
+                    choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
             }
@@ -127,7 +129,7 @@ public class Menu extends ParcAuto {
         for (int i = 0; i < tabScooter.size(); i++) {
             afficheScooter3(tabScooter.get(i));
         }
-        aMenu(tabScooter);
+        choixMenu(tabScooter);
     }
 
     void afficheStat5(ArrayList<Scooter> tabScooter) throws IOException {
@@ -148,6 +150,6 @@ public class Menu extends ParcAuto {
         System.out.println("Nombre de scooter disponible :" + (tabScooter.size() - louer));
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
-        aMenu(tabScooter);
+        choixMenu(tabScooter);
     }
 }

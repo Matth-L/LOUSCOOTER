@@ -2,11 +2,13 @@ import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//programme principal 
 public class ParcAuto extends BaseDonne {
+
     static Scanner scan = new Scanner(System.in);
     static Menu affiche = new Menu(); // affiche le menu
 
-    static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) { // rend un Scooter a partir de son id
+    static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
         for (int i = 0; i < tabScooter.size(); i++) {
             if (id == tabScooter.get(i).getId()) {
                 return tabScooter.get(i);
@@ -22,7 +24,7 @@ public class ParcAuto extends BaseDonne {
         return id;
     }
 
-    static void aMenu(ArrayList<Scooter> tabScooter) throws IOException {
+    static void choixMenu(ArrayList<Scooter> tabScooter) throws IOException {
         int valInput = 1;
         // menu
         affiche.mainMenu();
@@ -50,55 +52,12 @@ public class ParcAuto extends BaseDonne {
         }
     }
 
-    // crée le tableau a partir de la bd
-    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("bdScooter.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
-            // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
-                                          // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
-                                          // mérite d'être corrigé
-            temp.setId(sc.nextInt());
-            sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-                           // next Boolean etc il ne fait pas le \n seul
-            temp.setEtat(sc.nextBoolean());
-            sc.nextLine();
-            temp.setKilometrage(sc.nextInt());
-            sc.nextLine();
-            temp.setMarque(sc.nextLine());
-            temp.setModele(sc.nextLine());
-            tab.add(temp);
-        }
-        sc.close();
-    }
-
-    // permet de sauvegarder les scooters dans un txt
-    static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        File file = new File("bdScooter.txt"); // écrase les données précedents, pour les garder il faut
-                                               // mettre true après le nom du fichier
-        FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);
-        for (int count = 0; count < tab.size(); count++) {
-            // écrit les attributs de chaque scooters
-            pw.println(tab.get(count).getId());
-            pw.println(tab.get(count).getEtat());
-            pw.println(tab.get(count).getKilometrage());
-            pw.println(tab.get(count).getMarque());
-            pw.println(tab.get(count).getModele());
-            // on pourrait mettre un marqueur de fin pour les scooters mais bon
-        }
-        pw.println("EOF"); // End of File
-        pw.close(); // sans ça rien n'est écrit dans le txt
-    }
-
-    public static void main(String[] args) throws IOException { // plein de throws ont été rajouté automatiquement a
-                                                                // cause de la lecture du fichier
+    public static void main(String[] args) throws IOException {
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // si on veut remplir la bd il faut utiliser setScooterInDB
+        // setScooterInDB(tabScooter); // ajout des élements dans le tab
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
         affiche.flush();
-        aMenu(tabScooter);
+        choixMenu(tabScooter);
         affiche.flush();
     }
 
