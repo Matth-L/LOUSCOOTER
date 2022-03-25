@@ -9,9 +9,9 @@ public class ParcAuto extends BaseDonne {
     static Menu affiche = new Menu(); // affiche le menu
 
     static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
-        for (int i = 0; i < tabScooter.size(); i++) {
-            if (id == tabScooter.get(i).getId()) {
-                return tabScooter.get(i);
+        for (Scooter s : tabScooter) { // boucle for Each
+            if (id == s.getId()) {
+                return s;
             }
         }
         return null;

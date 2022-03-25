@@ -65,13 +65,13 @@ public class BaseDonne {
         // mettre true après le nom du fichier
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
-        for (int count = 0; count < tab.size(); count++) {
+        for (Scooter s : tab) {
             // écrit les attributs de chaque scooters
-            pw.println(tab.get(count).getId());
-            pw.println(tab.get(count).getEtat());
-            pw.println(tab.get(count).getKilometrage());
-            pw.println(tab.get(count).getMarque());
-            pw.println(tab.get(count).getModele());
+            pw.println(s.getId());
+            pw.println(s.getEtat());
+            pw.println(s.getKilometrage());
+            pw.println(s.getMarque());
+            pw.println(s.getModele());
             pw.println("EOS");
         }
         pw.println("EOF"); // End of File

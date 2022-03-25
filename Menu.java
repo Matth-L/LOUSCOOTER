@@ -128,8 +128,8 @@ public class Menu extends ParcAuto {
 
     void afficheParc(ArrayList<Scooter> tabScooter) throws IOException {
         // affiche tous les scooters
-        for (int i = 0; i < tabScooter.size(); i++) {
-            infoScooter(tabScooter.get(i));
+        for (Scooter s : tabScooter) {
+            infoScooter(s);
 
         }
         choixMenu(tabScooter);
@@ -141,24 +141,24 @@ public class Menu extends ParcAuto {
         // Le Nombre total de scooters
         System.out.println("Nombre total de scooter : " + tabScooter.size());
         // Le Nombre de scooters en location et leur N° d’identification,
-        for (int i = 0; i < tabScooter.size(); i++) {
-            if (tabScooter.get(i).getEtat()) {
+        for (Scooter scoot : tabScooter) {
+            if (scoot.getEtat()) {
                 louer++;
             }
-            kilometrage += tabScooter.get(i).getKilometrage();
+            kilometrage += scoot.getKilometrage();
         }
         System.out.println("Nombre de scooter en location :" + louer);
-        for (int i = 0; i < tabScooter.size(); i++) {
-            if (tabScooter.get(i).getEtat() == true) {
-                System.out.println("    id : " + tabScooter.get(i).getId());
+        for (Scooter s : tabScooter) {
+            if (s.getEtat() == true) {
+                System.out.println("    id : " + s.getId());
             }
         }
         System.out.println();
         // Le Nombre de scooters disponibles et leur N° d’identification
         System.out.println("Nombre de scooter disponible :" + (tabScooter.size() - louer));
-        for (int i = 0; i < tabScooter.size(); i++) {
-            if (tabScooter.get(i).getEtat() == false) {
-                System.out.println("    id : " + tabScooter.get(i).getId());
+        for (Scooter s : tabScooter) {
+            if (s.getEtat() == false) {
+                System.out.println("    id : " + s.getId());
             }
         }
         // Le kilométrage moyen de l’ensemble des scooter
