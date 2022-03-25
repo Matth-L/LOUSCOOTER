@@ -31,7 +31,7 @@ public class BaseDonne {
 
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("baseDonne/bdScooter.txt");
+        File file = new File("../baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
@@ -50,7 +50,7 @@ public class BaseDonne {
             sc.nextLine();
             tab.add(temp);
         }
-        sc.close(); // !le problème de viens pas de close.
+        sc.close();
     }
 
     static void testEOS(String s) {
@@ -62,7 +62,7 @@ public class BaseDonne {
 
     // permet de sauvegarder les scooters dans un txt
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        File file = new File("baseDonne/bdScooter.txt"); // écrase les données précedents, pour les garder il faut
+        File file = new File("../baseDonne/bdScooter.txt"); // écrase les données précedents, pour les garder il faut
         // mettre true après le nom du fichier
         System.out.println(file);
         FileWriter fw = new FileWriter(file);
