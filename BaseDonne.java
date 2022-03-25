@@ -72,7 +72,7 @@ public class BaseDonne {
             pw.println(tab.get(count).getKilometrage());
             pw.println(tab.get(count).getMarque());
             pw.println(tab.get(count).getModele());
-            // on pourrait mettre un marqueur de fin pour les scooters mais bon
+            pw.println("EOS");
         }
         pw.println("EOF"); // End of File
         pw.close(); // sans ça rien n'est écrit dans le txt
