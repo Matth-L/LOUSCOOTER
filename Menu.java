@@ -21,7 +21,7 @@ public class Menu extends ParcAuto {
 
     void clearBoard() { // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
                         // un touche sauf espace puis affiche le menu.
-        System.out.println("appuyer sur n'importe quelle touche pour retourner au menu");
+        System.out.println("appuyer sur n'importe quelle touche pour retourner au menu sauf espace");
         scan.nextLine();
         scan.nextLine();
         System.out.print("\033[H\033[2J");
@@ -34,6 +34,7 @@ public class Menu extends ParcAuto {
         Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {// on vérifie que l'id du scouteur existe
             S.louer();
+            clearBoard();
             choixMenu(tabScooter);
         } else { // l'id n'existe pas, l'utilisateur à le choix entre rentré une nvelle id ou
                  // retourné au menu. On traite le cas d'une mauvaise touche comme un retour au
@@ -65,6 +66,7 @@ public class Menu extends ParcAuto {
         if (S != null) {
 
             S.retour();
+            clearBoard();
             choixMenu(tabScooter);
         } else {
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -86,12 +88,13 @@ public class Menu extends ParcAuto {
         }
     }
 
-    // ! fct inutile !?!
     void afficheScooter(ArrayList<Scooter> tabScooter) throws IOException {
-        Scooter S = getScooter(tabScooter, demandeId());
-        if (S != null) {
-            choixMenu(tabScooter);
+        Scooter scoot = getScooter(tabScooter, demandeId());
+        if (scoot != null) {
+            infoScooter(scoot);
             clearBoard();
+            choixMenu(tabScooter);
+
         } else {
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
@@ -124,7 +127,6 @@ public class Menu extends ParcAuto {
         } else {
             System.out.println("état : Libre");
         }
-
     }
 
     // affiche les info de tous les scouteurs
@@ -133,6 +135,7 @@ public class Menu extends ParcAuto {
             infoScooter(s);
 
         }
+        clearBoard();
         choixMenu(tabScooter);
     }
 
@@ -149,9 +152,9 @@ public class Menu extends ParcAuto {
             kilometrage += scoot.getKilometrage();
         }
         System.out.println("Nombre de scooter en location :" + louer);
-        for (Scooter s : tabScooter) {
-            if (s.getEtat() == true) {
-                System.out.println("    id : " + s.getId());
+        for (Scooter scoot : tabScooter) {
+            if (scoot.getEtat() == true) {
+                System.out.println("    id : " + scoot.getId());
             }
         }
         System.out.println();
@@ -164,6 +167,7 @@ public class Menu extends ParcAuto {
         }
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
+        clearBoard();
         choixMenu(tabScooter);
     }
 }

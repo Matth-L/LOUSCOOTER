@@ -6,7 +6,7 @@ A
 EOS
 2
 true
-40
+51
 Yamaha
 A
 EOS
