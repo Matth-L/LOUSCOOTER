@@ -13,12 +13,21 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void flush() {
+    void flushS() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    void choix1(ArrayList<Scooter> tabScooter) throws IOException {
+    void clearBoard() {
+        System.out.println("appuyer sur n'importe quelle touche pour retourner au menu");
+        scan.nextLine();
+        scan.nextLine();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
+    }
+
+    void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
@@ -28,19 +37,24 @@ public class Menu extends ParcAuto {
             int choix; // si id fausse!
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
-                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) quitter ");
+                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) Quittez le programme ");
             choix = scan.nextInt();
             switch (choix) {
                 case 1:
-                    choix1(tabScooter);
+                    louerScooter(tabScooter);
                     break;
                 case 2:
                     // retourner au menu
+<<<<<<< HEAD
                     choixMenu(tabScooter);
+=======
+                    System.out.print("\033[H\033[2J");
+                    clearBoard();
+                    aMenu(tabScooter);
+>>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
                     break;
                 case 3:
-                    // quitter
-                    break;
+
                 default:
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
@@ -49,10 +63,11 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void choix2(ArrayList<Scooter> tabScooter) throws IOException {
+    void retourScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
+
             S.retour();
             choixMenu(tabScooter);
         } else {
@@ -63,7 +78,7 @@ public class Menu extends ParcAuto {
             choix = scan.nextInt();
             switch (choix) {
                 case 1:
-                    choix2(tabScooter);
+                    retourScooter(tabScooter);
                     break;
                 case 2:
                     // retourner au menu
@@ -80,12 +95,18 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void choix3(ArrayList<Scooter> tabScooter) throws IOException {
+    void afficheScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
+<<<<<<< HEAD
             afficheScooter3(S);
             choixMenu(tabScooter);
+=======
+            infoScooter(S);
+            clearBoard();
+            aMenu(tabScooter);
+>>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
         } else {
             int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -94,7 +115,7 @@ public class Menu extends ParcAuto {
             choix = scan.nextInt();
             switch (choix) {
                 case 1:
-                    choix3(tabScooter);
+                    afficheScooter(tabScooter);
                     break;
                 case 2:
                     // retourner au menu
@@ -111,7 +132,7 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void afficheScooter3(Scooter scooterDemande) {
+    void infoScooter(Scooter scooterDemande) {
 
         System.out.println("id :" + scooterDemande.getId());
         System.out.println("marque : " + scooterDemande.getMarque());
@@ -122,18 +143,24 @@ public class Menu extends ParcAuto {
         } else {
             System.out.println("état : Libre");
         }
+
     }
 
-    void afficheAll4(ArrayList<Scooter> tabScooter) throws IOException {
+    void afficheParc(ArrayList<Scooter> tabScooter) throws IOException {
         // affiche tous les scooters
         for (int i = 0; i < tabScooter.size(); i++) {
-            afficheScooter3(tabScooter.get(i));
+            infoScooter(tabScooter.get(i));
+
         }
+<<<<<<< HEAD
         choixMenu(tabScooter);
+=======
+        clearBoard();
+        aMenu(tabScooter);
+>>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
     }
 
-    void afficheStat5(ArrayList<Scooter> tabScooter) throws IOException {
-
+    void afficheStatParc(ArrayList<Scooter> tabScooter) throws IOException {
         int louer = 0;
         int kilometrage = 0;
         // Le Nombre total de scooters
@@ -146,10 +173,26 @@ public class Menu extends ParcAuto {
             kilometrage += tabScooter.get(i).getKilometrage();
         }
         System.out.println("Nombre de scooter en location :" + louer);
+        for (int i = 0; i < tabScooter.size(); i++) {
+            if (tabScooter.get(i).getEtat() == true) {
+                System.out.println("    id : " + tabScooter.get(i).getId());
+            }
+        }
+        System.out.println();
         // Le Nombre de scooters disponibles et leur N° d’identification
         System.out.println("Nombre de scooter disponible :" + (tabScooter.size() - louer));
+        for (int i = 0; i < tabScooter.size(); i++) {
+            if (tabScooter.get(i).getEtat() == false) {
+                System.out.println("    id : " + tabScooter.get(i).getId());
+            }
+        }
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
+<<<<<<< HEAD
         choixMenu(tabScooter);
+=======
+        clearBoard();
+        aMenu(tabScooter);
+>>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
     }
 }
