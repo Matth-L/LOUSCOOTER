@@ -52,6 +52,13 @@ public class BaseDonne {
         sc.close();
     }
 
+    static void testEOS(String s) {
+        if (s.equals("EOS")) {
+            System.err.println("base de donnée corrompue");
+            System.exit(1);
+        }
+    }
+
     // permet de sauvegarder les scooters dans un txt
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données précedents, pour les garder il faut

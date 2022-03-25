@@ -45,13 +45,7 @@ public class Menu extends ParcAuto {
                     break;
                 case 2:
                     // retourner au menu
-<<<<<<< HEAD
                     choixMenu(tabScooter);
-=======
-                    System.out.print("\033[H\033[2J");
-                    clearBoard();
-                    aMenu(tabScooter);
->>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
                     break;
                 case 3:
 
@@ -99,14 +93,8 @@ public class Menu extends ParcAuto {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
-<<<<<<< HEAD
-            afficheScooter3(S);
             choixMenu(tabScooter);
-=======
-            infoScooter(S);
             clearBoard();
-            aMenu(tabScooter);
->>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
         } else {
             int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
@@ -152,12 +140,7 @@ public class Menu extends ParcAuto {
             infoScooter(tabScooter.get(i));
 
         }
-<<<<<<< HEAD
         choixMenu(tabScooter);
-=======
-        clearBoard();
-        aMenu(tabScooter);
->>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
     }
 
     void afficheStatParc(ArrayList<Scooter> tabScooter) throws IOException {
@@ -188,11 +171,6 @@ public class Menu extends ParcAuto {
         }
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
-<<<<<<< HEAD
         choixMenu(tabScooter);
-=======
-        clearBoard();
-        aMenu(tabScooter);
->>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
     }
 }

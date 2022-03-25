@@ -50,94 +50,18 @@ public class ParcAuto extends BaseDonne {
                 saveDB(tabScooter);
                 break; // quand on quitte ça sauvegarde dans la bd avant
             default:
-                aMenu(tabScooter);
+                choixMenu(tabScooter);
                 break;
         }
     }
 
-    static void testEOS(String s) {
-        if (s.equals("EOS")) {
-            System.err.println("base de donnée corrompue");
-            System.exit(1);
-        }
-    }
-
-<<<<<<< HEAD
     public static void main(String[] args) throws IOException {
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
         // setScooterInDB(tabScooter); // ajout des élements dans le tab
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
-        affiche.flush();
+        affiche.flushS();
         choixMenu(tabScooter);
-        affiche.flush();
-=======
-    // crée le tableau a partir de la bd
-    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("bdScooter.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
-        String tmp;
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
-            // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
-                                          // chacun des attributs propres a eux meme a voir si ça pose 5pb et si ça
-                                          // mérite d'être corrigé
-            testEOS(tmp = sc.nextLine());
-            temp.setId(Integer.parseInt(tmp));
-
-            testEOS(tmp = sc.nextLine());
-            temp.setEtat(Boolean.parseBoolean(tmp));
-
-            testEOS(tmp = sc.nextLine());
-            temp.setKilometrage(Integer.parseInt(tmp));
-
-            testEOS(tmp = sc.nextLine());
-            temp.setMarque(tmp);
-
-            testEOS(tmp = sc.nextLine());
-            temp.setModele(tmp);
-            tab.add(temp);
-
-            tmp = sc.nextLine();
-
-            if (!(tmp.equals("EOS"))) { // si le fichier ne comprend pas un EOS a la fin
-                System.err.println("base de donnée pas bonne ");
-                System.exit(1);
-            }
-        }
-        sc.close();
-    }
-
-    // permet de sauvegarder les scooters dans un txt
-    static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        File file = new File("bdScooter.txt"); // écrase les données précedents, pour les garder il faut
-                                               // mettre true après le nom du fichier
-        FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);
-        for (int count = 0; count < tab.size(); count++) {
-            // écrit les attributs de chaque scooters
-            pw.println(tab.get(count).getId());
-            pw.println(tab.get(count).getEtat());
-            pw.println(tab.get(count).getKilometrage());
-            pw.println(tab.get(count).getMarque());
-            pw.println(tab.get(count).getModele());
-            pw.println("EOS"); // End of Scooter
-        }
-        pw.println("EOF"); // End of File
-        pw.close(); // sans ça rien n'est écrit dans le txt
-    }
-
-    public static void main(String[] args) throws IOException {
-        // ArrayList<Scooter> debuttabScooter = new ArrayList<Scooter>();
-        // setScooterInDB(debuttabScooter);
-        // System.out.println(debuttabScooter.size());
-        // saveDB(debuttabScooter);
-        ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        getDB(tabScooter); // va chercher les informations a partir du fichier txt
-        System.out.print("\033[H\033[2J");
         affiche.flushS();
-        aMenu(tabScooter);
-        affiche.flushS();
->>>>>>> 7f5a8614439a26cbfdc79b563c80ada52414cbb4
     }
 
 }
