@@ -33,12 +33,10 @@ public class Menu extends ParcAuto {
             S.louer();
             choixMenu(tabScooter);
         } else {
-            int choix; // si id fausse!
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) Quittez le programme ");
-            choix = scan.nextInt();
-            switch (choix) {
+            switch (scan.nextInt()) {
                 case 1:
                     louerScooter(tabScooter);
                     break;
@@ -64,12 +62,10 @@ public class Menu extends ParcAuto {
             S.retour();
             choixMenu(tabScooter);
         } else {
-            int choix;
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) quitter ");
-            choix = scan.nextInt();
-            switch (choix) {
+            switch (scan.nextInt()) {
                 case 1:
                     retourScooter(tabScooter);
                     break;
