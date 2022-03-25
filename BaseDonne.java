@@ -49,7 +49,7 @@ public class BaseDonne {
             temp.setModele(sc.nextLine());
             tab.add(temp);
         }
-        sc.close();
+        sc.close(); // !le problème de viens pas de close.
     }
 
     static void testEOS(String s) {
