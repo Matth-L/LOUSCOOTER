@@ -26,7 +26,7 @@ public class Menu extends ParcAuto {
         System.out.flush();
 
     }
-
+    
     void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {

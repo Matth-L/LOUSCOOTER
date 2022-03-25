@@ -47,6 +47,7 @@ public class BaseDonne {
             sc.nextLine();
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
+            sc.nextLine();
             tab.add(temp);
         }
         sc.close();
