@@ -23,6 +23,7 @@ public class Scooter {
         modele = mod;
     }
 
+    // getteur: \\
     public int getId() {
         return this.id;
     }
@@ -43,6 +44,7 @@ public class Scooter {
         return this.modele;
     }
 
+    // setteur \\
     public void setId(int x) {
         this.id = x;
     }
@@ -63,6 +65,7 @@ public class Scooter {
         this.modele = x;
     }
 
+    // fct:
     public void louer() {
         if (!this.etat) {
             this.setEtat(true);
