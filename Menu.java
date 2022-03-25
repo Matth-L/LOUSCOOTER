@@ -44,8 +44,6 @@ public class Menu extends ParcAuto {
                     // retourner au menu
                     choixMenu(tabScooter);
                     break;
-                case 3:
-
                 default:
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
