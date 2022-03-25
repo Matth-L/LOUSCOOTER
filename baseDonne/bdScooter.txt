@@ -29,8 +29,8 @@ false
 Honda
 A
 72
-true
-40
+false
+50
 Yamaha
 A
 25
