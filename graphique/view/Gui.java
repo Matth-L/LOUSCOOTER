@@ -16,14 +16,14 @@ public class Gui extends JFrame {
         int y = (int) tailleEcran.getHeight();
         setSize(x / 2, y / 2);// taille de l'écran de l'utilisateur par 2 (fullscreen est un peu aggressif)
         // init pannel + bouton
-        JPanel panel = new JPanel(new GridLayout(1, 6));
+        JPanel panel = new JPanel(new GridLayout(6, 1));
         Bouton louer = new Bouton("Louer");
         Bouton retour = new Bouton("Retour");
         Bouton etatScoot = new Bouton("État d'un scooter");
         Bouton afficheAllScoot = new Bouton("Affichage de l'état du parc de scooters");
         Bouton parcScoot = new Bouton("Saisie du parc des scooters");
         Bouton quit = new Bouton("Quitter le programme");
-        // ajout au panel
+        // ajout au panel des boutons au panel
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
@@ -31,7 +31,7 @@ public class Gui extends JFrame {
         panel.add(parcScoot);
         panel.add(quit);
         // ajout du panel au conteneur
-        this.getContentPane().add(BorderLayout.CENTER, panel);
+        this.getContentPane().add(BorderLayout.EAST, panel);
         // action listener juste pour tester
         Controller ctr = new Controller();
         louer.addActionListener(ctr);
