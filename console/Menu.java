@@ -46,13 +46,16 @@ public class Menu extends ParcAuto {
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
             switch (scan.nextInt()) {
                 case 1:
+                    flushS();
                     louerScooter(tabScooter);
                     break;
                 case 2:
                     // retourner au menu
+                    flushS();
                     choixMenu(tabScooter);
                     break;
                 default:
+                    flushS();
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
@@ -76,13 +79,16 @@ public class Menu extends ParcAuto {
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
             switch (scan.nextInt()) {
                 case 1:
+                    flushS();
                     retourScooter(tabScooter);
                     break;
                 case 2:
                     // retourner au menu
+                    flushS();
                     choixMenu(tabScooter);
                     break;
                 default:
+                    flushS();
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
