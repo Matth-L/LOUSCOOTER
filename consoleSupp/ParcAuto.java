@@ -4,6 +4,9 @@ import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//ajouter des scooters ("évident") -> Ajouter un mode admin
+//possibilité de réservation (jour ou on va le prendre) -> ajouter des dates 
+//Client ? car un client appartient a un parc auto 
 //programme principal 
 public class ParcAuto extends BaseDonne {
 
