@@ -1,4 +1,4 @@
-package model;
+package graphique.model;
 
 import java.util.Scanner;
 

@@ -1,11 +1,11 @@
-package view;
+package graphique.view;
 //package
 
 import java.awt.*;
 
 import javax.swing.*;
 
-import controller.Controller;
+import graphique.controller.Controller;
 
 public class Gui extends JFrame {
 
