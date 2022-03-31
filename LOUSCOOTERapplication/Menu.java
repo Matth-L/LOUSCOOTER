@@ -15,32 +15,37 @@ public class Menu extends ParcAuto {
         }
     }
 
-    void flushS() {// se mettre au plus bas dans l'interface de commande(retire le texte des
-                   // actions précédentes)
+    // se mettre au plus bas dans l'interface de commande(retire le texte des
+    // actions précédentes)
+    void flushS() {
+
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    void clearBoard() { // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
-                        // un touche sauf espace puis affiche le menu.
+    // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
+    // un touche sauf espace puis affiche le menu.
+    void clearBoard() {
         System.out.println("appuyer sur n'importe quelle touche pour retourner au menu sauf espace");
         scan.nextLine();
         scan.nextLine();
         System.out.print("\033[H\033[2J");
         System.out.flush();
-
     }
 
     // fct qui permet de louer un scouteur avec une id rentré par l'utilisateur
     void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
-        if (S != null) {// on vérifie que l'id du scouteur existe
+        // on vérifie que l'id du scouteur existe
+        if (S != null) {
             S.louer();
             clearBoard();
             choixMenu(tabScooter);
-        } else { // l'id n'existe pas, l'utilisateur à le choix entre rentré une nvelle id ou
-                 // retourné au menu. On traite le cas d'une mauvaise touche comme un retour au
-                 // menu.
+        }
+        // l'id n'existe pas, l'utilisateur à le choix entre rentré une nvelle id ou
+        // retourné au menu. On traite le cas d'une mauvaise touche comme un retour au
+        // menu.
+        else {
             System.out.println("Ce scooter n'est pas dans la base de donnée");
             System.err.println(
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
@@ -69,7 +74,6 @@ public class Menu extends ParcAuto {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
-
             S.retour();
             clearBoard();
             choixMenu(tabScooter);

@@ -49,8 +49,9 @@ public class ParcAuto extends BaseDonne {
                 affiche.afficheStatParc(tabScooter);
                 break;
             case 6:
+                // quand on quitte ça sauvegarde dans la bd avant
                 saveDB(tabScooter);
-                break; // quand on quitte ça sauvegarde dans la bd avant
+                break;
             default:
                 System.out.println("Veuillez entrez un nombre correcte ... ");
                 choixMenu(tabScooter);
@@ -61,9 +62,12 @@ public class ParcAuto extends BaseDonne {
     public static void main(String[] args) throws IOException {
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
         ArrayList<Client> tabClient = new ArrayList<Client>();
+
         // setScooterInDB(tabScooter); // ajout des élements dans le tab
         // saveDB(tabScooter);
-        getDB(tabScooter); // va chercher les informations a partir du fichier txt
+
+        // va chercher les informations a partir du fichier txt
+        getDB(tabScooter);
         affiche.flushS();
         choixMenu(tabScooter);
         affiche.flushS();

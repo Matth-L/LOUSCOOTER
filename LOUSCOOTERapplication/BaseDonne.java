@@ -22,7 +22,8 @@ public class BaseDonne {
     static Scooter g = new Scooter(72, true, 40, "Yamaha", "A");
     static Scooter f = new Scooter(88, false, 40, "Honda", "A");
 
-    static void setScooterInDB(ArrayList<Scooter> tab) { // pour rajouter les scooters aux tab
+    // pour rajouter les scooters aux tab
+    static void setScooterInDB(ArrayList<Scooter> tab) {
         tab.add(a);
         tab.add(b);
         tab.add(c);
@@ -64,13 +65,15 @@ public class BaseDonne {
         sc.close();
     }
 
-    // crée le tableau a partir de la bd
+    // crée le tableau a partir de la bd Client
     static void getDBClients(ArrayList<Client> tab) throws FileNotFoundException {
 
         File file = new File("baseDonne/bdClient.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        // il faut créer un scanner pour le fichier
+        Scanner sc = new Scanner(file);
 
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+        // tant qu'on est pas au marqueur la fin du fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
             String nom, prenom, mail, mdp;
             nom = sc.nextLine();
             prenom = sc.nextLine();
