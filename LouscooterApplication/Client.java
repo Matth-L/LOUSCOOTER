@@ -1,4 +1,4 @@
-package LOUSCOOTERapplication;
+package LouscooterApplication;
 
 import java.util.Scanner;
 

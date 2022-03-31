@@ -1,4 +1,4 @@
-package graphique.controller;
+package LouscooterGraphique.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package LOUSCOOTERapplication;
+package LouscooterApplication;
 
 import java.io.File;
 import java.io.FileNotFoundException;

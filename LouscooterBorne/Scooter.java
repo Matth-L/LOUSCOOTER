@@ -1,4 +1,4 @@
-package LOUSCOOTERborne;
+package LouscooterBorne;
 
 import java.util.Scanner;
 

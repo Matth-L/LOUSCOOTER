@@ -1,12 +1,9 @@
-package LOUSCOOTERapplication;
+package LouscooterBorne;
 
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//?ajouter des scooters ("évident") -> Ajouter un mode admin
-//? rajouter un fichier bdClient qui contient pour chaque client (nom,prenom) id:l'adresse mail | demande de mpd client |
-//? admin : bool -> demande de mdp  
 //programme principal 
 public class ParcAuto extends BaseDonne {
 
@@ -27,9 +24,7 @@ public class ParcAuto extends BaseDonne {
         return scan.nextInt();
     }
 
-    // ! choix menu est appelé tous le temps donc on doit rajouter tab client meme
-    // ! quand ca semble pas utile je verrais comment changer ça plus tard
-    static void choixMenu(ArrayList<Scooter> tabScooter, ArrayList<Client> tabClient) throws IOException {
+    static void choixMenu(ArrayList<Scooter> tabScooter) throws IOException {
         // menu
         affiche.mainMenu();
         System.out.print("Entrez un nombre : ");
@@ -50,32 +45,22 @@ public class ParcAuto extends BaseDonne {
                 affiche.afficheStatParc(tabScooter);
                 break;
             case 6:
-                // quand on quitte ça sauvegarde dans la bd avant
                 saveDB(tabScooter);
-                saveDBClients(tabClient);
-                break;
+                break; // quand on quitte ça sauvegarde dans la bd avant
             default:
                 System.out.println("Veuillez entrez un nombre correcte ... ");
-                choixMenu(tabScooter, tabClient);
+                choixMenu(tabScooter);
                 break;
         }
     }
 
     public static void main(String[] args) throws IOException {
-
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        ArrayList<Client> tabClient = new ArrayList<Client>();
-
         // setScooterInDB(tabScooter); // ajout des élements dans le tab
         // saveDB(tabScooter);
-
-        // met scooters dans l'arrayList
-        getDB(tabScooter);
-        // met client dans l'arrayList
-        // getDBClients(tabClient);
-
+        getDB(tabScooter); // va chercher les informations a partir du fichier txt
         affiche.flushS();
-        choixMenu(tabScooter, tabClient);
+        choixMenu(tabScooter);
         affiche.flushS();
     }
 
