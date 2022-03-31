@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// File file = new File("../baseDonne/bdScooter.txt"); // mal positionné
+
 // tout ce qui traite la base de donnée est la 
 public class BaseDonne {
     static Scooter a = new Scooter(1, true, 40, "Honda", "A");
@@ -35,15 +37,20 @@ public class BaseDonne {
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
 
         File file = new File("baseDonne/bdScooter.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
-            // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
-            // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
-            // mérite d'être corrigé
+        // il faut créer un scanner pour le fichier
+        Scanner sc = new Scanner(file);
+
+        // tant qu'on est pas au marqueur la fin du fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
+
+            // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
+            Scooter temp = new Scooter();
+
+            // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
+            // next Boolean etc il ne fait pas le \n seul
+
             temp.setId(sc.nextInt());
-            sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-                           // next Boolean etc il ne fait pas le \n seul
+            sc.nextLine();
             temp.setEtat(sc.nextBoolean());
             sc.nextLine();
             temp.setKilometrage(sc.nextInt());
@@ -51,23 +58,36 @@ public class BaseDonne {
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
             sc.nextLine();
+
             tab.add(temp);
         }
         sc.close();
     }
 
-    // crée un marqueur de fin pour les scooters
-    static void isMarquer(String s) {
-        // EOA -> End Of Array
-        if (s.equals("EOA")) {
-            System.err.println("base de donnée corrompue");
-            System.exit(1);
+    // crée le tableau a partir de la bd
+    static void getDBClients(ArrayList<Client> tab) throws FileNotFoundException {
+
+        File file = new File("baseDonne/bdClient.txt");
+        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+            String nom, prenom, mail, mdp;
+            nom = sc.nextLine();
+            prenom = sc.nextLine();
+            mail = sc.nextLine();
+            mdp = sc.nextLine(); // a voir pour crypter plus tard
+            tab.add(new Client(nom, prenom, mail, mdp));
+
+            // tab.add(new Client(sc.nextLine(), sc.nextLine(),sc.nextLine(),sc.nextLine()))
+
+            // pour passer a traver le EOA
+            sc.nextLine();
         }
+        sc.close();
     }
 
     // permet de sauvegarder les scooters dans un txt
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        // File file = new File("../baseDonne/bdScooter.txt"); // mal positionné
 
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données
         // précedents, pour les garder il faut mettre true après le nom du fichier
@@ -88,15 +108,13 @@ public class BaseDonne {
         pw.close();
     }
 
-    // crée le tableau a partir de la bd
-    static void getDBClients(ArrayList<Scooter> tab) throws FileNotFoundException {
-        // File file = new File("../baseDonne/bdClient.txt"); // si on doit le lancé
-        // dans le fichier console
-        File file = new File("baseDonne/bdClient.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+    // crée un marqueur de fin pour les scooters
+    static void isMarquer(String s) {
+        // EOA -> End Of Array
+        if (s.equals("EOA")) {
+            System.err.println("base de donnée corrompue");
+            System.exit(1);
         }
-        sc.close();
     }
 
 }

@@ -1,4 +1,4 @@
-package consoleSupp;
+package LOUSCOOTERapplication;
 
 import java.io.IOException;
 import java.util.ArrayList;

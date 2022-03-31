@@ -4,7 +4,8 @@ public class Client {
     boolean admin = false;
     String nom, prenom, mail, mdp;
 
-    void Client(String n, String p, String m, String psw) {
+    // pas besoin de getter et setter pour les clients
+    Client(String n, String p, String m, String psw) {
         this.nom = n;
         this.prenom = p;
         this.mail = m;
@@ -20,7 +21,10 @@ public class Client {
         return true;
     }
 
-    void isAdmin() {
-        admin = true;
+    // on vérifie que c'est un admin par son mail et son mdp
+    void isAdmin(String m) {
+        if (mail == m) {
+            admin = true;
+        }
     }
 }
