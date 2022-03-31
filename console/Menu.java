@@ -109,13 +109,16 @@ public class Menu extends ParcAuto {
                     "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n 3) quitter ");
             switch (scan.nextInt()) {
                 case 1:
+                    flushS();
                     afficheScooter(tabScooter);
                     break;
                 case 2:
+                    flushS();
                     // retourner au menu
                     choixMenu(tabScooter);
                     break;
                 default:
+                    flushS();
                     choixMenu(tabScooter);
                     System.out.println("valeurs rentrée incorecte, retour au menu.");
                     break;
