@@ -1,9 +1,13 @@
-package console;
+package consoleSupp;
 
 import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//?ajouter des scooters ("évident") -> Ajouter un mode admin
+//?possibilité de réservation (jour ou on va le prendre) -> ajouter des dates  sur une année 
+//? rajouter un fichier bdClient qui contient pour chaque client (nom,prenom) id:l'adresse mail | demande de mpd client |
+//? admin : bool -> demande de mdp  
 //programme principal 
 public class ParcAuto extends BaseDonne {
 

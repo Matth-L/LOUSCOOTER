@@ -1,4 +1,4 @@
-package console;
+package LOUSCOOTERborne;
 
 import java.util.Scanner;
 
