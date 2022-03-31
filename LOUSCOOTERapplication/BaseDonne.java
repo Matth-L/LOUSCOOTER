@@ -1,4 +1,4 @@
-package consoleSupp;
+package LOUSCOOTERapplication;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,10 +31,9 @@ public class BaseDonne {
         tab.add(i);
     }
 
-    // crée le tableau a partir de la bd
+    // crée le tableau a partir de la bd pour les scooters
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        // File file = new File("../baseDonne/bdScooter.txt"); // si on doit le lancé
-        // dans le fichier console
+
         File file = new File("baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
@@ -57,8 +56,10 @@ public class BaseDonne {
         sc.close();
     }
 
-    static void testEOS(String s) {
-        if (s.equals("EOS")) {
+    // crée un marqueur de fin pour les scooters
+    static void isMarquer(String s) {
+        // EOA -> End Of Array
+        if (s.equals("EOA")) {
             System.err.println("base de donnée corrompue");
             System.exit(1);
         }
@@ -66,12 +67,10 @@ public class BaseDonne {
 
     // permet de sauvegarder les scooters dans un txt
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        // File file = new File("../baseDonne/bdScooter.txt"); // si on est pas dans
-        // console
+        // File file = new File("../baseDonne/bdScooter.txt"); // mal positionné
+
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données
-        // précedents, pour les garder il faut
-        // mettre true après le nom du fichier
-        System.out.println(file);
+        // précedents, pour les garder il faut mettre true après le nom du fichier
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         for (Scooter s : tab) {
@@ -81,10 +80,23 @@ public class BaseDonne {
             pw.println(s.getKilometrage());
             pw.println(s.getMarque());
             pw.println(s.getModele());
-            pw.println("EOS");
+            pw.println("EOA");
         }
-        pw.println("EOF"); // End of File
-        pw.close(); // sans ça rien n'est écrit dans le txt
+        // End of File
+        pw.println("EOF");
+        // sans ça rien n'est écrit dans le txt
+        pw.close();
+    }
+
+    // crée le tableau a partir de la bd
+    static void getDBClients(ArrayList<Scooter> tab) throws FileNotFoundException {
+        // File file = new File("../baseDonne/bdClient.txt"); // si on doit le lancé
+        // dans le fichier console
+        File file = new File("baseDonne/bdClient.txt");
+        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
+        }
+        sc.close();
     }
 
 }
