@@ -5,8 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.crypto.Cipher;
 
 // File file = new File("../baseDonne/bdScooter.txt"); // mal positionné
 
@@ -69,10 +74,8 @@ public class BaseDonne {
     static void getDBClients(ArrayList<Client> tab) throws FileNotFoundException {
 
         File file = new File("baseDonne/bdClient.txt");
-        // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
 
-        // tant qu'on est pas au marqueur la fin du fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
             String nom, prenom, mail, mdp;
             nom = sc.nextLine();
@@ -80,10 +83,7 @@ public class BaseDonne {
             mail = sc.nextLine();
             mdp = sc.nextLine(); // a voir pour crypter plus tard
             tab.add(new Client(nom, prenom, mail, mdp));
-
             // tab.add(new Client(sc.nextLine(), sc.nextLine(),sc.nextLine(),sc.nextLine()))
-
-            // pour passer a traver le EOA
             sc.nextLine();
         }
         sc.close();
@@ -107,7 +107,27 @@ public class BaseDonne {
         }
         // End of File
         pw.println("EOF");
-        // sans ça rien n'est écrit dans le txt
+        // * sans ça rien n'est écrit dans le txt
+        pw.close();
+    }
+
+    // ! soit on crypte le fichier et on le décrype ça parait moins long soit on
+    // ! crypte chaque mdp a voir
+    static void saveDBClients(ArrayList<Client> tab) throws IOException {
+
+        File file = new File("baseDonne/bdScooter.txt"); // écrase les données
+        // précedents, pour les garder il faut mettre true après le nom du fichier
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+        for (Client c : tab) {
+            // écrit les attributs de chaque scooters
+            pw.println(c.getName());
+            pw.println(c.getPrenom());
+            pw.println(c.getMail());
+            pw.println(c.getMdp());
+            pw.println("EOA");
+        }
+        pw.println("EOF");
         pw.close();
     }
 
@@ -119,5 +139,4 @@ public class BaseDonne {
             System.exit(1);
         }
     }
-
 }

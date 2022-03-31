@@ -1,6 +1,9 @@
 package LOUSCOOTERapplication;
 
+import java.util.Scanner;
+
 public class Client {
+    Scanner scan = new Scanner(System.in);
     boolean admin = false;
     String nom, prenom, mail, mdp;
 
@@ -21,10 +24,31 @@ public class Client {
         return true;
     }
 
+    String getName() {
+        return nom;
+    }
+
+    String getPrenom() {
+        return prenom;
+    }
+
+    String getMail() {
+        return mail;
+    }
+
+    String getMdp() {
+        return mdp;
+    }
+
     // on vérifie que c'est un admin par son mail et son mdp
-    void isAdmin(String m) {
-        if (mail == m) {
-            admin = true;
+    void isAdmin() {
+        System.out.println("Entrez votre mail : ");
+        if (scan.nextLine() == "louscooter@parcauto.fr") {
+            System.out.println("Entrez votre mot de passe ");
+            if (scan.nextLine() == "LOUSCOOTER") {
+                admin = true;
+            }
         }
+        System.err.println("Mot de passe incorrect");
     }
 }

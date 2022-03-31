@@ -3,6 +3,8 @@ package LOUSCOOTERapplication;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// ! choix menu est appelé tous le temps donc on doit rajouter tab client meme
+// ! quand ca semble pas utile je verrais comment changer ça plus tard erreur normal so far 
 //tout ce qui est dans le menu ou affiche est la 
 public class Menu extends ParcAuto {
 
