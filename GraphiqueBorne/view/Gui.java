@@ -1,11 +1,11 @@
-package LouscooterGraphique.view;
+package GraphiqueBorne.view;
 //package
 
 import java.awt.*;
 
 import javax.swing.*;
 
-import LouscooterGraphique.controller.Controller;
+import GraphiqueBorne.controller.Controller;
 
 public class Gui extends JFrame {
 

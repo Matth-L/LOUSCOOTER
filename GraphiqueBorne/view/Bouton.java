@@ -1,4 +1,4 @@
-package LouscooterGraphique.view;
+package GraphiqueBorne.view;
 
 import java.awt.Color;
 

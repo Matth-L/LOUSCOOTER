@@ -1,4 +1,5 @@
-package LouscooterApplication;
+package BorneConsoleAvancer;
+
 
 import java.util.Scanner;
 

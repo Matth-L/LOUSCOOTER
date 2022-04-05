@@ -1,4 +1,4 @@
-package LouscooterBorne;
+package GraphiqueBorne.model;
 
 import java.util.Scanner;
 

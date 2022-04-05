@@ -1,4 +1,4 @@
-package LouscooterBorne;
+package BorneConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
