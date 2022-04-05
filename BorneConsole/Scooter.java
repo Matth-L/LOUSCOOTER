@@ -1,5 +1,6 @@
 package BorneConsole;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,8 +29,9 @@ public class Scooter {
     // filtre pour la disponibilité des locations
     boolean isDispo(Date debut, Date fin) {
         for (Location l : tabLocation) {
-
+            // test de la plage
         }
+        return false;
     }
 
     // getteur: \\
