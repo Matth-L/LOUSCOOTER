@@ -1,37 +1,40 @@
 package BorneConsole;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Scooter {
     static int countScoot = 0;
     private int id;
-    private boolean etat;// True louer, False non louer
     private int kilometrage;
     private String marque;
     private String modele;
+    // un tableau contenant les locations du scooters
+    ArrayList<Location> tabLocation = new ArrayList<Location>();
 
     Scooter() { // pour le mode admin pas encore testé
         countScoot++;
         id = countScoot;
-        etat = false;
         kilometrage = 0;
     }
 
-    Scooter(int nb, boolean e, int km, String mar, String mod) {
+    Scooter(int nb, int km, String mar, String mod) {
         id = nb;
-        etat = e;
         kilometrage = km;
         marque = mar;
         modele = mod;
     }
 
+    // filtre pour la disponibilité des locations
+    boolean isDispo(Date debut, Date fin) {
+        for (Location l : tabLocation) {
+
+        }
+    }
+
     // getteur: \\
     public int getId() {
         return this.id;
-    }
-
-    public boolean getEtat() {
-        return this.etat;
     }
 
     public int getKilometrage() {
@@ -49,10 +52,6 @@ public class Scooter {
     // setteur \\
     public void setId(int x) {
         this.id = x;
-    }
-
-    public void setEtat(boolean x) {
-        this.etat = x;
     }
 
     public void setKilometrage(int x) {
@@ -89,4 +88,5 @@ public class Scooter {
         }
         // ! scan.close(); fait crash le programme.
     }
+
 }
