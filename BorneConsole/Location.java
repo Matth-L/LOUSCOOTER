@@ -17,7 +17,7 @@ public class Location {
         scootId = s;
         numDeRetour++;
         numR = numDeRetour;
-
+        System.out.println(numR + "  " + s);
     }
 
     // prend une date de format jour/mois/année
