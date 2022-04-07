@@ -45,7 +45,6 @@ public class BaseDonne {
             temp.setId(sc.nextInt());
             sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
                            // next Boolean etc il ne fait pas le \n seul
-            temp.setEtat(sc.nextBoolean());
             sc.nextLine();
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
@@ -77,7 +76,6 @@ public class BaseDonne {
         for (Scooter s : tab) {
             // écrit les attributs de chaque scooters
             pw.println(s.getId());
-            pw.println(s.getEtat());
             pw.println(s.getKilometrage());
             pw.println(s.getMarque());
             pw.println(s.getModele());
