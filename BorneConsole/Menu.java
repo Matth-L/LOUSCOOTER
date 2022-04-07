@@ -2,6 +2,7 @@ package BorneConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 //tout ce qui est dans le menu ou affiche est la 
 public class Menu extends ParcAuto {
@@ -12,6 +13,81 @@ public class Menu extends ParcAuto {
                 "6 : Quitter le programme " };
         for (int i = 0; i < option.length; i++) {
             System.out.println(option[i]);
+        }
+    }
+
+    void invalideIdLocation(ArrayList<Scooter> tabScooter) throws IOException {
+        System.out.println(
+                "Id invalide\n vous pouvez : 1) rentrer un autre id \n 2) rentourner au menu \n ");
+        switch (scan.nextInt()) {
+            case 1:
+                flushS();
+                louerScooter(tabScooter);
+                break;
+            case 2:
+                // retourner au menu
+                flushS();
+                choixMenu(tabScooter);
+                break;
+            default:
+                flushS();
+                choixMenu(tabScooter);
+                System.out.println("valeurs rentrée incorecte, retour au menu.");
+                break;
+        }
+    }
+
+    void invalideDateLocation(Scooter S, ArrayList<Scooter> tabScooter) throws IOException {
+        System.out.println(
+                "non disponible à la date rentrée ou date invalide.\n vous pouvez : 1) rentrer une autre date \n 2) rentrer un autre id \n 3) retourner au menu");
+        switch (scan.nextInt()) {
+            case 1:
+                // rentrer une nvelle date
+                flushS();
+                louerDate(S, tabScooter);
+                break;
+            case 2:
+                // rentrer un nouvel id
+                flushS();
+                louerScooter(tabScooter);
+                break;
+            case 3:
+                // retourner au menu
+                flushS();
+                choixMenu(tabScooter);
+                break;
+            default:
+                flushS();
+                choixMenu(tabScooter);
+                System.out.println("valeurs rentrées incorecte, retour au menu.");
+                break;
+        }
+    }
+
+    void invalideNumRetour(Scooter S, ArrayList<Scooter> tabScooter) throws IOException {
+        System.out.println(
+                "numéro de location invalide pour le scouteur rentré \n vous pouvez : 1) rentrer un autre numéro \n 2) rentrer un autre id \n 3) retourner au menu");
+        switch (scan.nextInt()) {
+            case 1:
+                // rentrer une nvelle date
+                flushS();
+                retourDate(S, tabScooter);
+                break;
+            case 2:
+                // rentrer un nouvel id
+                flushS();
+                louerScooter(tabScooter);
+                break;
+            case 3:
+                // retourner au menu
+                flushS();
+                choixMenu(tabScooter);
+                break;
+            default:
+                flushS();
+                choixMenu(tabScooter);
+                System.out.println("valeurs rentrées incorecte, retour au menu.");
+                break;
         }
     }
 
@@ -28,38 +104,60 @@ public class Menu extends ParcAuto {
         scan.nextLine();
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    void louerDate(Scooter S, ArrayList<Scooter> tabScooter) throws IOException {
+
+        System.out.println("entrer 2 dates dans le format mm/jj/ann");
+        System.out.printf("date de location : ");
+
+        Date debutDate = Location.stringToDate(scan.next());
+
+        System.out.println();
+        System.out.printf("date de retour : ");
+
+        Date finDate = Location.stringToDate(scan.next());
+
+        if (S.isDispo(debutDate, finDate) && (debutDate != null || finDate != null)) {
+            S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
+
+        } else {
+            invalideDateLocation(S, tabScooter);
+        }
 
     }
 
-    // fct qui permet de louer un scouteur avec une id rentré par l'utilisateur
+    void retourDate(Scooter S, ArrayList<Scooter> tabScooter) throws IOException {
+        System.out.println("entrez le numéro de location");
+        Location l;
+        Date finDate = null;
+        if ((l = S.verifNumR(scan.nextInt())) != null) {
+            System.out.println();
+            System.out.printf("date de retour : ");
+            while (finDate == null) {
+
+                finDate = Location.stringToDate(scan.next());
+                if (finDate == null) {
+                    System.out.println("veillez rentrer une date valide :");
+                }
+            }
+            l.setDateFin(finDate);
+        } else {
+            invalideNumRetour(S, tabScooter);
+        }
+    }
+
+    // louer un scouteur avec une id rentré par l'utilisateur
     void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
-        if (S != null) {// on vérifie que l'id du scouteur existe
-            S.louer();
+        if (S != null) {
+            louerDate(S, tabScooter);
             clearBoard();
             choixMenu(tabScooter);
-        } else { // l'id n'existe pas, l'utilisateur à le choix entre rentré une nvelle id ou
-                 // retourné au menu. On traite le cas d'une mauvaise touche comme un retour au
-                 // menu.
-            System.out.println("Ce scooter n'est pas dans la base de donnée");
-            System.err.println(
-                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
-            switch (scan.nextInt()) {
-                case 1:
-                    flushS();
-                    louerScooter(tabScooter);
-                    break;
-                case 2:
-                    // retourner au menu
-                    flushS();
-                    choixMenu(tabScooter);
-                    break;
-                default:
-                    flushS();
-                    choixMenu(tabScooter);
-                    System.out.println("valeurs rentrée incorecte, retour au menu.");
-                    break;
-            }
+
+        } else {
+            // On traite le cas d'une mauvaise touche comme un retour au menu
+            invalideIdLocation(tabScooter);
         }
     }
 
@@ -69,31 +167,36 @@ public class Menu extends ParcAuto {
         Scooter S;
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
-
-            S.retour();
+            // retour
             clearBoard();
             choixMenu(tabScooter);
         } else {
-            System.out.println("Ce scooter n'est pas dans la base de donnée");
-            System.err.println(
-                    "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
-            switch (scan.nextInt()) {
-                case 1:
-                    flushS();
-                    retourScooter(tabScooter);
-                    break;
-                case 2:
-                    // retourner au menu
-                    flushS();
-                    choixMenu(tabScooter);
-                    break;
-                default:
-                    flushS();
-                    choixMenu(tabScooter);
-                    System.out.println("valeurs rentrée incorecte, retour au menu.");
-                    break;
-            }
+            invalideScootRetour(tabScooter);
         }
+    }
+
+    // message d'erreur
+    void invalideScootRetour(ArrayList<Scooter> tabScooter) throws IOException {
+        System.out.println("Ce scooter n'est pas dans la base de donnée");
+        System.err.println(
+                "Que voulez-vous faire: \n 1) rentrer une autre id \n 2) retourner au menu \n");
+        switch (scan.nextInt()) {
+            case 1:
+                flushS();
+                retourScooter(tabScooter);
+                break;
+            case 2:
+                // retourner au menu
+                flushS();
+                choixMenu(tabScooter);
+                break;
+            default:
+                flushS();
+                choixMenu(tabScooter);
+                System.out.println("valeurs rentrée incorecte, retour au menu.");
+                break;
+        }
+
     }
 
     void afficheScooter(ArrayList<Scooter> tabScooter) throws IOException {
@@ -128,15 +231,15 @@ public class Menu extends ParcAuto {
 
     // affiche les info du couteur renté en param.
     void infoScooter(Scooter scooterDemande) {
-
         System.out.println("id :" + scooterDemande.getId());
         System.out.println("marque : " + scooterDemande.getMarque());
         System.out.println("modèle : " + scooterDemande.getModele());
         System.out.println("kilométrage : " + scooterDemande.getKilometrage());
-        if (scooterDemande.getEtat()) {
-            System.out.println("état : Occupé");
-        } else {
-            System.out.println("état : Libre");
+        // affiche les différentes dates
+        for (Location l : scooterDemande.tabLocation) {
+            // a modifier l'affichage des dates par la suite
+            System.out.printf("date de location : %s\n", l.dateDebut.toString());
+            System.out.printf("date de retour : %s\n", l.dateDebut.toString());
         }
     }
 
@@ -144,7 +247,6 @@ public class Menu extends ParcAuto {
     void afficheParc(ArrayList<Scooter> tabScooter) throws IOException {
         for (Scooter s : tabScooter) {
             infoScooter(s);
-
         }
         clearBoard();
         choixMenu(tabScooter);
@@ -155,30 +257,47 @@ public class Menu extends ParcAuto {
         int louer = 0;
         int kilometrage = 0;
         System.out.println("Nombre total de scooter : " + tabScooter.size());
-        // Le Nombre de scooters en location et leur N° d’identification,
         for (Scooter scoot : tabScooter) {
-            if (scoot.getEtat()) {
-                louer++;
-            }
             kilometrage += scoot.getKilometrage();
         }
-        System.out.println("Nombre de scooter en location :" + louer);
-        for (Scooter scoot : tabScooter) {
-            if (scoot.getEtat() == true) {
-                System.out.println("    id : " + scoot.getId());
+
+        // Le Nombre de scooters en location et leur N° d’identification,
+        for (Scooter s : tabScooter) {
+            // liste des id pour les scooter dispo
+            if (!s.isDispoActual()) {
+                louer++;
             }
         }
+
+        System.out.println("Nombre de scooter en location :" + louer);
+        for (Scooter s : tabScooter) {
+            // liste des id pour les scooter louer
+            if (!s.isDispoActual()) {
+                System.out.println(s.getId());
+            }
+        }
+
         System.out.println();
+
         // Le Nombre de scooters disponibles et leur N° d’identification
         System.out.println("Nombre de scooter disponible :" + (tabScooter.size() - louer));
         for (Scooter s : tabScooter) {
-            if (s.getEtat() == false) {
-                System.out.println("    id : " + s.getId());
+            // liste des id pour les scooter dispo
+            if (s.isDispoActual()) {
+                System.out.println(s.getId());
             }
         }
+
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
         clearBoard();
         choixMenu(tabScooter);
+    }
+
+    // liste des scooters disponible en fct d'un intervalle de 2 date
+    void listeScooterDate(ArrayList<Scooter> tabScooter) {
+        for (Scooter t : tabScooter) {
+
+        }
     }
 }

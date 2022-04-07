@@ -1,8 +1,8 @@
 package BorneConsole;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Scooter {
     static int countScoot = 0;
@@ -13,7 +13,8 @@ public class Scooter {
     // un tableau contenant les locations du scooters
     ArrayList<Location> tabLocation = new ArrayList<Location>();
 
-    Scooter() { // pour le mode admin pas encore testé
+    // verifier si la date se chevauche pour la meme id
+    Scooter() {
         countScoot++;
         id = countScoot;
         kilometrage = 0;
@@ -26,15 +27,42 @@ public class Scooter {
         modele = mod;
     }
 
-    // filtre pour la disponibilité des locations
+    // filtre pour la disponibilité d'un scouteur
     boolean isDispo(Date debut, Date fin) {
         for (Location l : tabLocation) {
-            // test de la plage
+            if (l.scootId == this.id && l.dateInter(l.dateDebut, l.dateFin)) {
+                return false;
+
+            }
         }
-        return false;
+        return true;
     }
 
-    // getteur: \\
+    boolean isDispoActual() {
+        SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
+        Date t = new Date(System.currentTimeMillis());
+        dateFrt.format(t);
+        for (Location l : tabLocation) {
+            if (l.scootId == this.id && l.dateTest(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    Location verifNumR(int num) {
+        for (Location l : tabLocation) {
+            if (l.scootId == this.id) {
+                if (l.numR == num) {
+                    return l;
+                }
+            }
+        }
+        return null;
+
+    }
+
+    // getteur\\
     public int getId() {
         return this.id;
     }
@@ -67,28 +95,4 @@ public class Scooter {
     public void setModele(String x) {
         this.modele = x;
     }
-
-    // fct:
-    public void louer() {
-        if (!this.etat) {
-            this.setEtat(true);
-            System.out.println("Votre action c'est bien déroulé. Très bon choix!");
-        } else {
-            System.out.println("Ce scooter est déjà loué...");
-        }
-    }
-
-    public void retour() {
-        Scanner scan = new Scanner(System.in);
-        if (this.etat) {
-            System.out.println("Entrez le nb de km effectué : ");
-            this.setKilometrage(this.kilometrage + scan.nextInt());
-            this.setEtat(false);
-            System.out.println("Le scooter a bien été rendu. Au plaisir de vous revoir!");
-        } else {
-            System.out.println("Le scooter n'a jamais été en état de location ... ");
-        }
-        // ! scan.close(); fait crash le programme.
-    }
-
 }

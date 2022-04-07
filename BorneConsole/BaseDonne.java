@@ -10,17 +10,18 @@ import java.util.Scanner;
 
 // tout ce qui traite la base de donnée est la 
 public class BaseDonne {
-    static Scooter a = new Scooter(1, true, 40, "Honda", "A");
-    static Scooter b = new Scooter(2, true, 40, "Yamaha", "A");
-    static Scooter c = new Scooter(3, false, 40, "Honda", "A");
-    static Scooter d = new Scooter(4, true, 40, "Yamaha", "A");
-    static Scooter e = new Scooter(5, false, 40, "Yamaha", "A");
-    static Scooter k = new Scooter(14, false, 40, "Honda", "A");
-    static Scooter i = new Scooter(25, false, 40, "Honda", "A");
-    static Scooter g = new Scooter(72, true, 40, "Yamaha", "A");
-    static Scooter f = new Scooter(88, false, 40, "Honda", "A");
+    static Scooter a = new Scooter(1, 40, "Honda", "A");
+    static Scooter b = new Scooter(2, 40, "Yamaha", "A");
+    static Scooter c = new Scooter(3, 40, "Honda", "A");
+    static Scooter d = new Scooter(4, 40, "Yamaha", "A");
+    static Scooter e = new Scooter(5, 40, "Yamaha", "A");
+    static Scooter f = new Scooter(14, 40, "Honda", "A");
+    static Scooter g = new Scooter(25, 40, "Honda", "A");
+    static Scooter h = new Scooter(72, 40, "Yamaha", "A");
+    static Scooter i = new Scooter(88, 40, "Honda", "A");
 
-    static void setScooterInDB(ArrayList<Scooter> tab) { // pour rajouter les scooters aux tab
+    // pour rajouter les scooters aux tab
+    static void setScooterInDB(ArrayList<Scooter> tab) {
         tab.add(a);
         tab.add(b);
         tab.add(c);
@@ -28,6 +29,7 @@ public class BaseDonne {
         tab.add(e);
         tab.add(f);
         tab.add(g);
+        tab.add(h);
         tab.add(i);
     }
 
@@ -43,8 +45,9 @@ public class BaseDonne {
             // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
             // mérite d'être corrigé
             temp.setId(sc.nextInt());
-            sc.nextLine(); // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-                           // next Boolean etc il ne fait pas le \n seul
+            // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
+            // next Boolean etc il ne fait pas le \n seul
+            sc.nextLine();
             sc.nextLine();
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
@@ -81,8 +84,26 @@ public class BaseDonne {
             pw.println(s.getModele());
             pw.println("EOS");
         }
-        pw.println("EOF"); // End of File
-        pw.close(); // sans ça rien n'est écrit dans le txt
+        // End of File
+        pw.println("EOF");
+        // sans ça rien n'est écrit dans le txt
+        pw.close();
+
     }
 
+    static Location j = new Location(Location.stringToDate("20/10/2022"), Location.stringToDate("23/10/2022"), 1);
+    static Location k = new Location(Location.stringToDate("22/5/2022"), Location.stringToDate("30/5/2022"), 2);
+    static Location l = new Location(Location.stringToDate("18/01/2022"), Location.stringToDate("20/01/2022"), 4);
+    static Location m = new Location(Location.stringToDate("14/9/2022"), Location.stringToDate("19/9/2022"), 5);
+    static Location n = new Location(Location.stringToDate("27/12/2022"), Location.stringToDate("28/12/2022"), 72);
+    static Location o = new Location(Location.stringToDate("12/3/2022"), Location.stringToDate("13/3/2022"), 88);
+
+    static void setLocationScoot(ArrayList<Location> tab) {
+        tab.add(j);
+        tab.add(k);
+        tab.add(l);
+        tab.add(m);
+        tab.add(j);
+        tab.add(o);
+    }
 }
