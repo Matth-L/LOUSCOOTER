@@ -48,7 +48,6 @@ public class BaseDonne {
             // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
             // next Boolean etc il ne fait pas le \n seul
             sc.nextLine();
-            sc.nextLine();
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
             temp.setMarque(sc.nextLine());

@@ -3,6 +3,7 @@ package BorneConsole;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+// * extends erreur de location dans un fichier ErreurMnenu
 
 //tout ce qui est dans le menu ou affiche est la 
 public class Menu extends ParcAuto {
@@ -131,8 +132,8 @@ public class Menu extends ParcAuto {
         System.out.println("entrez le numéro de location");
         Location l;
         Date finDate = null;
-        if ((l = S.verifNumR(scan.nextInt())) != null) {
-            System.out.println();
+        l = S.verifNumR(scan.nextInt());
+        if (l != null) {
             System.out.printf("date de retour : ");
             while (finDate == null) {
 
@@ -152,6 +153,7 @@ public class Menu extends ParcAuto {
         Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {
             louerDate(S, tabScooter);
+
             clearBoard();
             choixMenu(tabScooter);
 
@@ -168,6 +170,7 @@ public class Menu extends ParcAuto {
         S = getScooter(tabScooter, demandeId());
         if (S != null) {
             // retour
+            retourDate(S, tabScooter);
             clearBoard();
             choixMenu(tabScooter);
         } else {
@@ -239,7 +242,7 @@ public class Menu extends ParcAuto {
         for (Location l : scooterDemande.tabLocation) {
             // a modifier l'affichage des dates par la suite
             System.out.printf("date de location : %s\n", l.dateDebut.toString());
-            System.out.printf("date de retour : %s\n", l.dateDebut.toString());
+            System.out.printf("date de retour : %s\n", l.dateFin.toString());
         }
     }
 

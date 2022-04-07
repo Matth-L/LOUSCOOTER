@@ -17,6 +17,7 @@ public class Location {
         scootId = s;
         numDeRetour++;
         numR = numDeRetour;
+
     }
 
     // prend une date de format jour/mois/année

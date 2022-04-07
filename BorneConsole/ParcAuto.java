@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ParcAuto extends BaseDonne {
 
     static Scanner scan = new Scanner(System.in);
-    static Menu affiche = new Menu(); // affiche le menu
+    static Menu affiche = new Menu(); // a modifier
 
     static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
         for (Scooter s : tabScooter) { // boucle for Each
@@ -59,11 +59,13 @@ public class ParcAuto extends BaseDonne {
         // ! ajout des élements dans le tab
         // setScooterInDB(tabScooter);
         // saveDB(tabScooter);
-        // !rempli le tableau de location de chaque scooter
-        for (int i = 0; i < tabScooter.size(); i++) {
-            setLocationScoot(tabScooter.get(i).tabLocation);
-        }
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
+        // !rempli le tableau de location de chaque scooter
+        /*
+         * for (int i = 0; i < tabScooter.size(); i++) {
+         * setLocationScoot(tabScooter.get(i).tabLocation);
+         * }
+         */
         affiche.flushS();
         choixMenu(tabScooter);
         affiche.flushS();
