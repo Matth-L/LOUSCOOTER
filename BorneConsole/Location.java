@@ -43,11 +43,11 @@ public class Location {
     // Si elle y est retourne faux sinon vrai.
     boolean dateInter(Date dateDeb, Date dateF) {
         if (dateF.before(dateDebut)) {
-            return false;
-        } else if (dateDeb.after(dateFin)) {
-            return false;
-        } else {
             return true;
+        } else if (dateDeb.after(dateFin)) {
+            return true;
+        } else {
+            return false;
         }
     }
 

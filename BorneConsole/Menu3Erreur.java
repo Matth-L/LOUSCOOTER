@@ -117,6 +117,7 @@ public class Menu3Erreur extends Menu2Option {
             S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
 
         } else {
+            System.out.println(S.isDispo(debutDate, finDate));
             invalideDateLocation(S, tabScooter);
         }
 
