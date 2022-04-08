@@ -51,10 +51,4 @@ public class Menu1Method {
         }
     }
 
-    // liste des scooters disponible en fct d'un intervalle de 2 date
-    void listeScooterDate(ArrayList<Scooter> tabScooter) {
-        for (Scooter t : tabScooter) {
-
-        }
-    }
 }
