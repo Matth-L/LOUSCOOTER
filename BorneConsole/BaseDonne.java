@@ -42,6 +42,7 @@ public class BaseDonne {
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand
                                           // meme
+            temp.tabLocation = getLoc(temp);
             // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
             // mérite d'être corrigé
             temp.setId(sc.nextInt());
@@ -53,19 +54,20 @@ public class BaseDonne {
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
             sc.nextLine();
-            temp.tabLocation = getLoc(temp);
             tab.add(temp);
         }
         sc.close();
     }
 
+    // ! FONCTIONNE PAS
     static ArrayList<Location> getLoc(Scooter s) throws FileNotFoundException {
         File file = new File("baseDonne/location.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         ArrayList<Location> tabLoc = new ArrayList<Location>();
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
-            Date deb = Location.stringToDate(sc.next());
-            Date fin = Location.stringToDate(sc.next());
+            Date deb = Location.stringToDate(sc.nextLine());
+            System.out.println(deb);
+            Date fin = Location.stringToDate(sc.nextLine());
             Location temp = new Location(deb, fin, s.getId());
             tabLoc.add(temp);
         }
@@ -76,6 +78,7 @@ public class BaseDonne {
     // permet de sauvegarder les scooters dans un txt
     // !0 pour Scooter 1 pour locatoin
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
+        boolean fileDejaCree = false;
         // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données
         FileWriter fw = new FileWriter(file);
@@ -88,21 +91,28 @@ public class BaseDonne {
             pw.println(s.getKilometrage());
             pw.println(s.getMarque());
             pw.println(s.getModele());
-            saveLocation(s);
+            saveLocation(fileDejaCree, s);
             pw.println("EOS");
+            fileDejaCree = true;
         }
         pw.println("EOF");
         pw.close();
     }
 
-    static void saveLocation(Scooter s) throws IOException {
+    static void saveLocation(boolean test, Scooter s) throws IOException {
         File file = new File("baseDonne/location.txt");
-        System.out.println(file);
-        FileWriter fw = new FileWriter(file, true);
+        FileWriter fw;
+        if (test) {
+            fw = new FileWriter(file, true);// on efface le fichier lors de la premiere création de location
+
+        } else {
+            fw = new FileWriter(file);
+
+        }
         PrintWriter pw = new PrintWriter(fw);
         for (Location l : s.tabLocation) {
-            pw.println(l.getDate(true));
-            pw.println(l.getDate(false));
+            pw.println(Location.dateToString(l.getDate(true)));
+            pw.println(Location.dateToString(l.getDate(false)));
         }
         // End Of Location
         pw.println("EOL");

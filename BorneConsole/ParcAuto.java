@@ -16,7 +16,7 @@ public class ParcAuto extends BaseDonne {
         // // * ajout des élements dans le tab
         // setScooterInDB(tabScooter);
         // for (int i = 0; i < tabScooter.size(); i++) {
-        // setLocationScoot(tabScooter.get(i).tabLocation);
+        //     setLocationScoot(tabScooter.get(i).tabLocation);
         // }
         // saveDB(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt

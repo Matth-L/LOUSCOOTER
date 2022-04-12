@@ -1,6 +1,8 @@
 package BorneConsole;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -66,6 +68,11 @@ public class Location {
                 return null;
             }
         }
+    }
+
+    static String dateToString(Date d) {
+        SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFrt.format(d);
     }
 
     // teste si une date est dans un autre intervalle de date.

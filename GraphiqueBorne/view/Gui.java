@@ -93,3 +93,90 @@ public class Gui extends JFrame {
         Gui a = new Gui();
     }
 }
+
+
+/*
+ * 
+ * 
+ * import java.awt.BorderLayout;
+ * import java.awt.Dimension;
+ * import java.awt.EventQueue;
+ * 
+ * import javax.swing.JFrame;
+ * import javax.swing.JPanel;
+ * import javax.swing.border.EmptyBorder;
+ * import javax.swing.JButton;
+ * import javax.swing.JTextField;
+ * import javax.swing.Box;
+ * import java.awt.GridLayout;
+ * import javax.swing.JLabel;
+ * import javax.swing.JTextArea;
+ * import javax.swing.JComboBox;
+ * import java.awt.FlowLayout;
+ * import java.awt.event.ActionListener;
+ * import java.awt.event.ActionEvent;
+ * import java.awt.GridBagLayout;
+ * import java.awt.GridBagConstraints;
+ * import java.awt.Insets;
+ * import javax.swing.JList;
+ * import javax.swing.JScrollBar;
+ * 
+ * public class toot extends JFrame {
+ * 
+ * private JPanel contentPane;
+ * 
+ * /**
+ * Launch the application.
+ */
+/*
+public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            try {
+                toot frame = new toot();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    });
+}
+
+bouton mais faux les placer correctement 
+	public toot() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 891, 640);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		int i=3;
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnLouer = new JButton("Louer");
+		contentPane.add(btnLouer);
+		contentPane.add(btnRetour);
+		JTextArea textArea = new JTextArea("nb de scooter louer :" +i);
+		contentPane.add(textArea);
+		
+		JComboBox scootLouer = new JComboBox();
+		contentPane.add(scootLouer);
+		
+		JTextArea textArea_1 = new JTextArea("nb de scooter disponible :"+i);
+		contentPane.add(textArea_1);
+		
+		JComboBox ScoutDispo = new JComboBox();
+		ScoutDispo.setToolTipText("");
+		contentPane.add(ScoutDispo);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		contentPane.add(scrollBar);
+	}
+
+}
+*/
