@@ -96,87 +96,118 @@ public class Gui extends JFrame {
 
 
 /*
- * 
- * 
- * import java.awt.BorderLayout;
- * import java.awt.Dimension;
- * import java.awt.EventQueue;
- * 
- * import javax.swing.JFrame;
- * import javax.swing.JPanel;
- * import javax.swing.border.EmptyBorder;
- * import javax.swing.JButton;
- * import javax.swing.JTextField;
- * import javax.swing.Box;
- * import java.awt.GridLayout;
- * import javax.swing.JLabel;
- * import javax.swing.JTextArea;
- * import javax.swing.JComboBox;
- * import java.awt.FlowLayout;
- * import java.awt.event.ActionListener;
- * import java.awt.event.ActionEvent;
- * import java.awt.GridBagLayout;
- * import java.awt.GridBagConstraints;
- * import java.awt.Insets;
- * import javax.swing.JList;
- * import javax.swing.JScrollBar;
- * 
- * public class toot extends JFrame {
- * 
- * private JPanel contentPane;
- * 
- * /**
- * Launch the application.
- */
-/*
-public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            try {
-                toot frame = new toot();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    });
-}
+package t;
 
-bouton mais faux les placer correctement 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.Box;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JList;
+import javax.swing.JScrollBar;
+import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
+
+public class toot extends JFrame {
+
+	private JPanel contentPane;
+
+	JButton btnRetour = new JButton("Retour");
+
+	JButton btnLouer = new JButton("Louer");
+	
+	JTextArea textArea = new JTextArea("nb de scooter louer :" );
+		
+	JComboBox scootLouer = new JComboBox();
+	
+	JComboBox ScoutDispo = new JComboBox();
+	
+	JScrollBar scrollBar = new JScrollBar();
+	
+
+	aunch the application.
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					toot frame = new toot();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	 * Create the frame.
+	 
 	public toot() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 891, 640);
+		setBounds(100, 100, 870, 640);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		int i=3;
 		
-		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		btnLouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		//contentPane.add(btnLouer);
+		//contentPane.add(btnRetour);
+		//contentPane.add(textArea);
 		
-		JButton btnLouer = new JButton("Louer");
-		contentPane.add(btnLouer);
-		contentPane.add(btnRetour);
-		JTextArea textArea = new JTextArea("nb de scooter louer :" +i);
-		contentPane.add(textArea);
 		
-		JComboBox scootLouer = new JComboBox();
-		contentPane.add(scootLouer);
+		scootLouer.setModel(new DefaultComboBoxModel(new String[] {"toolbar", "tsdfqsdf", "tsqfqsdfqsdf", "tqsdfqdf", "t"}));
+		//contentPane.add(scootLouer);
 		
 		JTextArea textArea_1 = new JTextArea("nb de scooter disponible :"+i);
-		contentPane.add(textArea_1);
+		//contentPane.add(textArea_1);
 		
-		JComboBox ScoutDispo = new JComboBox();
+		
+		ScoutDispo.setModel(new DefaultComboBoxModel(new String[] {"toolbar", "tsdfqsdf", "tsqfqsdfqsdf", "tqsdfqdf", "t"}));
+		ScoutDispo.setSelectedIndex(0);
 		ScoutDispo.setToolTipText("");
-		contentPane.add(ScoutDispo);
+		//contentPane.add(ScoutDispo);
+		contentPane.add(creatRightPanel(), BorderLayout.CENTER);
 		
-		JScrollBar scrollBar = new JScrollBar();
 		contentPane.add(scrollBar);
 	}
+	
+	private JPanel creatRightPanel() {
+        JPanel panel = new JPanel(new GridLayout(4, 1));
+        panel.add(btnRetour);
+        panel.add(btnLouer);
+        panel.add(textArea);
+        panel.add(scootLouer);
+
+
+        return panel;
+    }
 
 }
+
 */
