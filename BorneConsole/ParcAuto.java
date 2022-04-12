@@ -13,16 +13,16 @@ public class ParcAuto extends BaseDonne {
 
     public static void main(String[] args) throws IOException {
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // * ajout des élements dans le tab
+        // // * ajout des élements dans le tab
         // setScooterInDB(tabScooter);
+        // for (int i = 0; i < tabScooter.size(); i++) {
+        // setLocationScoot(tabScooter.get(i).tabLocation);
+        // }
         // saveDB(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
-
         // *rempli le tableau de location de chaque scooter
         affiche.flushS();
-        for (int i = 0; i < tabScooter.size(); i++) {
-            setLocationScoot(tabScooter.get(i).tabLocation);
-        }
+
         affiche.choixMenu(tabScooter);
         affiche.flushS();
     }

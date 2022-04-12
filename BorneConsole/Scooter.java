@@ -30,7 +30,7 @@ public class Scooter {
     // filtre pour la disponibilité d'un scouteur
     boolean isDispo(Date debut, Date fin) {
         for (Location l : tabLocation) {
-            if (l.scootId == this.id && l.dateInter(l.dateDebut, l.dateFin)) {
+            if (l.scootId == this.id && l.dateInter(l.getDate(true), l.getDate(false))) {
                 return false;
 
             }
@@ -53,7 +53,7 @@ public class Scooter {
     Location verifNumR(int num) {
         for (Location l : tabLocation) {
             if (l.scootId == this.id) {
-                if (l.numR == num) {
+                if (l.getNum() == num) {
                     return l;
                 }
             }

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 // tout ce qui traite la base de donnée est la 
@@ -34,10 +35,7 @@ public class BaseDonne {
     }
 
     // crée le tableau a partir de la bd
-    static void getDB(ArrayList<Object> tab) throws FileNotFoundException {
-        // File file = new File("../baseDonne/bdScooter.txt"); // si on doit le lancé
-        // dans le fichier console
-        tab.getClass();
+    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
@@ -55,42 +53,60 @@ public class BaseDonne {
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
             sc.nextLine();
+            temp.tabLocation = getLoc(temp);
             tab.add(temp);
         }
         sc.close();
-
     }
 
-    static void testEOS(String s) {
-        if (s.equals("EOS")) {
-            System.err.println("base de donnée corrompue");
-            System.exit(1);
+    static ArrayList<Location> getLoc(Scooter s) throws FileNotFoundException {
+        File file = new File("baseDonne/location.txt");
+        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        ArrayList<Location> tabLoc = new ArrayList<Location>();
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
+            Date deb = Location.stringToDate(sc.next());
+            Date fin = Location.stringToDate(sc.next());
+            Location temp = new Location(deb, fin, s.getId());
+            tabLoc.add(temp);
         }
+        sc.close();
+        return tabLoc;
     }
 
     // permet de sauvegarder les scooters dans un txt
     // !0 pour Scooter 1 pour locatoin
-    static void saveDB(ArrayList<Object> tab) throws IOException {
+    static void saveDB(ArrayList<Scooter> tab) throws IOException {
         // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données
-        // précedents, pour les garder il faut
-        // mettre true après le nom du fichier
-        System.out.println(file);
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
-        for (Object s : tab) {
-            // écrit les attributs de chaque scooters
+        // précedents, pour les garder il faut
+        // mettre true après le nom du fichier
+        // écrit les attributs de chaque scooters
+        for (Scooter s : tab) {
             pw.println(s.getId());
             pw.println(s.getKilometrage());
             pw.println(s.getMarque());
             pw.println(s.getModele());
+            saveLocation(s);
             pw.println("EOS");
         }
-        // End of File
         pw.println("EOF");
-        // sans ça rien n'est écrit dans le txt
         pw.close();
+    }
 
+    static void saveLocation(Scooter s) throws IOException {
+        File file = new File("baseDonne/location.txt");
+        System.out.println(file);
+        FileWriter fw = new FileWriter(file, true);
+        PrintWriter pw = new PrintWriter(fw);
+        for (Location l : s.tabLocation) {
+            pw.println(l.getDate(true));
+            pw.println(l.getDate(false));
+        }
+        // End Of Location
+        pw.println("EOL");
+        pw.close();
     }
 
     static Location j = new Location(Location.stringToDate("20/10/2022"), Location.stringToDate("23/10/2022"), 1);
@@ -107,6 +123,13 @@ public class BaseDonne {
         tab.add(m);
         tab.add(j);
         tab.add(o);
+    }
+
+    static void testEOS(String s) {
+        if (s.equals("EOS")) {
+            System.err.println("base de donnée corrompue");
+            System.exit(1);
+        }
     }
 
 }

@@ -6,10 +6,39 @@ import java.text.SimpleDateFormat;
 
 public class Location {
     static int numDeRetour = 0;
-    Date dateDebut;
-    Date dateFin;
+    private Date dateDebut;
+    private Date dateFin;
     int scootId;
-    int numR;
+    private int numR;
+
+    // getter
+    Date getDate(boolean x) {
+        if (x) {
+            return dateDebut;
+        }
+        return dateFin;
+    }
+
+    int getNum() {
+        return numR;
+    }
+
+    // setter
+    void setDatedeb(Date x) {
+        dateDebut = x;
+    }
+
+    void setDatefin(Date x) {
+        dateFin = x;
+    }
+
+    void setNum(int x) {
+        numR = x;
+    }
+
+    Location() {
+
+    }
 
     Location(Date dateDeb, Date dateEnd, int s) {
         dateDebut = dateDeb;

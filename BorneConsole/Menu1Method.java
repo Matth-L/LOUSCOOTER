@@ -46,8 +46,8 @@ public class Menu1Method {
         // affiche les différentes dates
         for (Location l : scooterDemande.tabLocation) {
             // a modifier l'affichage des dates par la suite
-            System.out.printf("date de location : %s\n", l.dateDebut);
-            System.out.printf("date de retour : %s\n", l.dateFin);
+            System.out.printf("date de location : %s\n", l.getDate(true));
+            System.out.printf("date de retour : %s\n", l.getDate(false));
         }
     }
 

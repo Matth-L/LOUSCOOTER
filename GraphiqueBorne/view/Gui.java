@@ -19,9 +19,12 @@ public class Gui extends JFrame {
         JPanel panel = new JPanel(new GridLayout(6, 1));
         Bouton louer = new Bouton("Louer");
         Bouton retour = new Bouton("Retour");
+        
+        
         Bouton etatScoot = new Bouton("État d'un scooter");
         Bouton afficheAllScoot = new Bouton("Affichage de l'état du parc de scooters");
         Bouton parcScoot = new Bouton("Saisie du parc des scooters");
+        
         Bouton quit = new Bouton("Quitter le programme");
         // ajout au panel des boutons au panel
         louer.addActionListener( new ActionListener(){
@@ -83,7 +86,7 @@ public class Gui extends JFrame {
         // nécessaire
         setVisible(true);
         setLocationRelativeTo(null);// centre la fenetre au milieu
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public static void main(String[] args) {
