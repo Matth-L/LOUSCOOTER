@@ -34,14 +34,16 @@ public class BaseDonne {
     }
 
     // crée le tableau a partir de la bd
-    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
+    static void getDB(ArrayList<Object> tab) throws FileNotFoundException {
         // File file = new File("../baseDonne/bdScooter.txt"); // si on doit le lancé
         // dans le fichier console
+        tab.getClass();
         File file = new File("baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand meme
+            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand
+                                          // meme
             // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
             // mérite d'être corrigé
             temp.setId(sc.nextInt());
@@ -56,6 +58,7 @@ public class BaseDonne {
             tab.add(temp);
         }
         sc.close();
+
     }
 
     static void testEOS(String s) {
@@ -66,16 +69,16 @@ public class BaseDonne {
     }
 
     // permet de sauvegarder les scooters dans un txt
-    static void saveDB(ArrayList<Scooter> tab) throws IOException {
-        // File file = new File("../baseDonne/bdScooter.txt"); // si on est pas dans
-        // console
+    // !0 pour Scooter 1 pour locatoin
+    static void saveDB(ArrayList<Object> tab) throws IOException {
+        // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
         File file = new File("baseDonne/bdScooter.txt"); // écrase les données
         // précedents, pour les garder il faut
         // mettre true après le nom du fichier
         System.out.println(file);
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
-        for (Scooter s : tab) {
+        for (Object s : tab) {
             // écrit les attributs de chaque scooters
             pw.println(s.getId());
             pw.println(s.getKilometrage());
@@ -105,4 +108,5 @@ public class BaseDonne {
         tab.add(j);
         tab.add(o);
     }
+
 }

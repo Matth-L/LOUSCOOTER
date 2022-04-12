@@ -37,7 +37,7 @@ public class Menu1Method {
         System.out.flush();
     }
 
-    // affiche les info du couteur renté en param.
+    // affiche les info du scooter renté en param.
     void infoScooter(Scooter scooterDemande) {
         System.out.println("id :" + scooterDemande.getId());
         System.out.println("marque : " + scooterDemande.getMarque());
@@ -46,8 +46,8 @@ public class Menu1Method {
         // affiche les différentes dates
         for (Location l : scooterDemande.tabLocation) {
             // a modifier l'affichage des dates par la suite
-            System.out.printf("date de location : %s\n", l.dateDebut.toString());
-            System.out.printf("date de retour : %s\n", l.dateFin.toString());
+            System.out.printf("date de location : %s\n", l.dateDebut);
+            System.out.printf("date de retour : %s\n", l.dateFin);
         }
     }
 
