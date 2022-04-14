@@ -56,25 +56,26 @@ public class Gui extends JFrame {
 
             }
         });
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel());
 
     }
 
     private void fctRetour() {
 
-        JPanel retour = new JPanel(new FlowLayout());
-        JTextField txtId = new JTextField();
+        JPanel retour = new JPanel();
+        JTextField txtId = new JTextField("id scooter");
         JButton confirm = new JButton("confirm");
         retour.add(txtId);
         retour.add(confirm);
-        retour.add(createRightPanel(), BorderLayout.EAST);
+        retour.add(createRightPanel());
         this.setContentPane(retour);
         this.revalidate();
     }
 
     private JPanel createRightPanel() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(5, 1));
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
@@ -99,7 +100,7 @@ public class Gui extends JFrame {
         pannel.add(DateDeb, BorderLayout.CENTER);
         pannel.add(DateFin, BorderLayout.CENTER);
         pannel.add(louer2, BorderLayout.CENTER);
-        pannel.add(createRightPanel(), BorderLayout.EAST);
+        pannel.add(createRightPanel());
         this.setContentPane(pannel);
         this.revalidate();
 
@@ -113,7 +114,7 @@ public class Gui extends JFrame {
 
         pannel.add(idRentrer);
         pannel.add(chercher);
-        pannel.add(createRightPanel(), BorderLayout.EAST);
+        pannel.add(createRightPanel());
         this.setContentPane(pannel);
         this.revalidate();
     }
