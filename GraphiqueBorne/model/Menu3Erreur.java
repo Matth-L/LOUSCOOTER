@@ -1,4 +1,4 @@
-package BorneConsole;
+package GraphiqueBorne.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -144,7 +144,7 @@ public class Menu3Erreur extends Menu2Option {
     }
 
     // louer un scouteur avec une id rentré par l'utilisateur
-    public void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
+    void louerScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S = getScooter(tabScooter, demandeId());
         if (S != null) {
             louerDate(S, tabScooter);
