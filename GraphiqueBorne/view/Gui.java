@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPanel.*;
 // import GraphiqueBorne.controller.ControllerLouer;
 
 import BorneConsole.ParcAuto;
@@ -30,7 +31,13 @@ public class Gui extends JFrame {
         this.setContentPane(contentPane);
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fctLouer();
+                contentPane.removeAll();
+                contentPane.add(createRightPanel(), BorderLayout.EAST);
+
+                contentPane.add(fctLouer(), BorderLayout.CENTER);
+                // fctLouer();
+                contentPane.updateUI();
+
             }
         }));
         retour.addActionListener(new ActionListener() {
@@ -41,8 +48,12 @@ public class Gui extends JFrame {
 
         etatScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                contentPane.removeAll();
+                contentPane.add(createRightPanel(), BorderLayout.EAST);
 
-                fctAfficheStat();
+                contentPane.add(fctAfficheStat(), BorderLayout.CENTER);
+                // fctAfficheStat();
+                contentPane.updateUI();
             }
         });
 
@@ -56,7 +67,7 @@ public class Gui extends JFrame {
 
             }
         });
-        contentPane.add(createRightPanel());
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
 
     }
 
@@ -74,8 +85,8 @@ public class Gui extends JFrame {
 
     private JPanel createRightPanel() {
         // init panel + button
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        JPanel panel = new JPanel(new GridLayout(5, 1));
+        // panel.setLayout(new FlowLayout());
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
@@ -85,8 +96,8 @@ public class Gui extends JFrame {
         return panel;
     }
 
-    private void fctLouer() {
-        JPanel pannel = new JPanel(new FlowLayout());
+    private JPanel fctLouer() {
+        JPanel pannel = new JPanel(new GridLayout(4, 1));
         JTextField idscoot = new JTextField("id scoot");
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
@@ -96,27 +107,29 @@ public class Gui extends JFrame {
 
             }
         });
-        pannel.add(idscoot, BorderLayout.CENTER);
-        pannel.add(DateDeb, BorderLayout.CENTER);
-        pannel.add(DateFin, BorderLayout.CENTER);
-        pannel.add(louer2, BorderLayout.CENTER);
-        pannel.add(createRightPanel());
-        this.setContentPane(pannel);
-        this.revalidate();
+        pannel.add(idscoot);
+        pannel.add(DateDeb);
+        pannel.add(DateFin);
+        pannel.add(louer2);
+        return pannel;
+        // pannel.add(createRightPanel());
+        // this.setContentPane(pannel);
+        // this.revalidate();
 
     }
 
-    private void fctAfficheStat() {
+    private JPanel fctAfficheStat() {
 
-        JPanel pannel = new JPanel(new FlowLayout());
+        JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         JButton chercher = new JButton("chercher !");
 
         pannel.add(idRentrer);
         pannel.add(chercher);
-        pannel.add(createRightPanel());
-        this.setContentPane(pannel);
-        this.revalidate();
+        return pannel;
+        // pannel.add(createRightPanel());
+        // this.setContentPane(pannel);
+        // this.revalidate();
     }
 
     public static void main(String[] args) {
