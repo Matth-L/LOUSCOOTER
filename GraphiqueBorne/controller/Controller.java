@@ -4,32 +4,37 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import GraphiqueBorne.view.Bouton;
+
 public class Controller {
+    JLabel label;
+    Bouton button;
+
     public Controller() {
+
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // if ((((JButton) e.getSource()).getText()).equals("Louer")) {
+        // System.out.println("louer");
+        // }
+        // if ((((JButton) e.getSource()).getText()).equals("Retour")) {
+        // }
+        // if ((((JButton) e.getSource()).getText()).equals("État d'un scooter")) {
+        // }
+        // if ((((JButton) e.getSource()).getText()).equals("Affichage de l'état du parc
+        // de scooters")) {
+        // }
+        // if ((((JButton) e.getSource()).getText()).equals("Saisie du parc des
+        // scooters")) {
+        // }
+        // if ((((JButton) e.getSource()).getText()).equals("Quitter le programme")) {
+        // System.exit(0);
+        // }
+        // }
     }
 
-    // @Override
-    // public void actionPerformed(ActionEvent e) {
-    // if ((((JButton) e.getSource()).getText()).equals("Louer")) {
-    // System.out.println("louer");
-    // }
-    // if ((((JButton) e.getSource()).getText()).equals("Retour")) {
-    // }
-    // if ((((JButton) e.getSource()).getText()).equals("État d'un scooter")) {
-    // }
-    // if ((((JButton) e.getSource()).getText()).equals("Affichage de l'état du parc
-    // de scooters")) {
-    // }
-    // if ((((JButton) e.getSource()).getText()).equals("Saisie du parc des
-    // scooters")) {
-    // }
-    // if ((((JButton) e.getSource()).getText()).equals("Quitter le programme")) {
-    // System.exit(0);
-    // }
-    // }
-
     public void btnLouer(ActionEvent e) {
-        System.out.println("louer");
+        // créer un nv panel ?
     }
 
     public void btnRetour(ActionEvent e) {
