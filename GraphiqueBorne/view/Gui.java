@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPanel.*;
 // import GraphiqueBorne.controller.ControllerLouer;
+import javax.swing.plaf.DimensionUIResource;
 
 import BorneConsole.ParcAuto;
 
@@ -42,7 +43,13 @@ public class Gui extends JFrame {
         }));
         retour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fctRetour();
+                contentPane.removeAll();
+                contentPane.add(createRightPanel(), BorderLayout.EAST);
+
+                contentPane.add(fctRetour(), BorderLayout.CENTER);
+                // fctLouer();
+                contentPane.updateUI();
+
             }
         });
 
@@ -71,16 +78,18 @@ public class Gui extends JFrame {
 
     }
 
-    private void fctRetour() {
+    private JPanel fctRetour() {
 
-        JPanel retour = new JPanel();
+        JPanel retour = new JPanel(new GridLayout(2, 1));
         JTextField txtId = new JTextField("id scooter");
         JButton confirm = new JButton("confirm");
         retour.add(txtId);
         retour.add(confirm);
-        retour.add(createRightPanel());
-        this.setContentPane(retour);
-        this.revalidate();
+        // retour.add(createRightPanel());
+        // this.setContentPane(retour);
+        // this.revalidate();
+
+        return retour;
     }
 
     private JPanel createRightPanel() {
