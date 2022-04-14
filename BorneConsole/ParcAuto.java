@@ -10,14 +10,18 @@ public class ParcAuto extends BaseDonne {
 
     static Menu4 affiche = new Menu4();
 
+    static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
+        // * ajout des élements dans le tab
+        setScooterInDB(tabScooter);
+        for (int i = 0; i < tabScooter.size(); i++) {
+            setLocationScoot(tabScooter.get(i).tabLocation);
+        }
+        saveDB(tabScooter);
+    }
+
     public static void main(String[] args) throws IOException {
         ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
-        // // * ajout des élements dans le tab
-        // setScooterInDB(tabScooter);
-        // for (int i = 0; i < tabScooter.size(); i++) {
-        // setLocationScoot(tabScooter.get(i).tabLocation);
-        // }
-        // saveDB(tabScooter);
+        // setAll(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
         // *rempli le tableau de location de chaque scooter
         affiche.flushS();
