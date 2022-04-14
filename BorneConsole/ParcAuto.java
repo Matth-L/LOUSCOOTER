@@ -4,7 +4,6 @@ import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//! PROBLEME AFFICHE PARC AUTO
 //programme principal 
 public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
@@ -16,13 +15,12 @@ public class ParcAuto extends BaseDonne {
         // // * ajout des élements dans le tab
         // setScooterInDB(tabScooter);
         // for (int i = 0; i < tabScooter.size(); i++) {
-        //     setLocationScoot(tabScooter.get(i).tabLocation);
+        // setLocationScoot(tabScooter.get(i).tabLocation);
         // }
         // saveDB(tabScooter);
         getDB(tabScooter); // va chercher les informations a partir du fichier txt
         // *rempli le tableau de location de chaque scooter
         affiche.flushS();
-
         affiche.choixMenu(tabScooter);
         affiche.flushS();
     }
