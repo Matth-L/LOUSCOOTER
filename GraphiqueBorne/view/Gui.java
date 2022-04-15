@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import java.awt.*;
 
+import javax.sound.midi.ControllerEventListener;
 import javax.swing.*;
 import javax.swing.JPanel.*;
 // import GraphiqueBorne.controller.ControllerLouer;
@@ -13,6 +14,7 @@ import javax.swing.plaf.DimensionUIResource;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import BorneConsole.ParcAuto;
+import GraphiqueBorne.controller.Controller;
 
 public class Gui extends JFrame {
 
