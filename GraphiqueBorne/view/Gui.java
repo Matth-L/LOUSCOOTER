@@ -7,11 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JPanel.*;
 // import GraphiqueBorne.controller.ControllerLouer;
 import javax.swing.plaf.DimensionUIResource;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import BorneConsole.ParcAuto;
 
@@ -34,7 +33,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
+                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
                 contentPane.add(fctLouer(), BorderLayout.CENTER);
                 // fctLouer();
                 contentPane.updateUI();
@@ -45,7 +44,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
+                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
                 contentPane.add(fctRetour(), BorderLayout.CENTER);
                 // fctLouer();
                 contentPane.updateUI();
@@ -57,7 +56,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
+                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
                 contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
                 // fctAfficheStat();
                 contentPane.updateUI();
@@ -74,7 +73,7 @@ public class Gui extends JFrame {
 
             }
         });
-        contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
 
     }
@@ -106,20 +105,12 @@ public class Gui extends JFrame {
         return panel;
     }
 
-    private JPanel creatStatusBar() {
+    private JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        JLabel lblStatus1 = new JLabel("Message 1");
+        JLabel lblStatus1 = new JLabel(S);
         lblStatus1.setPreferredSize(new Dimension(100, 30));
         statusBar.add(lblStatus1);
-
-        JLabel lblStatus2 = new JLabel("Message 2");
-        lblStatus2.setPreferredSize(new Dimension(100, 30));
-        statusBar.add(lblStatus2);
-
-        JLabel lblStatus3 = new JLabel("Message 3");
-        lblStatus3.setPreferredSize(new Dimension(100, 30));
-        statusBar.add(lblStatus3);
 
         return statusBar;
     }
@@ -161,8 +152,9 @@ public class Gui extends JFrame {
         // this.revalidate();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedLookAndFeelException { // le throws est pour le look'n feel
         new ParcAuto();
+        UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
         new Gui().setVisible(true);
     }
 }
