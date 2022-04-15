@@ -10,11 +10,11 @@ public class Menu4 extends Menu3Erreur {
         System.out.print("Entrez un nombre : ");
         switch (scan.nextInt()) {
             case 1: // louer le scooter
-                louerScooter(tabScooter);
+                // louerScooter(tabScooter);
                 choixMenu(tabScooter);
                 break;
             case 2:// retour scooter
-                retourScooter(tabScooter);
+                   // retourScooter(tabScooter);
                 choixMenu(tabScooter);
                 break;
             case 3: /// etat

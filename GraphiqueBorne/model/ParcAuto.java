@@ -11,7 +11,7 @@ public class ParcAuto extends BaseDonne {
     static Menu4 affiche = new Menu4();
     ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
 
-    static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
+    public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
         // * ajout des élements dans le tab
         setScooterInDB(tabScooter);
         for (int i = 0; i < tabScooter.size(); i++) {

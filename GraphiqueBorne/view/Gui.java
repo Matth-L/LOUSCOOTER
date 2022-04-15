@@ -3,7 +3,7 @@ package GraphiqueBorne.view;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.IOException;
 import java.awt.*;
 
 import javax.sound.midi.ControllerEventListener;
@@ -33,35 +33,19 @@ public class Gui extends JFrame {
         this.setContentPane(contentPane);
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contentPane.removeAll();
-                contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
-                contentPane.add(fctLouer(), BorderLayout.CENTER);
-                // fctLouer();
-                contentPane.updateUI();
-
+                louerActualise("");
             }
         }));
         retour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contentPane.removeAll();
-                contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
-                contentPane.add(fctRetour(), BorderLayout.CENTER);
-                // fctLouer();
-                contentPane.updateUI();
+                retourActualise("");
 
             }
         });
 
         etatScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                contentPane.removeAll();
-                contentPane.add(createRightPanel(), BorderLayout.EAST);
-                contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
-                contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
-                // fctAfficheStat();
-                contentPane.updateUI();
+                EtatActualise("");
             }
         });
 
@@ -78,6 +62,36 @@ public class Gui extends JFrame {
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
 
+    }
+
+    private void louerActualise(String s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
+        contentPane.add(fctLouer(), BorderLayout.CENTER);
+        // fctLouer();
+        contentPane.updateUI();
+    }
+
+    private void retourActualise(String s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(fctRetour(), BorderLayout.CENTER);
+        // fctRetour();
+        contentPane.updateUI();
+    }
+
+    private void EtatActualise(String s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
+        // fctAfficheStat();
+        contentPane.updateUI();
     }
 
     private JPanel fctRetour() {
@@ -107,11 +121,10 @@ public class Gui extends JFrame {
         return panel;
     }
 
-    private JPanel creatStatusBar(String S) {
+    public static JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JLabel lblStatus1 = new JLabel(S);
-        lblStatus1.setPreferredSize(new Dimension(100, 30));
         statusBar.add(lblStatus1);
 
         return statusBar;
@@ -122,10 +135,17 @@ public class Gui extends JFrame {
         JTextField idscoot = new JTextField("id scoot");
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
+        Controller ctr = new Controller(idscoot, DateDeb, DateFin);
         JButton louer2 = new JButton("Appuyer pour louer !");
         louer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try {
+                    louerActualise(Controller.btnLouer(e));
 
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
         pannel.add(idscoot);
