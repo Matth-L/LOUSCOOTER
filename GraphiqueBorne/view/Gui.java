@@ -58,7 +58,7 @@ public class Gui extends JFrame {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
 
-                contentPane.add(fctAfficheStat(), BorderLayout.CENTER);
+                contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
                 // fctAfficheStat();
                 contentPane.updateUI();
             }
