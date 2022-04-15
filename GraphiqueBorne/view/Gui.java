@@ -34,7 +34,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-
+                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
                 contentPane.add(fctLouer(), BorderLayout.CENTER);
                 // fctLouer();
                 contentPane.updateUI();
@@ -45,7 +45,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-
+                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
                 contentPane.add(fctRetour(), BorderLayout.CENTER);
                 // fctLouer();
                 contentPane.updateUI();
@@ -57,7 +57,7 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
                 contentPane.add(createRightPanel(), BorderLayout.EAST);
-
+                contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
                 contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
                 // fctAfficheStat();
                 contentPane.updateUI();
@@ -74,6 +74,7 @@ public class Gui extends JFrame {
 
             }
         });
+        contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
 
     }
@@ -105,8 +106,26 @@ public class Gui extends JFrame {
         return panel;
     }
 
+    private JPanel creatStatusBar() {
+        JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel lblStatus1 = new JLabel("Message 1");
+        lblStatus1.setPreferredSize(new Dimension(100, 30));
+        statusBar.add(lblStatus1);
+
+        JLabel lblStatus2 = new JLabel("Message 2");
+        lblStatus2.setPreferredSize(new Dimension(100, 30));
+        statusBar.add(lblStatus2);
+
+        JLabel lblStatus3 = new JLabel("Message 3");
+        lblStatus3.setPreferredSize(new Dimension(100, 30));
+        statusBar.add(lblStatus3);
+
+        return statusBar;
+    }
+
     private JPanel fctLouer() {
-        JPanel pannel = new JPanel(new GridLayout(4, 1));
+        JPanel pannel = new JPanel(new GridLayout(4, 1, 5, 5));
         JTextField idscoot = new JTextField("id scoot");
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
@@ -120,6 +139,7 @@ public class Gui extends JFrame {
         pannel.add(DateDeb);
         pannel.add(DateFin);
         pannel.add(louer2);
+
         return pannel;
         // pannel.add(createRightPanel());
         // this.setContentPane(pannel);
