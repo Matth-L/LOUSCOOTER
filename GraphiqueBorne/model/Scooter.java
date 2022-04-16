@@ -38,7 +38,7 @@ public class Scooter {
         return true;
     }
 
-    boolean isDispoActual() {
+    public boolean isDispoActual() {
         SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
         Date t = new Date(System.currentTimeMillis());
         dateFrt.format(t);

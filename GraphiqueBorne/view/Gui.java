@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.*;
 
 import javax.sound.midi.ControllerEventListener;
@@ -15,6 +16,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import BorneConsole.ParcAuto;
 import GraphiqueBorne.controller.Controller;
+import GraphiqueBorne.model.Scooter;
 
 public class Gui extends JFrame {
 
@@ -24,7 +26,7 @@ public class Gui extends JFrame {
     JButton afficheAll = new JButton("Affiche All");
     JButton quit = new JButton("Quitter");
 
-    public Gui() {
+    public Gui() throws IOException {
         super("swing app");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600, 400);
@@ -59,8 +61,10 @@ public class Gui extends JFrame {
 
             }
         });
+        contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
+        Controller.chgtDonne();
 
     }
 
@@ -94,18 +98,8 @@ public class Gui extends JFrame {
         contentPane.updateUI();
     }
 
-    private JPanel fctRetour() {
+    private void AfficheAllActualise() {
 
-        JPanel retour = new JPanel(new GridLayout(2, 1));
-        JTextField txtId = new JTextField("id scooter");
-        JButton confirm = new JButton("confirm");
-        retour.add(txtId);
-        retour.add(confirm);
-        // retour.add(createRightPanel());
-        // this.setContentPane(retour);
-        // this.revalidate();
-
-        return retour;
     }
 
     private JPanel createRightPanel() {
@@ -160,6 +154,20 @@ public class Gui extends JFrame {
 
     }
 
+    private JPanel fctRetour() {
+
+        JPanel retour = new JPanel(new GridLayout(2, 1));
+        JTextField txtId = new JTextField("id scooter");
+        JButton confirm = new JButton("confirm");
+        retour.add(txtId);
+        retour.add(confirm);
+        // retour.add(createRightPanel());
+        // this.setContentPane(retour);
+        // this.revalidate();
+
+        return retour;
+    }
+
     private JPanel fctAfficheStat() {
 
         JPanel pannel = new JPanel(new GridLayout(2, 1));
@@ -174,8 +182,21 @@ public class Gui extends JFrame {
         // this.revalidate();
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException { // le throws est pour le look'n feel
-        new ParcAuto();
+    private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
+        int n = tabScooterDispo.size();
+        JPanel affiche = new JPanel(new GridLayout(n, 4));
+        for (Scooter s : tabScooterDispo) {
+            affiche.add(new JTextArea(Integer.toString(s.getId())));
+            affiche.add(new JTextArea(s.getMarque()));
+            affiche.add(new JTextArea(s.getModele()));
+            affiche.add(new JTextArea(Integer.toString(s.getKilometrage())));
+        }
+        return affiche;
+    }
+
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException { // le throws est pour
+                                                                                                 // le look'n feel
+        // new ParcAuto();
         UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
         new Gui().setVisible(true);
     }

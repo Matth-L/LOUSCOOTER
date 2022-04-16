@@ -15,6 +15,7 @@ public class Controller {
     JLabel label;
     Bouton button;
     static ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
+    static ArrayList<Scooter> tabScooterDispo = new ArrayList<Scooter>();
 
     static JTextField zoneID;
     static JTextField zoneDB;
@@ -28,8 +29,20 @@ public class Controller {
     // lorsque l'utilisateur appuyer sur louer pour valider les info (id scoot,
     // datedb, datefn)
 
-    public static String btnLouer(ActionEvent e) throws IOException {
+    public static ArrayList<Scooter> chgtDonne() throws IOException {
         ParcAuto.setAll(tabScooter);
+
+        for (Scooter s : tabScooter) {
+            // liste des id pour les scooter dispo
+            if (s.isDispoActual()) {
+                tabScooterDispo.add(s);
+            }
+        }
+        return tabScooterDispo;
+    }
+
+    public static String btnLouer(ActionEvent e) throws IOException {
+
         int scootID = Integer.parseInt(zoneID.getText());
         String DateDeb = zoneDB.getText();
         String DateFin = zoneDF.getText();
