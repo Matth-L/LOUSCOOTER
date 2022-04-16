@@ -2,6 +2,7 @@ package GraphiqueBorne.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -21,6 +22,11 @@ public class Controller {
     static JTextField zoneDB;
     static JTextField zoneDF;
 
+    public static void set() throws IOException {
+        // ParcAuto.setAll(tabScooter);
+        BaseDonne.getDB(tabScooter);
+    }
+
     public Controller() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,7 +37,7 @@ public class Controller {
 
     public static ArrayList<Scooter> chgtDonne() throws IOException {
 
-        ParcAuto.setAll(tabScooter);
+        // ParcAuto.setAll(tabScooter);
 
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
@@ -105,8 +111,9 @@ public class Controller {
         System.out.println("parcscoot");
     }
 
-    public void btnquit(ActionEvent e) {
-        System.out.println("quit");
+    public static void btnquit(ActionEvent e) throws IOException {
+        BaseDonne.saveDB(tabScooter);
+        System.exit(0);
     }
 
     public Controller(JTextField zt) {

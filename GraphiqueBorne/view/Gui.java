@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle.Control;
 import java.awt.*;
 
 import javax.sound.midi.ControllerEventListener;
@@ -37,6 +38,8 @@ public class Gui extends JFrame {
         JPanel contentPane = (JPanel) this.getContentPane();
         // scrollpane.setViewportView(contentPane);
         this.setContentPane(contentPane);
+        // init bd
+        Controller.set();
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 louerActualise("");
@@ -67,7 +70,12 @@ public class Gui extends JFrame {
         });
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    Controller.btnquit(e);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
@@ -100,7 +108,6 @@ public class Gui extends JFrame {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctLouer(), BorderLayout.CENTER);
-        // fctLouer();
         contentPane.updateUI();
     }
 
@@ -110,7 +117,6 @@ public class Gui extends JFrame {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctRetour(), BorderLayout.CENTER);
-        // fctRetour();
         contentPane.updateUI();
     }
 
@@ -120,7 +126,6 @@ public class Gui extends JFrame {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
-        // fctAfficheStat();
         contentPane.updateUI();
     }
 
@@ -130,7 +135,6 @@ public class Gui extends JFrame {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
         contentPane.add(AfficheDonne(s), BorderLayout.CENTER);
-        // fctAfficheStat();
         contentPane.updateUI();
     }
 

@@ -35,8 +35,8 @@ public class BaseDonne {
     }
 
     // crée le tableau a partir de la bd
-    static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("baseDonne/bdScooter.txt");
+    public static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
+        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
@@ -59,14 +59,12 @@ public class BaseDonne {
         sc.close();
     }
 
-    // ! FONCTIONNE PAS
     static ArrayList<Location> getLoc(Scooter s) throws FileNotFoundException {
-        File file = new File("baseDonne/location.txt");
+        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         ArrayList<Location> tabLoc = new ArrayList<Location>();
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
             Date deb = Location.stringToDate(sc.nextLine());
-            System.out.println(deb);
             Date fin = Location.stringToDate(sc.nextLine());
             Location temp = new Location(deb, fin, s.getId());
             tabLoc.add(temp);
@@ -77,10 +75,10 @@ public class BaseDonne {
 
     // permet de sauvegarder les scooters dans un txt
     // !0 pour Scooter 1 pour locatoin
-    static void saveDB(ArrayList<Scooter> tab) throws IOException {
+    public static void saveDB(ArrayList<Scooter> tab) throws IOException {
         boolean fileDejaCree = false;
         // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
-        File file = new File("baseDonne/bdScooter.txt"); // écrase les données
+        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt"); // écrase les données
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         // précedents, pour les garder il faut
@@ -100,7 +98,7 @@ public class BaseDonne {
     }
 
     static void saveLocation(boolean test, Scooter s) throws IOException {
-        File file = new File("baseDonne/location.txt");
+        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
         FileWriter fw;
         if (test) {
             fw = new FileWriter(file, true);// on efface le fichier lors de la premiere création de location

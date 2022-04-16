@@ -37,7 +37,7 @@ public class BaseDonne {
 
     // crée le tableau a partir de la bd
     static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("baseDonne/bdScooter.txt");
+        File file = new File("BorneConsole/baseDonne/bdScooter.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
             // tant qu'on est toujours dans le meme scooter
@@ -62,7 +62,7 @@ public class BaseDonne {
 
     // ! FONCTIONNE PAS
     static ArrayList<Location> getLoc(Scooter s) throws FileNotFoundException {
-        File file = new File("baseDonne/location.txt");
+        File file = new File("BorneConsole/baseDonne/location.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         ArrayList<Location> tabLoc = new ArrayList<Location>();
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
@@ -81,7 +81,7 @@ public class BaseDonne {
     static void saveDB(ArrayList<Scooter> tab) throws IOException {
         boolean fileDejaCree = false;
         // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
-        File file = new File("baseDonne/bdScooter.txt"); // écrase les données
+        File file = new File("BorneConsole/baseDonne/bdScooter.txt"); // écrase les données
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         // précedents, pour les garder il faut
@@ -101,7 +101,7 @@ public class BaseDonne {
     }
 
     static void saveLocation(boolean test, Scooter s) throws IOException {
-        File file = new File("baseDonne/location.txt");
+        File file = new File("BorneConsole/baseDonne/location.txt");
         FileWriter fw;
         if (test) {
             fw = new FileWriter(file, true);// on efface le fichier lors de la premiere création de location
