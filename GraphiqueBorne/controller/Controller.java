@@ -74,14 +74,7 @@ public class Controller {
     }
 
     public static ArrayList<Scooter> btnafficheAllScoot() {
-        tabScooterDispo.clear();
-        for (Scooter s : tabScooter) {
-            // liste des id pour les scooter dispo
-            if (s.isDispoActual()) {
-                tabScooterDispo.add(s);
-            }
-        }
-        return tabScooterDispo;
+        return tabScooter;
     }
 
     public void btnparcScoot(ActionEvent e) {

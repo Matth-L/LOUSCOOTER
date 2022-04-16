@@ -1,5 +1,6 @@
 package BorneConsole; //le temps du travaille ... 
 
+import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

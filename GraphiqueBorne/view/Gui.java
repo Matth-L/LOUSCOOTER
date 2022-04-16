@@ -68,6 +68,10 @@ public class Gui extends JFrame {
         });
         contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
+        // Voir pour rajouter une scrollbar
+        // JScrollBar scrollBVertical = new JScrollBar(JScrollBar.VERTICAL, 10, 60, 0,
+        // 100);
+        // contentPane.add(scrollBVertical, BorderLayout.EAST);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
 
@@ -107,7 +111,6 @@ public class Gui extends JFrame {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel(), BorderLayout.EAST);
-        contentPane.add(creatStatusBar("s"), BorderLayout.SOUTH);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
         contentPane.add(AfficheDonne(s), BorderLayout.CENTER);
         // fctAfficheStat();
@@ -196,7 +199,6 @@ public class Gui extends JFrame {
         JTextField idRentrer = new JTextField("id scoot");
         JButton chercher = new JButton("chercher !");
         Controller ctr = new Controller(idRentrer);
-
         chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Scooter rslt = Controller.btnetatScoot();
@@ -216,11 +218,16 @@ public class Gui extends JFrame {
     }
 
     private JPanel AfficheDonne(Scooter s) {
-        JPanel pannel = new JPanel(new GridLayout(1, 4));
+        JPanel pannel = new JPanel(new GridLayout(5, 1));
         pannel.add(new JLabel("id Scooter : " + s.getId()));
         pannel.add(new JLabel("Marque: " + s.getMarque()));
         pannel.add(new JLabel("Modéle " + s.getModele()));
         pannel.add(new JLabel("kilométrage :" + s.getKilometrage()));
+        if (s.isDispoActual()) {
+            pannel.add(new JLabel("Ce scooter est actuellement disponible"));
+        } else {
+            pannel.add(new JLabel("Ce scooter est actuellement indisponible"));
+        }
         return pannel;
     }
 
