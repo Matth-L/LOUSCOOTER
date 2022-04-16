@@ -24,6 +24,7 @@ public class Gui extends JFrame {
     JButton retour = new JButton("Retour");
     JButton etatScoot = new JButton("Etat Scooter");
     JButton afficheAll = new JButton("Affiche All");
+    JButton retourMenu = new JButton("Menu");
     JButton quit = new JButton("Quitter");
 
     public Gui() throws IOException {
@@ -66,21 +67,34 @@ public class Gui extends JFrame {
 
             }
         });
-        contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
-        // Voir pour rajouter une scrollbar
-        // JScrollBar scrollBVertical = new JScrollBar(JScrollBar.VERTICAL, 10, 60, 0,
-        // 100);
-        // contentPane.add(scrollBVertical, BorderLayout.EAST);
+        menu();
+        // contentPane.add(new JLabel("Scooter dispo actuellement :"),
+        // BorderLayout.NORTH);
+        // // Voir pour rajouter une scrollbar
+        // // JScrollBar scrollBVertical = new JScrollBar(JScrollBar.VERTICAL, 10, 60,
+        // 0,
+        // // 100);
+        // // contentPane.add(scrollBVertical, BorderLayout.EAST);
+        // contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        // contentPane.add(createRightPanel(), BorderLayout.EAST);
+
+    }
+
+    private void menu() throws IOException {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
+        contentPane.add(afficheAll(Controller.btnMenu()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
-
+        contentPane.updateUI();
     }
 
     private void louerActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctLouer(), BorderLayout.CENTER);
         // fctLouer();
@@ -90,7 +104,7 @@ public class Gui extends JFrame {
     private void retourActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctRetour(), BorderLayout.CENTER);
         // fctRetour();
@@ -100,7 +114,7 @@ public class Gui extends JFrame {
     private void EtatActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
         // fctAfficheStat();
@@ -110,7 +124,7 @@ public class Gui extends JFrame {
     private void EtatActualiseEtDonne(Scooter s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
         contentPane.add(AfficheDonne(s), BorderLayout.CENTER);
         // fctAfficheStat();
@@ -123,7 +137,7 @@ public class Gui extends JFrame {
         contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.btnafficheAllScoot()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
-        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.updateUI();
     }
 
@@ -135,6 +149,31 @@ public class Gui extends JFrame {
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
+        panel.add(quit);
+
+        return panel;
+    }
+
+    private JPanel createRightPanel2() {
+        // init panel + button
+        JPanel panel = new JPanel(new GridLayout(6, 1));
+        // panel.setLayout(new FlowLayout());
+        panel.add(louer);
+        panel.add(retour);
+        panel.add(etatScoot);
+        panel.add(afficheAll);
+        retourMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    menu();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+        panel.add(retourMenu);
         panel.add(quit);
 
         return panel;

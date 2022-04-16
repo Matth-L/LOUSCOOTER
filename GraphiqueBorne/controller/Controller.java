@@ -42,6 +42,17 @@ public class Controller {
         return tabScooterDispo;
     }
 
+    public static ArrayList<Scooter> btnMenu() {
+        tabScooterDispo.clear();
+        for (Scooter s : tabScooter) {
+            // liste des id pour les scooter dispo
+            if (s.isDispoActual()) {
+                tabScooterDispo.add(s);
+            }
+        }
+        return tabScooterDispo;
+    }
+
     public static String btnLouer(ActionEvent e) throws IOException {
 
         int scootID = Integer.parseInt(zoneID.getText());
