@@ -5,17 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ResourceBundle.Control;
 import java.awt.*;
-
-import javax.sound.midi.ControllerEventListener;
 import javax.swing.*;
-import javax.swing.JPanel.*;
-// import GraphiqueBorne.controller.ControllerLouer;
-import javax.swing.plaf.DimensionUIResource;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-
-import BorneConsole.ParcAuto;
 import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
 
@@ -174,7 +166,6 @@ public class Gui extends JFrame {
                 try {
                     menu();
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
 
@@ -200,7 +191,7 @@ public class Gui extends JFrame {
         JTextField idscoot = new JTextField("id scoot");
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
-        Controller ctr = new Controller(idscoot, DateDeb, DateFin);
+        new Controller(idscoot, DateDeb, DateFin);
         JButton louer2 = new JButton("Appuyer pour louer !");
         louer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -208,7 +199,6 @@ public class Gui extends JFrame {
                     louerActualise(Controller.btnLouer(e));
 
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
@@ -243,7 +233,7 @@ public class Gui extends JFrame {
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         JButton chercher = new JButton("chercher !");
-        Controller ctr = new Controller(idRentrer);
+        new Controller(idRentrer);
         chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Scooter rslt = Controller.btnetatScoot();

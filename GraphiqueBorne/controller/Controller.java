@@ -1,16 +1,11 @@
 package GraphiqueBorne.controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.ZoneId;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import GraphiqueBorne.model.*;
 import GraphiqueBorne.view.Bouton;
-import GraphiqueBorne.view.Gui;
 
 public class Controller {
     JLabel label;
@@ -99,7 +94,6 @@ public class Controller {
             return S;
         } catch (Exception e) {
             return null;
-            // TODO: handle exception
         }
     }
 
