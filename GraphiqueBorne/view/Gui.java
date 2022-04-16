@@ -186,10 +186,10 @@ public class Gui extends JFrame {
         int n = tabScooterDispo.size();
         JPanel affiche = new JPanel(new GridLayout(n, 4));
         for (Scooter s : tabScooterDispo) {
-            affiche.add(new JTextArea(Integer.toString(s.getId())));
-            affiche.add(new JTextArea(s.getMarque()));
-            affiche.add(new JTextArea(s.getModele()));
-            affiche.add(new JTextArea(Integer.toString(s.getKilometrage())));
+            affiche.add(new JLabel("id Scooter : " + s.getId()));
+            affiche.add(new JLabel("Marque: " + s.getMarque()));
+            affiche.add(new JLabel("Modéle " + s.getModele()));
+            affiche.add(new JLabel("kilométrage :" + s.getKilometrage()));
         }
         return affiche;
     }
