@@ -210,7 +210,6 @@ public class Gui extends JFrame {
         pannel.add(DateDeb);
         pannel.add(DateFin);
         pannel.add(louer2);
-
         return pannel;
         // pannel.add(createRightPanel());
         // this.setContentPane(pannel);
