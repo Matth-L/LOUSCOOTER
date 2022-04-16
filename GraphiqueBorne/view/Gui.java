@@ -19,6 +19,8 @@ import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
 
 public class Gui extends JFrame {
+    // JScrollPane scrollpane = new JScrollPane();
+    // JScrollBar scrollbar = new JScrollBar(JScrollBar.VERTICAL);
 
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
@@ -33,6 +35,7 @@ public class Gui extends JFrame {
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         JPanel contentPane = (JPanel) this.getContentPane();
+        // scrollpane.setViewportView(contentPane);
         this.setContentPane(contentPane);
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
