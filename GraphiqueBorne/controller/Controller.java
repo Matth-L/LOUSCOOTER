@@ -53,24 +53,32 @@ public class Controller {
         return tabScooterDispo;
     }
 
+    // à améliorer: faire de tel sorte qu'on garde les info rentrer dans la zone de
+    // texte ap quelqu'onque action.
     public static String btnLouer(ActionEvent e) throws IOException {
+        int scootID;
+        try { // j'intersepte l'erreur lorsque l'utilisateur ne rentre pas un entier dans la
+              // case souhaitée. Faudra faire de même pour retour
+            scootID = Integer.parseInt(zoneID.getText());
+            String DateDeb = zoneDB.getText();
+            String DateFin = zoneDF.getText();
+            int rslt = Menu3Erreur.louerDate(scootID, tabScooter, DateDeb, DateFin);
+            switch (rslt) {
+                case 0:
+                    // Gui.creatStatusBar("Votre opération c'est bien déroulé");
+                    return "Votre opération c'est bien déroulé";
 
-        int scootID = Integer.parseInt(zoneID.getText());
-        String DateDeb = zoneDB.getText();
-        String DateFin = zoneDF.getText();
-        int rslt = Menu3Erreur.louerDate(scootID, tabScooter, DateDeb, DateFin);
-        switch (rslt) {
-            case 0:
-                // Gui.creatStatusBar("Votre opération c'est bien déroulé");
-                return "Votre opération c'est bien déroulé";
-
-            case 1:
-                // Gui.creatStatusBar("L'id rentré est invalide");
-                return "L'id rentré est invalide";
-            case 2:
-                return "Le véhicule demandé n'est pas disponible à la date demandé";
+                case 1:
+                    // Gui.creatStatusBar("L'id rentré est invalide");
+                    return "L'id rentré est invalide";
+                case 2:
+                    return "Le véhicule demandé n'est pas disponible à la date demandé";
+            }
+            return "error";
+        } catch (Exception s) {
+            // TODO: handle exception
+            return "veillier rentrer un id valide";
         }
-        return "error";
 
     }
 
@@ -79,9 +87,14 @@ public class Controller {
     }
 
     public static Scooter btnetatScoot() {
-        int scootID = Integer.parseInt(zoneID.getText());
-        Scooter S = Menu1Method.getScooter(tabScooter, scootID);
-        return S;
+        try {
+            int scootID = Integer.parseInt(zoneID.getText());
+            Scooter S = Menu1Method.getScooter(tabScooter, scootID);
+            return S;
+        } catch (Exception e) {
+            return null;
+            // TODO: handle exception
+        }
     }
 
     public static ArrayList<Scooter> btnafficheAllScoot() {
