@@ -67,8 +67,10 @@ public class Controller {
         System.out.println("louer");
     }
 
-    public void btnetatScoot(ActionEvent e) {
-        System.out.println("etatScoot");
+    public static Scooter btnetatScoot() {
+        int scootID = Integer.parseInt(zoneID.getText());
+        Scooter S = Menu1Method.getScooter(tabScooter, scootID);
+        return S;
     }
 
     public static ArrayList<Scooter> btnafficheAllScoot() {

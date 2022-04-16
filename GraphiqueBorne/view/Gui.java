@@ -54,7 +54,7 @@ public class Gui extends JFrame {
         afficheAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    AfficheAllActualise();
+                    AfficheAllActualise("");
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -87,7 +87,7 @@ public class Gui extends JFrame {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel(), BorderLayout.EAST);
-        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctRetour(), BorderLayout.CENTER);
         // fctRetour();
         contentPane.updateUI();
@@ -97,18 +97,29 @@ public class Gui extends JFrame {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel(), BorderLayout.EAST);
-        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
         // fctAfficheStat();
         contentPane.updateUI();
     }
 
-    private void AfficheAllActualise() throws IOException {
+    private void EtatActualiseEtDonne(Scooter s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar("s"), BorderLayout.SOUTH);
+        contentPane.add(fctAfficheStat(), BorderLayout.NORTH);
+        contentPane.add(AfficheDonne(s), BorderLayout.CENTER);
+        // fctAfficheStat();
+        contentPane.updateUI();
+    }
+
+    private void AfficheAllActualise(String s) throws IOException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.btnafficheAllScoot()), BorderLayout.CENTER);
-        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
         contentPane.updateUI();
     }
@@ -184,13 +195,33 @@ public class Gui extends JFrame {
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         JButton chercher = new JButton("chercher !");
+        Controller ctr = new Controller(idRentrer);
 
+        chercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Scooter rslt = Controller.btnetatScoot();
+                if (rslt != null) {
+                    EtatActualiseEtDonne(rslt);
+                } else {
+                    EtatActualise("Id invalide");
+                }
+            }
+        });
         pannel.add(idRentrer);
         pannel.add(chercher);
         return pannel;
         // pannel.add(createRightPanel());
         // this.setContentPane(pannel);
         // this.revalidate();
+    }
+
+    private JPanel AfficheDonne(Scooter s) {
+        JPanel pannel = new JPanel(new GridLayout(1, 4));
+        pannel.add(new JLabel("id Scooter : " + s.getId()));
+        pannel.add(new JLabel("Marque: " + s.getMarque()));
+        pannel.add(new JLabel("Modéle " + s.getModele()));
+        pannel.add(new JLabel("kilométrage :" + s.getKilometrage()));
+        return pannel;
     }
 
     private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
