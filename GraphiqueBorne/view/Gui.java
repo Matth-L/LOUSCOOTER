@@ -53,7 +53,12 @@ public class Gui extends JFrame {
 
         afficheAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    AfficheAllActualise();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
         quit.addActionListener(new ActionListener() {
@@ -61,10 +66,10 @@ public class Gui extends JFrame {
 
             }
         });
+        contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
-        Controller.chgtDonne();
 
     }
 
@@ -98,8 +103,14 @@ public class Gui extends JFrame {
         contentPane.updateUI();
     }
 
-    private void AfficheAllActualise() {
-
+    private void AfficheAllActualise() throws IOException {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
+        contentPane.add(afficheAll(Controller.btnafficheAllScoot()), BorderLayout.CENTER);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(createRightPanel(), BorderLayout.EAST);
+        contentPane.updateUI();
     }
 
     private JPanel createRightPanel() {

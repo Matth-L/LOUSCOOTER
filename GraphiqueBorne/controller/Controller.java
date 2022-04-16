@@ -30,6 +30,7 @@ public class Controller {
     // datedb, datefn)
 
     public static ArrayList<Scooter> chgtDonne() throws IOException {
+
         ParcAuto.setAll(tabScooter);
 
         for (Scooter s : tabScooter) {
@@ -70,8 +71,15 @@ public class Controller {
         System.out.println("etatScoot");
     }
 
-    public void btnafficheAllScoot(ActionEvent e) {
-        System.out.println("affiche all");
+    public static ArrayList<Scooter> btnafficheAllScoot() {
+        tabScooterDispo.clear();
+        for (Scooter s : tabScooter) {
+            // liste des id pour les scooter dispo
+            if (s.isDispoActual()) {
+                tabScooterDispo.add(s);
+            }
+        }
+        return tabScooterDispo;
     }
 
     public void btnparcScoot(ActionEvent e) {
