@@ -243,6 +243,8 @@ public class Gui extends JFrame {
         return affiche;
     }
 
+    // il faudra rajouter un boutton retour au menu lorsque qu'on est dans un des
+    // choix sélectionner .
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException { // le throws est pour
                                                                                                  // le look'n feel
         // new ParcAuto();
