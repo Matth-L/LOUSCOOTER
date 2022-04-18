@@ -30,7 +30,7 @@ public class Gui extends JFrame {
         JPanel contentPane = (JPanel) this.getContentPane();
         // scrollpane.setViewportView(contentPane);
         this.setContentPane(contentPane);
-        // init bd
+        // * init bd
         // Controller.initBD();
         Controller.set();
         louer.addActionListener((new ActionListener() {
@@ -180,7 +180,7 @@ public class Gui extends JFrame {
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
         new Controller(idscoot, DateDeb, DateFin);
-        JButton louer2 = new JButton("Appuyer pour louer !");
+        JButton louer2 = new JButton("Appuyez pour louer !");
         louer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -268,9 +268,8 @@ public class Gui extends JFrame {
         return affiche;
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException { // le throws est pour
-                                                                                                 // le look'n feel
-        // new ParcAuto();
+    // throw lookNell
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {
         UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
         new Gui().setVisible(true);
     }

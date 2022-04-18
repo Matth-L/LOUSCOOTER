@@ -2,6 +2,8 @@ package GraphiqueBorne.model;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class Scooter {
@@ -51,24 +53,16 @@ public class Scooter {
     }
 
     Location getLocation() {
+        Date in = new Date();
+        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
+        Date dateF = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         for (Location l : tabLocation) {
-            if (l.scootId == this.id) {
+            if (l.scootId == this.id && l.dateTest(dateF)) { // permet d'avoir la bonne location
                 return l;
             }
         }
         return null;
     }
-    // Location verifNumR(int num) {
-    // for (Location l : tabLocation) {
-    // if (l.scootId == this.id) {
-    // if (l.getNum() == num) {
-    // return l;
-    // }
-    // }
-    // }
-    // return null;
-
-    // }
 
     // getteur\\
     public int getId() {

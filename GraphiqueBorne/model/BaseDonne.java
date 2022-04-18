@@ -42,9 +42,7 @@ public class BaseDonne {
             // tant qu'on est toujours dans le meme scooter
             Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand
                                           // meme
-            temp.tabLocation = getLoc(temp);
-            // chacun des attributs propres a eux meme a voir si ça pose pb et si ça
-            // mérite d'être corrigé
+
             temp.setId(sc.nextInt());
             // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
             // next Boolean etc il ne fait pas le \n seul
@@ -54,15 +52,19 @@ public class BaseDonne {
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
             sc.nextLine();
+            temp.tabLocation = getLoc(temp, tab.size());
             tab.add(temp);
         }
         sc.close();
     }
 
-    static ArrayList<Location> getLoc(Scooter s) throws FileNotFoundException {
+    //
+    static ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
         File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
         Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
         ArrayList<Location> tabLoc = new ArrayList<Location>();
+        // le but est de compter le nombre de EOL qu'on possède car il s'arrete toujours
+        // au meme eol
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
             Date deb = Location.stringToDate(sc.nextLine());
             Date fin = Location.stringToDate(sc.nextLine());
@@ -80,9 +82,7 @@ public class BaseDonne {
         // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
         File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt"); // écrase les données
         FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);
-        // précedents, pour les garder il faut
-        // mettre true après le nom du fichier
+        PrintWriter pw = new PrintWriter(fw);// on efface le fichier
         // écrit les attributs de chaque scooters
         for (Scooter s : tab) {
             pw.println(s.getId());
@@ -140,4 +140,14 @@ public class BaseDonne {
         }
     }
 
+    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
+
+    public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
+        // * ajout des élements dans le tab
+        setScooterInDB(tabScooter);
+        for (int i = 0; i < tabScooter.size(); i++) {
+            setLocationScoot(tabScooter.get(i).tabLocation);
+        }
+        saveDB(tabScooter);
+    }
 }
