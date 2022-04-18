@@ -140,4 +140,14 @@ public class BaseDonne {
         }
     }
 
+    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
+
+    public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
+        // * ajout des élements dans le tab
+        setScooterInDB(tabScooter);
+        for (int i = 0; i < tabScooter.size(); i++) {
+            setLocationScoot(tabScooter.get(i).tabLocation);
+        }
+        saveDB(tabScooter);
+    }
 }

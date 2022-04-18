@@ -17,7 +17,7 @@ public class Controller {
     static JTextField zoneR;
 
     public static void initBD() throws IOException {
-        ParcAuto.setAll(tabScooter);
+        BaseDonne.setAll(tabScooter);
     }
 
     public static void set() throws IOException {
