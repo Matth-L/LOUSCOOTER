@@ -5,20 +5,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import GraphiqueBorne.model.*;
-import GraphiqueBorne.view.Bouton;
 
 public class Controller {
     JLabel label;
-    Bouton button;
     static ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
     static ArrayList<Scooter> tabScooterDispo = new ArrayList<Scooter>();
 
     static JTextField zoneID;
     static JTextField zoneDB;
     static JTextField zoneDF;
+    static JTextField zoneR;
+
+    public static void initBD() throws IOException {
+        ParcAuto.setAll(tabScooter);
+    }
 
     public static void set() throws IOException {
-        // ParcAuto.setAll(tabScooter);
         BaseDonne.getDB(tabScooter);
     }
 
@@ -66,25 +68,33 @@ public class Controller {
             int rslt = Menu3Erreur.louerDate(scootID, tabScooter, DateDeb, DateFin);
             switch (rslt) {
                 case 0:
-                    // Gui.creatStatusBar("Votre opération c'est bien déroulé");
+                    BaseDonne.saveDB(tabScooter);
                     return "Votre opération c'est bien déroulé";
 
                 case 1:
-                    // Gui.creatStatusBar("L'id rentré est invalide");
                     return "L'id rentré est invalide";
                 case 2:
                     return "Le véhicule demandé n'est pas disponible à la date demandé";
             }
             return "error";
         } catch (Exception s) {
-            // TODO: handle exception
-            return "veillier rentrer un id valide";
+            return "veuillez rentrer un id valide";
         }
 
     }
 
-    public void btnRetour(ActionEvent e) {
-        System.out.println("louer");
+    public static String btnRetour(ActionEvent e) throws IOException {
+        // il va falloir utiliser zone id
+        int scootID = Integer.parseInt(zoneID.getText());
+        try {
+            if (Menu3Erreur.retourDate(scootID, tabScooter)) {
+                BaseDonne.saveDB(tabScooter);
+                return "opération bien effectué";
+            }
+            return "erreur";
+        } catch (Exception s) {
+            return "veuillez rentrer des informations valides ";
+        }
     }
 
     public static Scooter btnetatScoot() {
@@ -112,6 +122,11 @@ public class Controller {
 
     public Controller(JTextField zt) {
         zoneID = zt;
+    }
+
+    public Controller(JTextField zt, JTextField zR) {
+        zoneID = zt;
+        zoneR = zR;
     }
 
     public Controller(JTextField zt, JTextField db, JTextField df) {

@@ -50,17 +50,25 @@ public class Scooter {
         return true;
     }
 
-    Location verifNumR(int num) {
+    Location getLocation() {
         for (Location l : tabLocation) {
             if (l.scootId == this.id) {
-                if (l.getNum() == num) {
-                    return l;
-                }
+                return l;
             }
         }
         return null;
-
     }
+    // Location verifNumR(int num) {
+    // for (Location l : tabLocation) {
+    // if (l.scootId == this.id) {
+    // if (l.getNum() == num) {
+    // return l;
+    // }
+    // }
+    // }
+    // return null;
+
+    // }
 
     // getteur\\
     public int getId() {

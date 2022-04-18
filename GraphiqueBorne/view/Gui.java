@@ -31,6 +31,7 @@ public class Gui extends JFrame {
         // scrollpane.setViewportView(contentPane);
         this.setContentPane(contentPane);
         // init bd
+        // Controller.initBD();
         Controller.set();
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +56,6 @@ public class Gui extends JFrame {
                 try {
                     AfficheAllActualise("");
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
@@ -65,23 +65,12 @@ public class Gui extends JFrame {
                 try {
                     Controller.btnquit(e);
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
         });
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
         menu();
-        // contentPane.add(new JLabel("Scooter dispo actuellement :"),
-        // BorderLayout.NORTH);
-        // // Voir pour rajouter une scrollbar
-        // // JScrollBar scrollBVertical = new JScrollBar(JScrollBar.VERTICAL, 10, 60,
-        // 0,
-        // // 100);
-        // // contentPane.add(scrollBVertical, BorderLayout.EAST);
-        // contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
-        // contentPane.add(createRightPanel(), BorderLayout.EAST);
-
     }
 
     private void menu() throws IOException {
@@ -215,17 +204,22 @@ public class Gui extends JFrame {
     }
 
     private JPanel fctRetour() {
-
-        JPanel retour = new JPanel(new GridLayout(2, 1));
-        JTextField txtId = new JTextField("id scooter");
-        JButton confirm = new JButton("confirm");
-        retour.add(txtId);
-        retour.add(confirm);
-        // retour.add(createRightPanel());
-        // this.setContentPane(retour);
-        // this.revalidate();
-
-        return retour;
+        JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
+        JTextField idScoot = new JTextField("id Scooter");
+        new Controller(idScoot);
+        JButton retour = new JButton("Appuyez pour rendre votre location !");
+        retour.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    retourActualise(Controller.btnRetour(e));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+        panel.add(idScoot);
+        panel.add(retour);
+        return panel;
     }
 
     private JPanel fctAfficheStat() {
@@ -247,9 +241,6 @@ public class Gui extends JFrame {
         pannel.add(idRentrer);
         pannel.add(chercher);
         return pannel;
-        // pannel.add(createRightPanel());
-        // this.setContentPane(pannel);
-        // this.revalidate();
     }
 
     private JPanel AfficheDonne(Scooter s) {
@@ -278,8 +269,6 @@ public class Gui extends JFrame {
         return affiche;
     }
 
-    // il faudra rajouter un boutton retour au menu lorsque qu'on est dans un des
-    // choix sélectionner .
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException { // le throws est pour
                                                                                                  // le look'n feel
         // new ParcAuto();
