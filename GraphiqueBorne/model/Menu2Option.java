@@ -2,6 +2,11 @@ package GraphiqueBorne.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.time.ZoneId;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 
 //! ce qui est demander par l'énoncé 
 public class Menu2Option extends Menu1Method {
@@ -86,4 +91,39 @@ public class Menu2Option extends Menu1Method {
         clearBoard();
     }
 
+    public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
+            throws IOException {
+        Scooter S;
+        if ((S = getScooter(tabScooter, G)) == null) {
+            return 1;
+        }
+
+        Date debutDate = Location.stringToDate(dateDeb);
+        Date finDate = Location.stringToDate(dateFin);
+
+        if (S.isDispo(debutDate, finDate) && (debutDate != null || finDate != null)) {
+            S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
+            return 0;
+        } else {
+            return 2;
+        }
+
+    }
+
+    public static boolean retourDate(int id, ArrayList<Scooter> tabScooter) throws IOException {
+        Scooter S;
+        // vérification de l'existence du scooter
+        if ((S = getScooter(tabScooter, id)) == null) {
+            return false;
+        }
+        // converti temps actuelle en date
+        Date in = new Date();
+        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
+        Date dateRetour = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        // vérification du numéro de retour
+        // Location l = S.verifNumR(numR);
+        Location l = S.getLocation();
+        l.setDateFin(dateRetour);
+        return true;
+    }
 }

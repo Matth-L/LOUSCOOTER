@@ -65,7 +65,7 @@ public class Controller {
             scootID = Integer.parseInt(zoneID.getText());
             String DateDeb = zoneDB.getText();
             String DateFin = zoneDF.getText();
-            int rslt = Menu3Erreur.louerDate(scootID, tabScooter, DateDeb, DateFin);
+            int rslt = Menu2Option.louerDate(scootID, tabScooter, DateDeb, DateFin);
             switch (rslt) {
                 case 0:
                     BaseDonne.saveDB(tabScooter);
@@ -87,7 +87,7 @@ public class Controller {
         // il va falloir utiliser zone id
         int scootID = Integer.parseInt(zoneID.getText());
         try {
-            if (Menu3Erreur.retourDate(scootID, tabScooter)) {
+            if (Menu2Option.retourDate(scootID, tabScooter)) {
                 BaseDonne.saveDB(tabScooter);
                 return "opération bien effectué";
             }

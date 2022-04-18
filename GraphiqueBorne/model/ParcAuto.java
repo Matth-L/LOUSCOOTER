@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class ParcAuto extends BaseDonne {
     static Scanner scan = new Scanner(System.in);
 
-    static Menu4 affiche = new Menu4();
     ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
 
     public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
