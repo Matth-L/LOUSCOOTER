@@ -20,7 +20,7 @@ public class Controller {
         BaseDonne.setAll(tabScooter);
     }
 
-    public static void set() throws IOException {
+      public static void set() throws IOException {
         BaseDonne.getDB(tabScooter);
     }
 
@@ -68,7 +68,6 @@ public class Controller {
             int rslt = Menu2Option.louerDate(scootID, tabScooter, DateDeb, DateFin);
             switch (rslt) {
                 case 0:
-                    BaseDonne.saveDB(tabScooter);
                     return "Votre opération c'est bien déroulé";
 
                 case 1:
@@ -88,7 +87,6 @@ public class Controller {
         int scootID = Integer.parseInt(zoneID.getText());
         try {
             if (Menu2Option.retourDate(scootID, tabScooter)) {
-                BaseDonne.saveDB(tabScooter);
                 return "opération bien effectué";
             }
             return "erreur";
