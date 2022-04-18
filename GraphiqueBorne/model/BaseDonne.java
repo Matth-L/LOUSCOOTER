@@ -37,15 +37,16 @@ public class BaseDonne {
     // crée le tableau a partir de la bd
     public static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {// tant qu'on est pas au marqueur la fin du fichier
-            // tant qu'on est toujours dans le meme scooter
-            Scooter temp = new Scooter(); // le pb c'est que tous les scooters s'appellent temp mais ils ont quand
-                                          // meme
-
+        // il faut créer un scanner pour le fichier
+        Scanner sc = new Scanner(file);
+        // tant qu'on est pas au marqueur la fin du fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
+            Scooter temp = new Scooter();
             temp.setId(sc.nextInt());
-            // obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
-            // next Boolean etc il ne fait pas le \n seul
+            /*
+             * obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
+             * next Boolean etc il ne fait pas le \n seul
+             */
             sc.nextLine();
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
@@ -61,10 +62,14 @@ public class BaseDonne {
     //
     static ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
         File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
-        Scanner sc = new Scanner(file); // il faut créer un scanner pour le fichier
+        // il faut créer un scanner pour le fichier
+        Scanner sc = new Scanner(file);
         ArrayList<Location> tabLoc = new ArrayList<Location>();
-        // le but est de compter le nombre de EOL qu'on possède car il s'arrete toujours
-        // au meme eol
+        Date deb, fin;
+        /*
+         * le but est de compter le nombre de EOL qu'on possède car il s'arrete toujours
+         * pour ne pas enregistrer les memes premières lignes
+         */
         int count = 1;
         while (count <= sizeTab) {
             if (sc.hasNext("EOL")) {
@@ -72,11 +77,11 @@ public class BaseDonne {
             }
             sc.nextLine();
         }
-        while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
-            Date deb = Location.stringToDate(sc.nextLine());
-            Date fin = Location.stringToDate(sc.nextLine());
-            Location temp = new Location(deb, fin, s.getId());
-            tabLoc.add(temp);
+        // tant qu'on est pas au marqueur la fin du fichier
+        while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {
+            deb = Location.stringToDate(sc.nextLine());
+            fin = Location.stringToDate(sc.nextLine());
+            tabLoc.add(new Location(deb, fin, s.getId()));
         }
         sc.close();
         return tabLoc;
@@ -86,11 +91,14 @@ public class BaseDonne {
     // !0 pour Scooter 1 pour locatoin
     public static void saveDB(ArrayList<Scooter> tab) throws IOException {
         boolean fileDejaCree = false;
-        // new File("../baseDonne/bdScooter.txt"); // si on est pas dans console
-        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt"); // écrase les données
+        /*
+         * new File("../baseDonne/bdScooter.txt"); si on est pas dans console
+         * si on souhaitait écraser les données ou append on aurait rajouter un booléan
+         * sur le pw
+         */
+        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
         FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);// on efface le fichier
-        // écrit les attributs de chaque scooters
+        PrintWriter pw = new PrintWriter(fw);
         for (Scooter s : tab) {
             pw.println(s.getId());
             pw.println(s.getKilometrage());
@@ -101,6 +109,7 @@ public class BaseDonne {
             fileDejaCree = true;
         }
         pw.println("EOF");
+        // si non fermer rien écrit
         pw.close();
     }
 
@@ -108,18 +117,17 @@ public class BaseDonne {
         File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
         FileWriter fw;
         if (test) {
-            fw = new FileWriter(file, true);// on efface le fichier lors de la premiere création de location
-
+            // on efface le fichier lors de la premiere création de location
+            fw = new FileWriter(file, true);
         } else {
             fw = new FileWriter(file);
-
         }
         PrintWriter pw = new PrintWriter(fw);
         for (Location l : s.tabLocation) {
             pw.println(Location.dateToString(l.getDate(true)));
             pw.println(Location.dateToString(l.getDate(false)));
         }
-        // End Of Location
+        // EOL -> End Of Location
         pw.println("EOL");
         pw.close();
     }

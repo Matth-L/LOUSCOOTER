@@ -51,43 +51,7 @@ public class Menu2Option extends Menu1Method {
         clearBoard();
     }
 
-    // affiche les statistiques du parc de scouteur
-    void afficheStatParc(ArrayList<Scooter> tabScooter) throws IOException {
-        int louer = 0;
-        int kilometrage = 0;
-        System.out.println("Nombre total de scooter : " + tabScooter.size());
-        for (Scooter scoot : tabScooter) {
-            kilometrage += scoot.getKilometrage();
-        }
-
-        // Le Nombre de scooters en location et leur N° d’identification,
-        for (Scooter s : tabScooter) {
-            // liste des id pour les scooter dispo
-            if (!s.isDispoActual()) {
-                louer++;
-            }
-        }
-
-        System.out.println("Nombre de scooter en location :" + louer);
-        for (Scooter s : tabScooter) {
-            // liste des id pour les scooter louer
-            if (!s.isDispoActual()) {
-                System.out.println(s.getId());
-            }
-        }
-        // Le Nombre de scooters disponibles et leur N° d’identification
-        System.out.println("Nombre de scooter disponible :" + (tabScooter.size() - louer));
-        for (Scooter s : tabScooter) {
-            // liste des id pour les scooter dispo
-            if (s.isDispoActual()) {
-                System.out.println("id  -> " + s.getId());
-            }
-        }
-        // Le kilométrage moyen de l’ensemble des scooter
-        System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
-
-        clearBoard();
-    }
+    // ! j'ai supprimé afficheStatParc on l'utilise pas
 
     public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
             throws IOException {

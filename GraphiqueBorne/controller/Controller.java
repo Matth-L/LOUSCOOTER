@@ -16,11 +16,27 @@ public class Controller {
     static JTextField zoneDF;
     static JTextField zoneR;
 
+    public Controller(JTextField zt) {
+        zoneID = zt;
+    }
+
+    public Controller(JTextField zt, JTextField zR) {
+        zoneID = zt;
+        zoneR = zR;
+    }
+
+    public Controller(JTextField zt, JTextField db, JTextField df) {
+        zoneID = zt;
+        zoneDB = db;
+        zoneDF = df;
+    }
+
+    // permet d'initialiser les bd
     public static void initBD() throws IOException {
         BaseDonne.setAll(tabScooter);
     }
 
-      public static void set() throws IOException {
+    public static void set() throws IOException {
         BaseDonne.getDB(tabScooter);
     }
 
@@ -31,11 +47,7 @@ public class Controller {
 
     // lorsque l'utilisateur appuyer sur louer pour valider les info (id scoot,
     // datedb, datefn)
-
     public static ArrayList<Scooter> chgtDonne() throws IOException {
-
-        // ParcAuto.setAll(tabScooter);
-
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
             if (s.isDispoActual()) {
@@ -60,11 +72,16 @@ public class Controller {
     // texte ap quelqu'onque action.
     public static String btnLouer(ActionEvent e) throws IOException {
         int scootID;
-        try { // j'intersepte l'erreur lorsque l'utilisateur ne rentre pas un entier dans la
-              // case souhaitée. Faudra faire de même pour retour
+        /*
+         * erreur intercepter
+         * lorsque l'utilisateur ne rentre pas un entier
+         */
+        try {
+            // on donne les valeurs de l'utilisateur aux Controller
             scootID = Integer.parseInt(zoneID.getText());
             String DateDeb = zoneDB.getText();
             String DateFin = zoneDF.getText();
+            // fct qui rend
             int rslt = Menu2Option.louerDate(scootID, tabScooter, DateDeb, DateFin);
             switch (rslt) {
                 case 0:
@@ -79,14 +96,12 @@ public class Controller {
         } catch (Exception s) {
             return "veuillez rentrer un id valide";
         }
-
     }
 
     public static String btnRetour(ActionEvent e) throws IOException {
-        // il va falloir utiliser zone id
-        int scootID = Integer.parseInt(zoneID.getText());
         try {
-            if (Menu2Option.retourDate(scootID, tabScooter)) {
+            // retour date rend un boolean en fct succes
+            if (Menu2Option.retourDate(Integer.parseInt(zoneID.getText()), tabScooter)) {
                 return "opération bien effectué";
             }
             return "erreur";
@@ -97,9 +112,11 @@ public class Controller {
 
     public static Scooter btnetatScoot() {
         try {
-            int scootID = Integer.parseInt(zoneID.getText());
-            Scooter S = Menu1Method.getScooter(tabScooter, scootID);
-            return S;
+            /*
+             * rend un scooter en prenant le tableau de scooter et l'id rentré par
+             * l'utilisateur dans zoneID
+             */
+            return Menu1Method.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
         } catch (Exception e) {
             return null;
         }
@@ -109,28 +126,9 @@ public class Controller {
         return tabScooter;
     }
 
-    public void btnparcScoot(ActionEvent e) {
-        System.out.println("parcscoot");
-    }
-
     public static void btnquit(ActionEvent e) throws IOException {
         BaseDonne.saveDB(tabScooter);
         System.exit(0);
-    }
-
-    public Controller(JTextField zt) {
-        zoneID = zt;
-    }
-
-    public Controller(JTextField zt, JTextField zR) {
-        zoneID = zt;
-        zoneR = zR;
-    }
-
-    public Controller(JTextField zt, JTextField db, JTextField df) {
-        zoneID = zt;
-        zoneDB = db;
-        zoneDF = df;
     }
 
 }

@@ -21,15 +21,16 @@ public class Menu1Method {
         return scan.nextInt();
     }
 
-    // se mettre au plus bas dans l'interface de commande(retire le texte des
-    // actions précédentes)
+    /*
+     * se mettre au plus bas dans l'interface de commande(retire le texte des
+     * actions précédentes)
+     */
     void flushS() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    void clearBoard() { // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
-                        // un touche sauf espace puis affiche le menu.
+    void clearBoard() {
         System.out.println("appuyer sur n'importe quelle touche pour retourner au menu sauf espace");
         scan.nextLine();
         scan.nextLine();

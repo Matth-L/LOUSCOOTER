@@ -36,7 +36,7 @@ public class BaseDonne {
 
     // crée le tableau a partir de la bd
     public static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
+        File file = new File("BorneConsole/baseDonne/bdScooter.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
         // tant qu'on est pas au marqueur la fin du fichier
@@ -60,7 +60,7 @@ public class BaseDonne {
     }
 
     static ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
-        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        File file = new File("BorneConsole/baseDonne/location.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
         ArrayList<Location> tabLoc = new ArrayList<Location>();

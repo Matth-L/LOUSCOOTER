@@ -9,7 +9,6 @@ public class Location {
     private Date dateDebut;
     private Date dateFin;
     int scootId;
-    // private static int numR;
 
     // getter
     Date getDate(boolean x) {
@@ -18,10 +17,6 @@ public class Location {
         }
         return dateFin;
     }
-
-    // public static int getNum() {
-    // return numR;
-    // }
 
     // setter
     void setDatedeb(Date x) {
@@ -32,10 +27,6 @@ public class Location {
         dateFin = x;
     }
 
-    // void setNum(int x) {
-    // numR = x;
-    // }
-
     Location() {
 
     }
@@ -44,9 +35,6 @@ public class Location {
         dateDebut = dateDeb;
         dateFin = dateEnd;
         scootId = s;
-        // numDeRetour++;
-        // numR = numDeRetour;
-        // System.out.println(numR + " " + s);
     }
 
     // prend une date de format jour/mois/année

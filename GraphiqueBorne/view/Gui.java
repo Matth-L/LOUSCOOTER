@@ -15,6 +15,7 @@ public class Gui extends JFrame {
     // JScrollPane scrollpane = new JScrollPane();
     // JScrollBar scrollbar = new JScrollBar(JScrollBar.VERTICAL);
 
+    // init button
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
     JButton etatScoot = new JButton("Etat Scooter");
@@ -23,16 +24,16 @@ public class Gui extends JFrame {
     JButton quit = new JButton("Quitter");
 
     public Gui() throws IOException {
-        super("swing app");
+        super("louscooter");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         JPanel contentPane = (JPanel) this.getContentPane();
-        // scrollpane.setViewportView(contentPane);
         this.setContentPane(contentPane);
-        // * init bd
+        // ! init bd
         // Controller.initBD();
         Controller.set();
+        // on attribue a chaque bouton un actionListener
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 louerActualise("");
@@ -44,13 +45,11 @@ public class Gui extends JFrame {
 
             }
         });
-
         etatScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 EtatActualise("");
             }
         });
-
         afficheAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -131,7 +130,6 @@ public class Gui extends JFrame {
     private JPanel createRightPanel() {
         // init panel + button
         JPanel panel = new JPanel(new GridLayout(5, 1));
-        // panel.setLayout(new FlowLayout());
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
@@ -144,7 +142,7 @@ public class Gui extends JFrame {
     private JPanel createRightPanel2() {
         // init panel + button
         JPanel panel = new JPanel(new GridLayout(6, 1));
-        // panel.setLayout(new FlowLayout());
+
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
@@ -159,6 +157,7 @@ public class Gui extends JFrame {
 
             }
         });
+
         panel.add(retourMenu);
         panel.add(quit);
 
@@ -179,8 +178,10 @@ public class Gui extends JFrame {
         JTextField idscoot = new JTextField("id scoot");
         JTextField DateDeb = new JTextField("jj/mm/ann");
         JTextField DateFin = new JTextField("jj/mm/ann");
+
         new Controller(idscoot, DateDeb, DateFin);
         JButton louer2 = new JButton("Appuyez pour louer !");
+
         louer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -191,15 +192,13 @@ public class Gui extends JFrame {
                 }
             }
         });
+
         pannel.add(idscoot);
         pannel.add(DateDeb);
         pannel.add(DateFin);
         pannel.add(louer2);
-        return pannel;
-        // pannel.add(createRightPanel());
-        // this.setContentPane(pannel);
-        // this.revalidate();
 
+        return pannel;
     }
 
     private JPanel fctRetour() {
@@ -216,8 +215,10 @@ public class Gui extends JFrame {
                 }
             }
         });
+
         panel.add(idScoot);
         panel.add(retour);
+
         return panel;
     }
 
@@ -237,8 +238,10 @@ public class Gui extends JFrame {
                 }
             }
         });
+
         pannel.add(idRentrer);
         pannel.add(chercher);
+
         return pannel;
     }
 
@@ -248,23 +251,27 @@ public class Gui extends JFrame {
         pannel.add(new JLabel("Marque: " + s.getMarque()));
         pannel.add(new JLabel("Modéle " + s.getModele()));
         pannel.add(new JLabel("kilométrage :" + s.getKilometrage()));
+
         if (s.isDispoActual()) {
             pannel.add(new JLabel("Ce scooter est actuellement disponible"));
         } else {
             pannel.add(new JLabel("Ce scooter est actuellement indisponible"));
         }
+
         return pannel;
     }
 
     private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
         int n = tabScooterDispo.size();
         JPanel affiche = new JPanel(new GridLayout(n, 4));
+
         for (Scooter s : tabScooterDispo) {
             affiche.add(new JLabel("id Scooter : " + s.getId()));
             affiche.add(new JLabel("Marque: " + s.getMarque()));
             affiche.add(new JLabel("Modéle " + s.getModele()));
             affiche.add(new JLabel("kilométrage :" + s.getKilometrage()));
         }
+
         return affiche;
     }
 
