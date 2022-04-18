@@ -65,6 +65,14 @@ public class BaseDonne {
         ArrayList<Location> tabLoc = new ArrayList<Location>();
         // le but est de compter le nombre de EOL qu'on possède car il s'arrete toujours
         // au meme eol
+        int count = 1;
+        while (count <= sizeTab) {
+            sc.nextLine();
+            if (sc.hasNext("EOL")) {
+                count++;
+                sc.nextLine();
+            }
+        }
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
             Date deb = Location.stringToDate(sc.nextLine());
             Date fin = Location.stringToDate(sc.nextLine());
