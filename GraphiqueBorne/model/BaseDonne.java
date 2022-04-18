@@ -67,11 +67,10 @@ public class BaseDonne {
         // au meme eol
         int count = 1;
         while (count <= sizeTab) {
-            sc.nextLine();
             if (sc.hasNext("EOL")) {
                 count++;
-                sc.nextLine();
             }
+            sc.nextLine();
         }
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {// tant qu'on est pas au marqueur la fin du fichier
             Date deb = Location.stringToDate(sc.nextLine());
