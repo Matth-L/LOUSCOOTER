@@ -1,6 +1,6 @@
 package BorneConsole;
 
-import java.io.*; // permet de traiter les exceptions ainsi que le fichier txt 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,8 +12,8 @@ public class ParcAuto extends BaseDonne {
 
     public static Object tabScooter;
 
+    // * ajout des élements dans le tab
     static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
-        // * ajout des élements dans le tab
         setScooterInDB(tabScooter);
         for (int i = 0; i < tabScooter.size(); i++) {
             setLocationScoot(tabScooter.get(i).tabLocation);

@@ -13,7 +13,7 @@ public class Scooter {
     // un tableau contenant les locations du scooters
     ArrayList<Location> tabLocation = new ArrayList<Location>();
 
-    // verifier si la date se chevauche pour la meme id
+    // ? verifier si la date se chevauche pour la meme id
     Scooter() {
         countScoot++;
         id = countScoot;
@@ -38,6 +38,7 @@ public class Scooter {
         return true;
     }
 
+    // permet de savoir si le scooter est disponible actuellement
     boolean isDispoActual() {
         SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
         Date t = new Date(System.currentTimeMillis());
@@ -50,6 +51,7 @@ public class Scooter {
         return true;
     }
 
+    // verifie numéro de retour
     Location verifNumR(int num) {
         for (Location l : tabLocation) {
             if (l.scootId == this.id) {

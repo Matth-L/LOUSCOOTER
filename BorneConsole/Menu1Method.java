@@ -28,8 +28,11 @@ public class Menu1Method {
         System.out.flush();
     }
 
-    void clearBoard() { // retire le texte des actions précédantes ap que l'utilisateur est appuyé sur
-                        // un touche sauf espace puis affiche le menu.
+    /*
+     * retire le texte des actions précédentes après que l'utilisateur est appuyé
+     * sur une touche sauf espace puis affiche le menu
+     */
+    void clearBoard() {
         System.out.println("appuyer sur n'importe quelle touche pour retourner au menu sauf espace");
         scan.nextLine();
         scan.nextLine();
@@ -37,13 +40,13 @@ public class Menu1Method {
         System.out.flush();
     }
 
-    // affiche les info du scooter renté en param.
+    // affiche les informations du scooter
     void infoScooter(Scooter scooterDemande) {
         System.out.println("id :" + scooterDemande.getId());
         System.out.println("marque : " + scooterDemande.getMarque());
         System.out.println("modèle : " + scooterDemande.getModele());
         System.out.println("kilométrage : " + scooterDemande.getKilometrage());
-        // affiche les différentes dates
+        // affiche les différentes dates pour les locations
         for (Location l : scooterDemande.tabLocation) {
             // a modifier l'affichage des dates par la suite
             System.out.printf("date de location : %s\n", l.getDate(true));

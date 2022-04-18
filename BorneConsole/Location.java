@@ -56,7 +56,7 @@ public class Location {
             return null;
         } else {
             SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
-            // pas de clémence
+            // pas de clémence enleve les approximations
             dateFrt.setLenient(false);
             try {
                 Date d = dateFrt.parse(date);
@@ -73,8 +73,10 @@ public class Location {
         return dateFrt.format(d);
     }
 
-    // teste si une date est dans un autre intervalle de date.
-    // Si elle y est retourne faux sinon vrai.
+    /*
+     * test si une date est dans un autre intervalle de date.
+     * Si elle y est retourne faux sinon vrai.
+     */
     boolean dateInter(Date dateDeb, Date dateF) {
         if (dateF.before(dateDebut)) {
             return true;
@@ -96,5 +98,4 @@ public class Location {
     void setDateFin(Date f) {
         this.dateFin = f;
     }
-
 }

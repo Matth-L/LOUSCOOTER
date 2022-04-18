@@ -59,7 +59,7 @@ public class Menu3Erreur extends Menu2Option {
                 "numéro de location invalide pour le scouteur rentré \n vous pouvez : 1) rentrer un autre numéro \n 2) rentrer un autre id \n 3) retourner au menu");
         switch (scan.nextInt()) {
             case 1:
-                // rentrer une nvelle date
+                // rentrer une nouvelle date
                 flushS();
                 retourDate(S, tabScooter);
                 break;
@@ -156,8 +156,10 @@ public class Menu3Erreur extends Menu2Option {
         }
     }
 
-    // fct qui permet de rendre un scouteur ap la location en donnant l'id du
-    // scooter puis en rentrant les km parcouru
+    /*
+     * fct qui permet de rendre un scouteur ap la location en donnant l'id du
+     * scooter puis en rentrant les km parcouru
+     */
     void retourScooter(ArrayList<Scooter> tabScooter) throws IOException {
         Scooter S;
         S = getScooter(tabScooter, demandeId());

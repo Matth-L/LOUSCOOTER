@@ -82,7 +82,6 @@ public class Menu2Option extends Menu1Method {
         }
         // Le kilométrage moyen de l’ensemble des scooter
         System.out.println("Kilometrage moyen : " + (kilometrage / tabScooter.size()));
-
         clearBoard();
     }
 
