@@ -122,7 +122,6 @@ public class Gui extends JFrame {
     private void AfficheAllActualise(String s) throws IOException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(new JLabel("Scooter dispo actuellement :"), BorderLayout.NORTH);
         contentPane.add(afficheAll(Controller.btnafficheAllScoot()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
