@@ -72,7 +72,7 @@ public class Controller {
 
     // à améliorer: faire de tel sorte qu'on garde les info rentrer dans la zone de
     // texte ap quelqu'onque action.
-    public static String btnLouer(ActionEvent e) throws IOException {
+    public static int btnLouer(ActionEvent e) throws IOException {
         int scootID;
         /*
          * erreur intercepter
@@ -81,33 +81,24 @@ public class Controller {
         try {
             // on donne les valeurs de l'utilisateur aux Controller
             scootID = Integer.parseInt(zoneID.getText());
-            String DateDeb = zoneDB.getText();
-            String DateFin = zoneDF.getText();
-            // fct qui rend
-            int rslt = Menu2Option.louerDate(scootID, tabScooter, DateDeb, DateFin);
-            switch (rslt) {
-                case 0:
-                    return "Votre opération c'est bien déroulé";
-                case 1:
-                    return "L'id rentré est invalide";
-                case 2:
-                    return "Le véhicule demandé n'est pas disponible à la date demandé";
-            }
-            return "error";
+            String dateDeb = zoneDB.getText();
+            String dateFin = zoneDF.getText();
+
+            return Menu2Option.louerDate(scootID, tabScooter, dateDeb, dateFin);
         } catch (Exception s) {
-            return "veuillez rentrer un id valide";
+            return 1;
         }
     }
 
-    public static String btnRetour(ActionEvent e) throws IOException {
+    public static int btnRetour(ActionEvent e) throws IOException {
         try {
             // retour date rend un boolean en fct succes
             if (Menu2Option.retourDate(Integer.parseInt(zoneID.getText()), tabScooter)) {
-                return "opération bien effectué";
+                return 0;
             }
-            return "erreur";
+            return 2;
         } catch (Exception s) {
-            return "veuillez rentrer des informations valides ";
+            return 1;
         }
     }
 

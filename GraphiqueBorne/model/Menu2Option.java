@@ -62,8 +62,10 @@ public class Menu2Option extends Menu1Method {
 
         Date debutDate = Location.stringToDate(dateDeb);
         Date finDate = Location.stringToDate(dateFin);
-
-        if (S.isDispo(debutDate, finDate) && (debutDate != null || finDate != null)) {
+        if (debutDate == null || finDate == null){
+            return 2;
+        }
+        if (S.isDispo(debutDate, finDate)) {
             S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
             return 0;
         } else {

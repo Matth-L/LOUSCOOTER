@@ -74,7 +74,7 @@ public class Location {
     }
 
     boolean dateTest(Date dat) {
-        if (dat.after(dateDebut) && dat.before(dateFin)) {
+        if (dat.after(dateDebut) && dat.before(dateFin) && !dateDebut.equals(dat)) {
             return true;
         } else {
             return false;

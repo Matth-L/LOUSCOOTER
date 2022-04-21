@@ -1,6 +1,5 @@
 package GraphiqueBorne.view;
 
-import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.*;
@@ -90,6 +89,14 @@ public class Gui extends JFrame {
         contentPane.updateUI();
     }
 
+    private void ActionActualise(String s, Color c) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        BorderLayout layout = (BorderLayout) contentPane.getLayout();
+        contentPane.remove(layout.getLayoutComponent(BorderLayout.SOUTH));
+        contentPane.add(creatStatusBar(s, c), BorderLayout.SOUTH);
+        contentPane.updateUI();
+    }
+
     private void retourActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
@@ -163,10 +170,22 @@ public class Gui extends JFrame {
         return panel;
     }
 
+    // le classique
     public static JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JLabel lblStatus1 = new JLabel(S);
+        statusBar.add(lblStatus1);
+
+        return statusBar;
+    }
+
+    // avec l'ajout de couleur
+    public static JPanel creatStatusBar(String S, Color c) {
+        JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel lblStatus1 = new JLabel(S);
+        lblStatus1.setForeground(c);
         statusBar.add(lblStatus1);
 
         return statusBar;
@@ -188,7 +207,7 @@ public class Gui extends JFrame {
         louer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    louerActualise(Controller.btnLouer(e));
+                    messageText(Controller.btnLouer(e));
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -216,7 +235,7 @@ public class Gui extends JFrame {
         retour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    retourActualise(Controller.btnRetour(e));
+                    messageText(Controller.btnRetour(e));
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -281,6 +300,24 @@ public class Gui extends JFrame {
         }
 
         return affiche;
+    }
+
+    void messageText(int valueTest) {
+        switch (valueTest) {
+            case 0:
+                ActionActualise("L'opération s'est bien effectué", Color.GREEN);
+                break;
+            case 1:
+                ActionActualise("L'id rentré est invalide", Color.RED);
+                break;
+            case 2:
+                ActionActualise("Le scooter n'est pas disponible a la date demandé", Color.RED);
+                break;
+            default:
+                ActionActualise("Erreur", Color.RED);
+                break;
+
+        }
     }
 
     // throw lookNell
