@@ -118,7 +118,7 @@ public class Controller {
         return tabScooter;
     }
 
-    public static void btnquit(ActionEvent e) throws IOException {
+    public static void btnquit() throws IOException {
         BaseDonne.saveDB(tabScooter);
         System.exit(0);
     }

@@ -60,12 +60,32 @@ public class Gui extends JFrame {
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Controller.btnquit(e);
+                    Controller.btnquit();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
         });
+        // à voire pour le mettre dans le controller
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                int clickButton = JOptionPane.showConfirmDialog(
+                        Gui.this,
+                        "Êtes-vous sur de vouloir quitter ?", "Title",
+                        JOptionPane.YES_NO_OPTION);
+                if (clickButton == JOptionPane.YES_OPTION) {
+                    try {
+                        Controller.btnquit();
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    dispose();
+                }
+            }
+        });
+
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
         menu();
     }
