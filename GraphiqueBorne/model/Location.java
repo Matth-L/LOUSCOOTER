@@ -3,6 +3,8 @@ package GraphiqueBorne.model;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class Location {
     static int numDeRetour = 0;
@@ -63,10 +65,17 @@ public class Location {
 
     // teste si une date est dans un autre intervalle de date.
     // Si elle y est retourne faux sinon vrai.
-    boolean dateInter(Date dateDeb, Date dateF) {
-        if (dateF.before(dateDebut)) {
-            return true;
-        } else if (dateDeb.after(dateFin)) {
+    boolean dateInter(Date dateDebInput, Date dateFinInput) {
+        // date actuelle
+        Date in = new Date();
+        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
+        Date dateAct = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        // si la date de fin est avant la date de début
+        if (dateFinInput.before(dateAct)) {
+            return false;
+            // si la date de début est après la date de fin et la date de debut est avant la
+            // date de fin
+        } else if (dateDebInput.after(dateFin) && dateDebInput.before(dateFinInput)) {
             return true;
         } else {
             return false;
@@ -74,11 +83,7 @@ public class Location {
     }
 
     boolean dateTest(Date dat) {
-        if (dat.after(dateDebut) && dat.before(dateFin) && !dateDebut.equals(dat)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (dat.after(dateDebut) && dat.before(dateFin) && !dateFin.equals(dat));
     }
 
     void setDateFin(Date f) {

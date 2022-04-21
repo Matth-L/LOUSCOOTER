@@ -12,10 +12,10 @@ public class Scooter {
     private int kilometrage;
     private String marque;
     private String modele;
+
     // un tableau contenant les locations du scooters
     ArrayList<Location> tabLocation = new ArrayList<Location>();
 
-    // verifier si la date se chevauche pour la meme id
     Scooter() {
         countScoot++;
         id = countScoot;
@@ -40,6 +40,7 @@ public class Scooter {
         return true;
     }
 
+    // si le scooter est dispo -> true
     public boolean isDispoActual() {
         SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
         Date t = new Date(System.currentTimeMillis());
@@ -52,6 +53,7 @@ public class Scooter {
         return true;
     }
 
+    // rend la location
     Location getLocation() {
         Date in = new Date();
         LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
