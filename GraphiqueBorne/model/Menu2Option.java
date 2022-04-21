@@ -44,6 +44,8 @@ public class Menu2Option extends Menu1Method {
         }
         // converti temps actuelle en date
         // met la date de retour dans l'arraylist
+        // ! dernier changement effecuté but -> mettre ça dans les autres fonction qui
+        // !ont besoin de date pour que les heure ne soit pas compté
         Calendar calendar = Calendar.getInstance();
         Location l = S.getLocation();
         l.setDateFin(Location.stringToDate(
