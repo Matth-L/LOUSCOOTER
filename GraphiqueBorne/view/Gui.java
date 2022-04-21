@@ -1,8 +1,6 @@
 package GraphiqueBorne.view;
 
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.*;
@@ -10,6 +8,7 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
+import java.awt.event.*;
 
 public class Gui extends JFrame {
     // JScrollPane scrollpane = new JScrollPane();
@@ -175,11 +174,15 @@ public class Gui extends JFrame {
 
     private JPanel fctLouer() {
         JPanel pannel = new JPanel(new GridLayout(4, 1, 5, 5));
-        JTextField idscoot = new JTextField("id scoot");
-        JTextField DateDeb = new JTextField("jj/mm/ann");
-        JTextField DateFin = new JTextField("jj/mm/ann");
+        JTextField idscoot = new JTextField("id Scoot");
+        JTextField dateDeb = new JTextField("jj/mm/ann");
+        JTextField dateFin = new JTextField("jj/mm/ann");
 
-        new Controller(idscoot, DateDeb, DateFin);
+        Controller.ghostText(idscoot);
+        Controller.ghostText(dateDeb);
+        Controller.ghostText(dateFin);
+
+        new Controller(idscoot, dateDeb, dateFin);
         JButton louer2 = new JButton("Appuyez pour louer !");
 
         louer2.addActionListener(new ActionListener() {
@@ -194,8 +197,8 @@ public class Gui extends JFrame {
         });
 
         pannel.add(idscoot);
-        pannel.add(DateDeb);
-        pannel.add(DateFin);
+        pannel.add(dateDeb);
+        pannel.add(dateFin);
         pannel.add(louer2);
 
         return pannel;
@@ -203,8 +206,12 @@ public class Gui extends JFrame {
 
     private JPanel fctRetour() {
         JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
+
         JTextField idScoot = new JTextField("id Scooter");
+        Controller.ghostText(idScoot);
+
         new Controller(idScoot);
+
         JButton retour = new JButton("Appuyez pour rendre votre location !");
         retour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -226,6 +233,7 @@ public class Gui extends JFrame {
 
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
+        Controller.ghostText(idRentrer);
         JButton chercher = new JButton("chercher !");
         new Controller(idRentrer);
         chercher.addActionListener(new ActionListener() {

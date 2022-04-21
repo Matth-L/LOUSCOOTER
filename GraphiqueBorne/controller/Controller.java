@@ -1,6 +1,8 @@
 package GraphiqueBorne.controller;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -86,7 +88,6 @@ public class Controller {
             switch (rslt) {
                 case 0:
                     return "Votre opération c'est bien déroulé";
-
                 case 1:
                     return "L'id rentré est invalide";
                 case 2:
@@ -129,6 +130,23 @@ public class Controller {
     public static void btnquit(ActionEvent e) throws IOException {
         BaseDonne.saveDB(tabScooter);
         System.exit(0);
+    }
+
+    public static void ghostText(JTextField a) {
+        a.addFocusListener(new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                // TODO Auto-generated method stub
+                a.setText("");
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+
+        });
     }
 
 }
