@@ -308,19 +308,52 @@ public class Gui extends JFrame {
         return pannel;
     }
 
+    // *j'ai pas trouvé de flex ou autre donc pour la taille si ça dépasse la moitié
+    // * de la largeur de l'écran je rend le text Area plus grand
     private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
+        JPanel affiche = new JPanel();
         int n = tabScooterDispo.size();
-        JPanel affiche = new JPanel(new GridLayout(n, 4));
+        JTextArea textArea;
+        // permet d'avoir les dimensions
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenSizeX = (int) screenSize.getWidth() / 2;
+        if (this.getWidth() > screenSizeX) {
+            // 1e argument nombre de lignde , 2e colonne donc largeur
+            textArea = new JTextArea(n, 60);
+            textArea.setFont(textArea.getFont().deriveFont(20f));
 
+        } else {
+            textArea = new JTextArea(n, 40);
+            textArea.setFont(textArea.getFont().deriveFont(12f));
+        }
+        // propriété du textArea
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         for (Scooter s : tabScooterDispo) {
-            affiche.add(new JLabel("id Scooter : " + s.getId()));
-            affiche.add(new JLabel("Marque: " + s.getMarque()));
-            affiche.add(new JLabel("Modéle " + s.getModele()));
-            affiche.add(new JLabel("kilométrage :" + s.getKilometrage()));
+            // il faut mettre append si on met setText on perd le text d'avant
+            textArea.append("id Scooter : " + s.getId() + " Marque: " + s.getMarque() + "Modéle " + s.getModele()
+                    + " kilométrage :" + s.getKilometrage());
+            textArea.append("\n");
         }
 
+        JScrollPane scroll = new JScrollPane(textArea);
+        affiche.add(scroll);
         return affiche;
     }
+
+    // private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
+    // int n = tabScooterDispo.size();
+    // JPanel affiche = new JPanel(new GridLayout(n, 4));
+
+    // for (Scooter s : tabScooterDispo) {
+    // affiche.add(new JLabel("id Scooter : " + s.getId()));
+    // affiche.add(new JLabel("Marque: " + s.getMarque()));
+    // affiche.add(new JLabel("Modéle " + s.getModele()));
+    // affiche.add(new JLabel("kilométrage :" + s.getKilometrage()));
+    // }
+    // return affiche;
+    // }
 
     void messageText(int valueTest) {
         switch (valueTest) {
