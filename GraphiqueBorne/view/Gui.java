@@ -12,7 +12,8 @@ import java.awt.event.*;
 public class Gui extends JFrame {
     // JScrollPane scrollpane = new JScrollPane();
     // JScrollBar scrollbar = new JScrollBar(JScrollBar.VERTICAL);
-
+    int sizeX = getWidth();
+    int sizeY = getHeight();
     // init button
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
@@ -85,7 +86,6 @@ public class Gui extends JFrame {
                 }
             }
         });
-
         contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
         menu();
     }
@@ -316,15 +316,20 @@ public class Gui extends JFrame {
         JTextArea textArea;
         // permet d'avoir les dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenSizeX = (int) screenSize.getWidth() / 2;
-        if (this.getWidth() > screenSizeX) {
-            // 1e argument nombre de lignde , 2e colonne donc largeur
-            textArea = new JTextArea(n, 60);
-            textArea.setFont(textArea.getFont().deriveFont(20f));
-
-        } else {
-            textArea = new JTextArea(n, 40);
+        double usageScreen = (this.getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
+        // pour gerer le plein écran et l'agrandissement
+        if (usageScreen < 25) {
+            textArea = new JTextArea(n, 22);
+            textArea.setFont(textArea.getFont().deriveFont(8f));
+        } else if (usageScreen < 50) {
+            textArea = new JTextArea(n, 35);
             textArea.setFont(textArea.getFont().deriveFont(12f));
+        } else if (usageScreen < 75) {
+            textArea = new JTextArea(n, 50);
+            textArea.setFont(textArea.getFont().deriveFont(18f));
+        } else {
+            textArea = new JTextArea(n, 80);
+            textArea.setFont(textArea.getFont().deriveFont(20f));
         }
         // propriété du textArea
         textArea.setEditable(false);
@@ -341,19 +346,6 @@ public class Gui extends JFrame {
         affiche.add(scroll);
         return affiche;
     }
-
-    // private JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
-    // int n = tabScooterDispo.size();
-    // JPanel affiche = new JPanel(new GridLayout(n, 4));
-
-    // for (Scooter s : tabScooterDispo) {
-    // affiche.add(new JLabel("id Scooter : " + s.getId()));
-    // affiche.add(new JLabel("Marque: " + s.getMarque()));
-    // affiche.add(new JLabel("Modéle " + s.getModele()));
-    // affiche.add(new JLabel("kilométrage :" + s.getKilometrage()));
-    // }
-    // return affiche;
-    // }
 
     void messageText(int valueTest) {
         switch (valueTest) {
