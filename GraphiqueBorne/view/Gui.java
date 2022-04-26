@@ -10,10 +10,6 @@ import GraphiqueBorne.model.Scooter;
 import java.awt.event.*;
 
 public class Gui extends JFrame {
-    // JScrollPane scrollpane = new JScrollPane();
-    // JScrollBar scrollbar = new JScrollBar(JScrollBar.VERTICAL);
-    int sizeX = getWidth();
-    int sizeY = getHeight();
     // init button
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
