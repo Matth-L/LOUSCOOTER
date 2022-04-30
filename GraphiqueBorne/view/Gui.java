@@ -20,7 +20,7 @@ public class Gui extends JFrame {
 
     public Gui() throws IOException {
         super("louscooter");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         JPanel contentPane = (JPanel) this.getContentPane();
