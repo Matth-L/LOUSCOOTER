@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 // tout ce qui traite la base de donnée est la 
 public class BaseDonne {
+
+    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
+
     static Scooter a = new Scooter(1, 40, "Honda", "A");
     static Scooter b = new Scooter(2, 40, "Yamaha", "A");
     static Scooter c = new Scooter(3, 40, "Honda", "A");
@@ -154,8 +157,6 @@ public class BaseDonne {
             System.exit(1);
         }
     }
-
-    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
 
     public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
         // * ajout des élements dans le tab
