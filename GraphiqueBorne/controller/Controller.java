@@ -84,7 +84,7 @@ public class Controller {
             String dateDeb = zoneDB.getText();
             String dateFin = zoneDF.getText();
 
-            return Menu2Option.louerDate(scootID, tabScooter, dateDeb, dateFin);
+            return Menu.louerDate(scootID, tabScooter, dateDeb, dateFin);
         } catch (Exception s) {
             return 1;
         }
@@ -93,7 +93,7 @@ public class Controller {
     public static int btnRetour(ActionEvent e) throws IOException {
         try {
             // retour date rend un boolean en fct succes
-            if (Menu2Option.retourDate(Integer.parseInt(zoneID.getText()), tabScooter)) {
+            if (Menu.retourDate(Integer.parseInt(zoneID.getText()), tabScooter)) {
                 return 0;
             }
             return 2;
@@ -108,7 +108,7 @@ public class Controller {
              * rend un scooter en prenant le tableau de scooter et l'id rentré par
              * l'utilisateur dans zoneID
              */
-            return Menu1Method.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+            return Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
         } catch (Exception e) {
             return null;
         }

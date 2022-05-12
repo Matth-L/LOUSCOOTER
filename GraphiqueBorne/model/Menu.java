@@ -4,9 +4,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 //! ce qui est demander par l'énoncé 
-public class Menu2Option extends Menu1Method {
+public class Menu {
+    static Scanner scan = new Scanner(System.in);
+
+    public static Scooter getScooter(ArrayList<Scooter> tabScooter, int id) {
+        for (Scooter s : tabScooter) { // boucle for Each
+            if (id == s.getId()) {
+                return s;
+            }
+        }
+        return null;
+    }
 
     // ! j'ai supprimé afficheStatParc on l'utilise pas
     public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
