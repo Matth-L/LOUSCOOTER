@@ -305,7 +305,7 @@ public class MethodGui extends JFrame {
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Scooter disponible"));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
         // crée le textArea
-        JTextArea textArea;
+        JTextArea textArea; // premier paramètre ligne , deuxième colonne
         int n = tabScooterDispo.size();
         // permet d'avoir les dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -314,16 +314,16 @@ public class MethodGui extends JFrame {
         // pour gerer le plein écran et l'agrandissement
         if (usageScreen < 25) {
             textArea = new JTextArea(n, 22);
-            textArea.setFont(textArea.getFont().deriveFont(8f));
+            textArea.setFont(textArea.getFont().deriveFont(12f));
         } else if (usageScreen < 50) {
             textArea = new JTextArea(n, 35);
-            textArea.setFont(textArea.getFont().deriveFont(12f));
+            textArea.setFont(textArea.getFont().deriveFont(15f));
         } else if (usageScreen < 75) {
             textArea = new JTextArea(n, 50);
-            textArea.setFont(textArea.getFont().deriveFont(18f));
+            textArea.setFont(textArea.getFont().deriveFont(20f));
         } else {
             textArea = new JTextArea(n, 80);
-            textArea.setFont(textArea.getFont().deriveFont(20f));
+            textArea.setFont(textArea.getFont().deriveFont(22f));
         }
         // propriété du textArea
         textArea.setEditable(false);
