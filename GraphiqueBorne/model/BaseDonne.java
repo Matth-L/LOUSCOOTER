@@ -19,10 +19,10 @@ public class BaseDonne {
     static Scooter c = new Scooter(3, 40, "Honda", "A");
     static Scooter d = new Scooter(4, 40, "Yamaha", "A");
     static Scooter e = new Scooter(5, 40, "Yamaha", "A");
-    static Scooter f = new Scooter(14, 40, "Honda", "A");
-    static Scooter g = new Scooter(25, 40, "Honda", "A");
-    static Scooter h = new Scooter(72, 40, "Yamaha", "A");
-    static Scooter i = new Scooter(88, 40, "Honda", "A");
+    static Scooter f = new Scooter(6, 40, "Honda", "A");
+    static Scooter g = new Scooter(7, 40, "Honda", "A");
+    static Scooter h = new Scooter(8, 40, "Yamaha", "A");
+    static Scooter i = new Scooter(9, 40, "Honda", "A");
 
     // pour rajouter les scooters aux tab
     static void setScooterInDB(ArrayList<Scooter> tab) {
