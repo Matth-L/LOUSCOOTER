@@ -3,13 +3,9 @@ package GraphiqueBorne.view;
 import java.util.HashMap;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.*;
 import java.io.IOException;
-
 import GraphiqueBorne.model.IDandPassord;
-import GraphiqueBorne.model.IDandPassord.*;
-import GraphiqueBorne.view.C_ActualiseGui.*;
 
 public class login extends JFrame {
     JButton loginButtons = new JButton("login");
@@ -19,7 +15,6 @@ public class login extends JFrame {
     JLabel userIDlabel = new JLabel("UserID:");
     JLabel userPassordlabel = new JLabel("Passord:");
     JLabel messageLabel = new JLabel("");
-
     HashMap<String, String> logininfo = new HashMap<String, String>();
 
     login(HashMap<String, String> loginfoOriginal) {
