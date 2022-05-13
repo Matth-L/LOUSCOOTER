@@ -22,7 +22,7 @@ public class Scooter {
         kilometrage = 0;
     }
 
-    Scooter(int nb, int km, String mar, String mod) {
+    public Scooter(int nb, int km, String mar, String mod) {
         id = nb;
         kilometrage = km;
         marque = mar;

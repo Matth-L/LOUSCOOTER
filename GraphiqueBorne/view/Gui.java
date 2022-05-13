@@ -16,6 +16,7 @@ public class Gui extends JFrame {
     JButton etatScoot = new JButton("Etat Scooter");
     JButton afficheAll = new JButton("Affiche All");
     JButton retourMenu = new JButton("Menu");
+    JButton ajoutScoot = new JButton("Ajouter un scooter");
     JButton quit = new JButton("Quitter");
 
     public Gui() throws IOException {
@@ -52,6 +53,11 @@ public class Gui extends JFrame {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
+            }
+        });
+        ajoutScoot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AjoutScootActualise("");
             }
         });
         quit.addActionListener(new ActionListener() {
@@ -105,6 +111,15 @@ public class Gui extends JFrame {
         contentPane.updateUI();
     }
 
+    private void AjoutScootActualise(String s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
+        contentPane.add(fctAjoutScoot(), BorderLayout.CENTER);
+        contentPane.updateUI();
+    }
+
     private void ActionActualise(String s, Color c) {
         JPanel contentPane = (JPanel) this.getContentPane();
         BorderLayout layout = (BorderLayout) contentPane.getLayout();
@@ -151,11 +166,12 @@ public class Gui extends JFrame {
 
     private JPanel createRightPanel() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(5, 1));
+        JPanel panel = new JPanel(new GridLayout(6, 1));
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
+        panel.add(ajoutScoot);
         panel.add(quit);
 
         return panel;
@@ -163,7 +179,7 @@ public class Gui extends JFrame {
 
     private JPanel createRightPanel2() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(6, 1));
+        JPanel panel = new JPanel(new GridLayout(7, 1));
 
         panel.add(louer);
         panel.add(retour);
@@ -181,6 +197,7 @@ public class Gui extends JFrame {
         });
 
         panel.add(retourMenu);
+        panel.add(ajoutScoot);
         panel.add(quit);
 
         return panel;
@@ -235,6 +252,41 @@ public class Gui extends JFrame {
         pannel.add(dateDeb);
         pannel.add(dateFin);
         pannel.add(louer2);
+
+        return pannel;
+    }
+
+    private JPanel fctAjoutScoot() {
+        JPanel pannel = new JPanel(new GridLayout(5, 1, 5, 5));
+        JTextField kmge = new JTextField("kilométrage");
+        JTextField marque = new JTextField("marque");
+        JTextField mod = new JTextField("modèle");
+        JTextField nb = new JTextField("nombre de scooter à ajouter");
+
+        Controller.ghostText(kmge);
+        Controller.ghostText(marque);
+        Controller.ghostText(mod);
+        Controller.ghostText(nb);
+
+        new Controller(kmge, marque, mod, nb);
+        JButton valider = new JButton("Appuyez valider");
+
+        valider.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    messageText(Controller.btnAjouter(e));
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        pannel.add(kmge);
+        pannel.add(marque);
+        pannel.add(mod);
+        pannel.add(nb);
+        pannel.add(valider);
 
         return pannel;
     }

@@ -33,6 +33,13 @@ public class Controller {
         zoneDF = df;
     }
 
+    public Controller(JTextField zt, JTextField db, JTextField df, JTextField dj) {
+        zoneID = zt;
+        zoneDB = db;
+        zoneDF = df;
+        zoneR = dj;
+    }
+
     // permet d'initialiser les bd
     public static void initBD() throws IOException {
         BaseDonne.setAll(tabScooter);
@@ -90,6 +97,43 @@ public class Controller {
         }
     }
 
+    public static int btnAjouter(ActionEvent e) throws IOException {
+        int scootID;
+
+        /*
+         * erreur intercepter
+         * lorsque l'utilisateur ne rentre pas un entier
+         */
+        try {
+            // on donne les valeurs de l'utilisateur aux Controller
+            scootID = tabScooter.size();
+            int km = Integer.parseInt(zoneID.getText());
+            String ma = zoneDB.getText();
+            String mod = zoneDF.getText();
+            int nb = Integer.parseInt(zoneID.getText());
+            for (int i = 0; i < nb; i++) {
+                tabScooter.add(new Scooter(scootID, km, ma, mod));
+                while (verifIdTab(scootID)) {
+                    scootID++;
+                }
+                scootID = tabScooter.size();
+            }
+            return 0;
+
+        } catch (Exception s) {
+            return 3;
+        }
+    }
+
+    static boolean verifIdTab(int id) {
+        for (Scooter s : tabScooter) {
+            if (s.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static int btnRetour(ActionEvent e) throws IOException {
         try {
             // retour date rend un boolean en fct succes
@@ -138,6 +182,10 @@ public class Controller {
             }
 
         });
+    }
+
+    public void ajoutScoot() {
+
     }
 
 }
