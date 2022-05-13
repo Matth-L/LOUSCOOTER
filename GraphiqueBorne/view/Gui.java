@@ -29,6 +29,9 @@ public class Gui extends JFrame {
         // ! init bd
         // Controller.initBD();
         Controller.set();
+        // icon
+        ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
+        setIconImage(icon.getImage());
         // on attribue a chaque bouton un actionListener
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
