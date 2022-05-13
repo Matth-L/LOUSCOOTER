@@ -26,17 +26,18 @@ public class A_MethodGui extends JFrame {
     JButton retourMenu = new JButton("Menu");
     JButton ajoutScoot = new JButton("Ajouter un scooter");
     JButton deleteScoot = new JButton("Supprimer un scooter");
+    JButton modeAminButton = new JButton("modeAdmin");
     JButton quit = new JButton("Quitter");
 
     protected JPanel createRightPanel() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(7, 1));
+        JPanel panel = new JPanel(new GridLayout(6, 1));
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
-        panel.add(ajoutScoot);
-        panel.add(deleteScoot);
+        panel.add(modeAminButton);
+        // panel.add(deleteScoot);
         panel.add(quit);
 
         return panel;
@@ -95,6 +96,27 @@ public class A_MethodGui extends JFrame {
         panel.add(retourMenu);
         panel.add(ajoutScoot);
         panel.add(deleteScoot);
+        panel.add(quit);
+
+        return panel;
+    }
+
+    public JPanel createRightPanel3() {
+        // init panel + button
+        JPanel panel = new JPanel(new GridLayout(4, 1));
+
+        panel.add(ajoutScoot);
+        panel.add(deleteScoot);
+        retourMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    menu();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
         panel.add(quit);
 
         return panel;

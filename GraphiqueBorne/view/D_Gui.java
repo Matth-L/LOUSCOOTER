@@ -6,6 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import GraphiqueBorne.controller.Controller;
+import GraphiqueBorne.model.IDandPassord;
+
 import java.awt.event.*;
 
 public class D_Gui extends C_ActualiseGui {
@@ -63,6 +65,20 @@ public class D_Gui extends C_ActualiseGui {
         deleteScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteScootActualise();
+            }
+        });
+
+        modeAminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                IDandPassord idandPassord;
+                try {
+                    idandPassord = new IDandPassord();
+                    login MyWindow = new login(idandPassord.getLogininfo());
+                    MyWindow.setVisible(true);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
 
