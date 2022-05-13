@@ -57,10 +57,17 @@ public class Gui extends MethodGui {
         });
         ajoutScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AjoutScootActualise("");
+                AjoutScootActualise();
             }
         });
+        deleteScoot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         quit.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 try {
                     Controller.btnquit();
@@ -81,7 +88,6 @@ public class Gui extends MethodGui {
                     try {
                         Controller.btnquit();
                     } catch (IOException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                     dispose();

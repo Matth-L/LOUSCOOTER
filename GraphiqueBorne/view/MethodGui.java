@@ -18,6 +18,7 @@ public class MethodGui extends JFrame {
     JButton afficheAll = new JButton("Affiche All");
     JButton retourMenu = new JButton("Menu");
     JButton ajoutScoot = new JButton("Ajouter un scooter");
+    JButton deleteScoot = new JButton("Supprimer un scooter");
     JButton quit = new JButton("Quitter");
 
     protected void menu() throws IOException {
@@ -39,12 +40,19 @@ public class MethodGui extends JFrame {
         contentPane.updateUI();
     }
 
-    void AjoutScootActualise(String s) {
+    void AjoutScootActualise() {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
-        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctAjoutScoot(), BorderLayout.CENTER);
+        contentPane.updateUI();
+    }
+
+    void deleteScootActualise(String s) {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.add(fctSupprScoot(), BorderLayout.CENTER);
         contentPane.updateUI();
     }
 
@@ -219,6 +227,11 @@ public class MethodGui extends JFrame {
         return pannel;
     }
 
+    protected JPanel fctSupprScoot() {
+        JPanel panel = new JPanel(new GridLayout(1, 1));
+        return panel;
+    }
+
     protected JPanel fctRetour() {
         JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
 
@@ -297,6 +310,7 @@ public class MethodGui extends JFrame {
         // permet d'avoir les dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (this.getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
+        System.out.println(usageScreen);
         // pour gerer le plein écran et l'agrandissement
         if (usageScreen < 25) {
             textArea = new JTextArea(n, 22);
