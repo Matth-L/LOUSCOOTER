@@ -12,6 +12,7 @@ public class Scooter {
     private int kilometrage;
     private String marque;
     private String modele;
+    private boolean enReparation = false;
 
     // un tableau contenant les locations du scooters
     ArrayList<Location> tabLocation = new ArrayList<Location>();
@@ -83,6 +84,10 @@ public class Scooter {
         return this.modele;
     }
 
+    public boolean getEnreparation() {
+        return enReparation;
+    }
+
     // setteur \\
     public void setId(int x) {
         this.id = x;
@@ -99,4 +104,9 @@ public class Scooter {
     public void setModele(String x) {
         this.modele = x;
     }
+
+    public void setEnreparation(boolean x) {
+        this.enReparation = x;
+    }
+
 }
