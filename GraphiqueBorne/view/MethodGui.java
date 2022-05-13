@@ -310,7 +310,6 @@ public class MethodGui extends JFrame {
         // permet d'avoir les dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (this.getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
-        System.out.println(usageScreen);
         // pour gerer le plein écran et l'agrandissement
         if (usageScreen < 25) {
             textArea = new JTextArea(n, 22);
