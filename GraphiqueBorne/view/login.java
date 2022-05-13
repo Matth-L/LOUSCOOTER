@@ -88,9 +88,6 @@ public class login extends JFrame {
                 // messageLabel.setForeground(Color.GREEN);
                 messageLabel.setText("Login Successful");
                 dispose();
-                D_Gui d = new D_Gui();
-                d.ModeAdminActualise("");
-
             } else {
                 messageLabel.setText("Wrong Passord");
             }
