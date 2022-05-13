@@ -28,8 +28,8 @@ public class Gui extends JFrame {
         this.setContentPane(contentPane);
         // ! init bd
         // faire en sorte que ça se fasse seul ? -> a voir
-        Controller.initBD();
-        // Controller.set();
+        // Controller.initBD();
+        Controller.set();
         // icon
         ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
         setIconImage(icon.getImage());

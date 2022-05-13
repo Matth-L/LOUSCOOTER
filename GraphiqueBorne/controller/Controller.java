@@ -106,17 +106,17 @@ public class Controller {
          */
         try {
             // on donne les valeurs de l'utilisateur aux Controller
-            scootID = tabScooter.size();
+            scootID = tabScooter.size() + 1;
             int km = Integer.parseInt(zoneID.getText());
             String ma = zoneDB.getText();
             String mod = zoneDF.getText();
-            int nb = Integer.parseInt(zoneID.getText());
+            int nb = Integer.parseInt(zoneR.getText());
             for (int i = 0; i < nb; i++) {
                 tabScooter.add(new Scooter(scootID, km, ma, mod));
                 while (verifIdTab(scootID)) {
                     scootID++;
                 }
-                scootID = tabScooter.size();
+                scootID = tabScooter.size() + 1;
             }
             return 0;
 
