@@ -47,7 +47,7 @@ public class Scooter {
         Date t = new Date(System.currentTimeMillis());
         dateFrt.format(t);
         for (Location l : tabLocation) {
-            if (l.scootId == this.id && l.dateTest(t)) {
+            if (l.scootId == this.id && l.dateTest(t) && this.enReparation) {
                 return false;
             }
         }

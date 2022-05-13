@@ -38,7 +38,7 @@ public class BaseDonne {
     }
 
     // crée le tableau a partir de la bd
-    public static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
+    public void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
         File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
@@ -63,7 +63,7 @@ public class BaseDonne {
     }
 
     //
-    static ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
+    ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
         File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
@@ -151,7 +151,7 @@ public class BaseDonne {
         tab.add(o);
     }
 
-    static void testEOS(String s) {
+    void testEOS(String s) {
         if (s.equals("EOS")) {
             System.err.println("base de donnée corrompue");
             System.exit(1);

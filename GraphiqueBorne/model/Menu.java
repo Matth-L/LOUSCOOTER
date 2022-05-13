@@ -19,10 +19,10 @@ public class Menu {
         return null;
     }
 
-    // ! j'ai supprimé afficheStatParc on l'utilise pas
     public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
             throws IOException {
         Scooter S;
+        System.out.println(G);
         if ((S = getScooter(tabScooter, G)) == null) {
             return 1;
         }
@@ -36,7 +36,7 @@ public class Menu {
         if (!S.isDispoActual()) {
             return 2;
         }
-        if (S.isDispo(debutDate, finDate)) {
+        if (S.isDispo(debutDate, finDate) && !S.getEnreparation()) {
             S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
             return 0;
         } else {

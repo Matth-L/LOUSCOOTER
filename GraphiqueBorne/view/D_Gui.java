@@ -8,10 +8,10 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import GraphiqueBorne.controller.Controller;
 import java.awt.event.*;
 
-public class Gui extends MethodGui {
+public class D_Gui extends C_ActualiseGui {
     // init button
 
-    public Gui() throws IOException {
+    public D_Gui() throws IOException {
         super("louscooter");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(600, 400);
@@ -22,9 +22,9 @@ public class Gui extends MethodGui {
         File bd = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
         File loc = new File("GraphiqueBorne/model/baseDonne/location.txt");
         if (bd.isFile() && loc.isFile()) {
-            Controller.set();
+            new Controller().set();
         } else {
-            Controller.initBD();
+            new Controller().initBD();
         }
         // icon
         ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
@@ -62,7 +62,7 @@ public class Gui extends MethodGui {
         });
         deleteScoot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                deleteScootActualise();
             }
         });
 
@@ -70,7 +70,7 @@ public class Gui extends MethodGui {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Controller.btnquit();
+                    new Controller().btnquit();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -81,12 +81,12 @@ public class Gui extends MethodGui {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
                 int clickButton = JOptionPane.showConfirmDialog(
-                        Gui.this,
+                        D_Gui.this,
                         "Êtes-vous sur de vouloir quitter ?", "Title",
                         JOptionPane.YES_NO_OPTION);
                 if (clickButton == JOptionPane.YES_OPTION) {
                     try {
-                        Controller.btnquit();
+                        new Controller().btnquit();
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -94,13 +94,13 @@ public class Gui extends MethodGui {
                 }
             }
         });
-        contentPane.add(afficheAll(Controller.chgtDonne()), BorderLayout.CENTER);
+        contentPane.add(afficheAll(new Controller().chgtDonne()), BorderLayout.CENTER);
         menu();
     }
 
     // throw lookNell
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {
         UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
-        new Gui().setVisible(true);
+        new D_Gui().setVisible(true);
     }
 }

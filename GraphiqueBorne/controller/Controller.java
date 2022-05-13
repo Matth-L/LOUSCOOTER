@@ -9,14 +9,19 @@ import javax.swing.*;
 import GraphiqueBorne.model.*;
 
 public class Controller {
-    JLabel label;
+
     static ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
     static ArrayList<Scooter> tabScooterDispo = new ArrayList<Scooter>();
 
-    static JTextField zoneID;
-    static JTextField zoneDB;
-    static JTextField zoneDF;
-    static JTextField zoneR;
+    JTextField zoneID;
+    JTextField zoneDB;
+    JTextField zoneDF;
+    JTextField zoneR;
+
+    public Controller() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
 
     public Controller(JTextField zt) {
         zoneID = zt;
@@ -41,22 +46,17 @@ public class Controller {
     }
 
     // permet d'initialiser les bd
-    public static void initBD() throws IOException {
+    public void initBD() throws IOException {
         BaseDonne.setAll(tabScooter);
     }
 
-    public static void set() throws IOException {
-        BaseDonne.getDB(tabScooter);
-    }
-
-    public Controller() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public void set() throws IOException {
+        new BaseDonne().getDB(tabScooter);
     }
 
     // lorsque l'utilisateur appuyer sur louer pour valider les info (id scoot,
     // datedb, datefn)
-    public static ArrayList<Scooter> chgtDonne() throws IOException {
+    public ArrayList<Scooter> chgtDonne() throws IOException {
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
             if (s.isDispoActual()) {
@@ -66,7 +66,7 @@ public class Controller {
         return tabScooterDispo;
     }
 
-    public static ArrayList<Scooter> btnMenu() {
+    public ArrayList<Scooter> btnMenu() {
         tabScooterDispo.clear();
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
@@ -79,7 +79,7 @@ public class Controller {
 
     // à améliorer: faire de tel sorte qu'on garde les info rentrer dans la zone de
     // texte ap quelqu'onque action.
-    public static int btnLouer(ActionEvent e) throws IOException {
+    public int btnLouer(ActionEvent e) throws IOException {
         int scootID;
         /*
          * erreur intercepter
@@ -90,14 +90,13 @@ public class Controller {
             scootID = Integer.parseInt(zoneID.getText());
             String dateDeb = zoneDB.getText();
             String dateFin = zoneDF.getText();
-
             return Menu.louerDate(scootID, tabScooter, dateDeb, dateFin);
         } catch (Exception s) {
             return 1;
         }
     }
 
-    public static int btnAjouter(ActionEvent e) throws IOException {
+    public int btnAjouter(ActionEvent e) throws IOException {
         int scootID;
 
         /*
@@ -125,7 +124,7 @@ public class Controller {
         }
     }
 
-    static boolean verifIdTab(int id) {
+    boolean verifIdTab(int id) {
         for (Scooter s : tabScooter) {
             if (s.getId() == id) {
                 return true;
@@ -134,7 +133,7 @@ public class Controller {
         return false;
     }
 
-    public static int btnRetour(ActionEvent e) throws IOException {
+    public int btnRetour(ActionEvent e) throws IOException {
         try {
             // retour date rend un boolean en fct succes
             if (Menu.retourDate(Integer.parseInt(zoneID.getText()), tabScooter)) {
@@ -146,33 +145,43 @@ public class Controller {
         }
     }
 
-    public static Scooter btnetatScoot() {
+    public Scooter btnetatScoot() {
+        /*
+         * rend un scooter en prenant le tableau de scooter et l'id rentré par
+         * l'utilisateur dans zoneID
+         */
+        // Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+        // if (s != null) {
+        // EtatActualiseEtDonne(s);
+        // } else {
+
+        // new ActualiseGui_3().EtatActualise("id invalide");
+        // }
         try {
-            /*
-             * rend un scooter en prenant le tableau de scooter et l'id rentré par
-             * l'utilisateur dans zoneID
-             */
-            return Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+        Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+        return s;
+            
         } catch (Exception e) {
             return null;
         }
+        
+
     }
 
-    public static ArrayList<Scooter> btnafficheAllScoot() {
+    public ArrayList<Scooter> btnafficheAllScoot() {
         return tabScooter;
     }
 
-    public static void btnquit() throws IOException {
+    public void btnquit() throws IOException {
         BaseDonne.saveDB(tabScooter);
         System.exit(0);
     }
 
-    public static void ghostText(JTextField a) {
+    public void ghostText(JTextField a) {
         a.addFocusListener(new FocusListener() {
 
             @Override
             public void focusGained(FocusEvent e) {
-                // TODO Auto-generated method stub
                 a.setText("");
 
             }
@@ -184,7 +193,41 @@ public class Controller {
         });
     }
 
-    public void ajoutScoot() {
+    public int MettreEnReparation() {
+        try {
+            /*
+             * rend un scooter en prenant le tableau de scooter et l'id rentré par
+             * l'utilisateur dans zoneID
+             */
+            Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+            if (s.getEnreparation()) {
+                return 3;
+            } else {
+                s.setEnreparation(true);
+                return 0;
+            }
+        } catch (Exception e) {
+            return 3;
+        }
+
+    }
+
+    public int retirerReparation() {
+        try {
+            /*
+             * rend un scooter en prenant le tableau de scooter et l'id rentré par
+             * l'utilisateur dans zoneID
+             */
+            Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+            if (!s.getEnreparation()) {
+                return 3;
+            } else {
+                s.setEnreparation(false);
+                return 0;
+            }
+        } catch (Exception e) {
+            return 3;
+        }
 
     }
 
