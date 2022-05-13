@@ -1,5 +1,6 @@
 package GraphiqueBorne.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.*;
@@ -26,10 +27,14 @@ public class Gui extends JFrame {
         this.setLocationRelativeTo(null);
         JPanel contentPane = (JPanel) this.getContentPane();
         this.setContentPane(contentPane);
-        // ! init bd
-        // faire en sorte que ça se fasse seul ? -> a voir
-        // Controller.initBD();
-        Controller.set();
+        // init bd
+        File bd = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
+        File loc = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        if (bd.isFile() && loc.isFile()) {
+            Controller.set();
+        } else {
+            Controller.initBD();
+        }
         // icon
         ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
         setIconImage(icon.getImage());
