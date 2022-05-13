@@ -158,13 +158,12 @@ public class Controller {
         // new ActualiseGui_3().EtatActualise("id invalide");
         // }
         try {
-        Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
-        return s;
-            
+            Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
+            return s;
+
         } catch (Exception e) {
             return null;
         }
-        
 
     }
 
@@ -175,6 +174,10 @@ public class Controller {
     public void btnquit() throws IOException {
         BaseDonne.saveDB(tabScooter);
         System.exit(0);
+    }
+
+    public void btnSuppr() {
+        tabScooter.remove(Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText())));
     }
 
     public void ghostText(JTextField a) {

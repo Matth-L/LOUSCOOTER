@@ -109,14 +109,6 @@ public class B_FonctionGui extends A_MethodGui {
         return pannel;
     }
 
-    protected JPanel fctSupprScoot() {
-        JPanel panel = new JPanel(new GridLayout(1, 1));
-        JTextField idScoot = new JTextField("id Scooter");
-        new Controller(idScoot).ghostText(idScoot);
-        panel.add(idScoot);
-        return panel;
-    }
-
     protected JPanel fctRetour() {
         JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
 
@@ -164,6 +156,24 @@ public class B_FonctionGui extends A_MethodGui {
         pannel.add(chercher);
 
         return pannel;
+    }
+
+    protected JPanel fctSupprScoot() {
+        JPanel panel = new JPanel(new GridLayout(2, 1));
+        JTextField idScoot = new JTextField("id Scooter");
+        Controller c = new Controller(idScoot);
+        c.ghostText(idScoot);
+        JButton chercher = new JButton("Chercher");
+        chercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                c.btnSuppr();// la fonction suppr fait un .remove de l'élément de l'arraylist
+                EtatActualise("Action effectué");
+            }
+
+        });
+        panel.add(idScoot);
+        panel.add(chercher);
+        return panel;
     }
 
     protected JPanel fctRetirereEtat() {

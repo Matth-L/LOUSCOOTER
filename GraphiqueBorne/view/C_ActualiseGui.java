@@ -33,10 +33,11 @@ public class C_ActualiseGui extends B_FonctionGui {
     }
 
     void deleteScootActualise() {
-        JPanel contentPane = (JPanel) this.getContentPane();
+        JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
-        contentPane.add(fctSupprScoot(), BorderLayout.CENTER);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(fctSupprScoot(), BorderLayout.NORTH);
         contentPane.updateUI();
     }
 
@@ -48,7 +49,6 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.add(fctRetour(), BorderLayout.CENTER);
         contentPane.updateUI();
     }
-
 
     void AfficheAllActualise(String s) throws IOException {
         JPanel contentPane = (JPanel) this.getContentPane();
