@@ -290,10 +290,10 @@ public class MethodGui extends JFrame {
 
         JPanel vitrine = new JPanel();
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Scooter disponible"));
-
+        vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
         // crée le textArea
-        int n = tabScooterDispo.size() + 1;
         JTextArea textArea;
+        int n = tabScooterDispo.size();
         // permet d'avoir les dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (this.getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
@@ -346,6 +346,7 @@ public class MethodGui extends JFrame {
         }
     }
 
+    // il faut redefinir le constructeur par défaut car il sera hérité par la suite
     public MethodGui(String titre) {
         super(titre);
     }
