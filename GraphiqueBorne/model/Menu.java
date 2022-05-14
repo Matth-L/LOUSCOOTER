@@ -19,10 +19,10 @@ public class Menu {
         return null;
     }
 
-    public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
+    public static int louerDate(int id, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
             throws IOException {
         Scooter S;
-        if ((S = getScooter(tabScooter, G)) == null) {
+        if ((S = getScooter(tabScooter, id)) == null) {
             return 1;
         }
 

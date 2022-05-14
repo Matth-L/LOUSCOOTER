@@ -4,12 +4,6 @@ Honda
 A
 true
 EOS
-2
-40
-Yamaha
-A
-false
-EOS
 3
 40
 Honda

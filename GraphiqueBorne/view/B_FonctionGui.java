@@ -1,6 +1,7 @@
 package GraphiqueBorne.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -341,6 +342,16 @@ public class B_FonctionGui extends A_MethodGui {
         contentPane.updateUI();
     }
 
+    void AfficheAllActualise(ArrayList<Scooter> s) throws IOException, BadLocationException {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(rechercheDate(), BorderLayout.NORTH);
+        contentPane.add(afficheAll(s), BorderLayout.CENTER);
+        contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.updateUI();
+    }
+
     protected JPanel rechercheDate() {
         JPanel vitrine = new JPanel(new GridLayout(1, 3));
         JTextField dateDeb = new JTextField("jj/mm/ann");
@@ -349,6 +360,22 @@ public class B_FonctionGui extends A_MethodGui {
         Controller c = new Controller(dateDeb, dateFin);
         c.ghostText(dateDeb, "jj/mm/ann");
         c.ghostText(dateFin, "jj/mm/ann");
+        rechercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // messageText(c.MettreEnReparation());
+                try {
+                    ArrayList<Scooter> res = c.btnRechercheDate(e);
+                    if (res == null) {
+                        messageText(3);
+                    } else {
+                        AfficheAllActualise(res);
+                    }
+                } catch (IOException | BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
         vitrine.add(dateDeb);
         vitrine.add(dateFin);
         vitrine.add(rechercher);

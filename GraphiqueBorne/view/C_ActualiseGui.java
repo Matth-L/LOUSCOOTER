@@ -62,6 +62,7 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.updateUI();
     }
 
+
     void mettreEnReparationActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();

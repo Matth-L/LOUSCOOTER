@@ -40,7 +40,7 @@ public class Location {
     }
 
     // prend une date de format jour/mois/année
-    static Date stringToDate(String date) {
+    public static Date stringToDate(String date) {
         if (date.trim().equals("")) {
             // date = ""-> null
             return null;
@@ -70,12 +70,13 @@ public class Location {
         Date in = new Date();
         LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
         Date dateAct = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
-        // si la date de fin est avant la date de début
+
+        // si la date de fin est avant la date d'aujourd'hui
         if (dateFinInput.before(dateAct)) {
-            return false;
-            // si la date de début est après la date de fin et la date de debut est avant la
-            // date de fin
-        } else if (dateDebInput.after(dateFin) && dateDebInput.before(dateFinInput)) {
+            return true;
+        }
+
+        else if (dateTest(dateDebInput) || dateTest(dateFinInput) || dateDebInput.after(dateFinInput) ||  (dateDebInput.before(dateDebut)&& dateFinInput.after(dateDebut))) {
             return true;
         } else {
             return false;
@@ -83,7 +84,7 @@ public class Location {
     }
 
     boolean dateTest(Date dat) {
-        return (dat.after(dateDebut) && dat.before(dateFin) && !dateFin.equals(dat));
+        return ( (dat.after(dateDebut) && dat.before(dateFin)) || (dateFin.equals(dat) || dateDebut.equals(dat)) );
     }
 
     void setDateFin(Date f) {

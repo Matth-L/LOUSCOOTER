@@ -219,7 +219,7 @@ public class A_MethodGui extends JFrame {
 
             if (s.getEnreparation()) {
                 sb.append(
-                        "<FONT COLOR=\"#FF2D00\"><b>Le scooter est actuellement en réparation </b><br><br>");
+                        "<FONT COLOR=\"#FF2D00\"><b>Le scooter est actuellement en maintenance </b><br><br>");
             } else {
                 sb.append("<FONT COLOR=\"#55FF00\"><b> Le scooter est disponible </b> <br><br>");
             }
