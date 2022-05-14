@@ -180,6 +180,8 @@ public class A_MethodGui extends JFrame {
 
     }
 
+    JTextPane textPane = new JTextPane();
+
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
 
         JPanel vitrine = new JPanel();
@@ -190,7 +192,6 @@ public class A_MethodGui extends JFrame {
          * crée le textPane et met la propriété html dedans
          */
 
-        JTextPane textPane = new JTextPane();
         textPane.setContentType("text/html");
 
         /*

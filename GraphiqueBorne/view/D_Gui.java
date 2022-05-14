@@ -109,11 +109,7 @@ public class D_Gui extends C_ActualiseGui {
         // resize automatique
         this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
-                try {
-                    menu();
-                } catch (IOException | BadLocationException e1) {
-                    e1.printStackTrace();
-                }
+                resize(textPane);
             }
         });
         // à voire pour le mettre dans le controller
