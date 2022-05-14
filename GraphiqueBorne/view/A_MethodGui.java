@@ -100,6 +100,16 @@ public class A_MethodGui extends JFrame {
     }
 
     // le classique
+    public JPanel creatStatusBar() {
+        JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel lblStatus1 = new JLabel();
+        statusBar.add(lblStatus1);
+
+        return statusBar;
+    }
+    // le classique
+
     public JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -216,7 +226,7 @@ public class A_MethodGui extends JFrame {
 
         // ajout scrollbar et propriété
         JScrollPane scroll = new JScrollPane(textPane);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         vitrine.add(scroll);
         return vitrine;
     }

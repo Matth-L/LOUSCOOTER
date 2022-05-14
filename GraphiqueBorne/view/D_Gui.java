@@ -52,7 +52,7 @@ public class D_Gui extends C_ActualiseGui {
         afficheAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    AfficheAllActualise("");
+                    AfficheAllActualise();
                 } catch (IOException | BadLocationException e1) {
                     e1.printStackTrace();
                 }
@@ -121,6 +121,16 @@ public class D_Gui extends C_ActualiseGui {
                         e1.printStackTrace();
                     }
                     dispose();
+                }
+            }
+        });
+        // resize automatique
+        this.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent componentEvent) {
+                try {
+                    AfficheAllActualise();
+                } catch (IOException | BadLocationException e1) {
+                    e1.printStackTrace();
                 }
             }
         });

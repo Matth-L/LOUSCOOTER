@@ -52,11 +52,11 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.updateUI();
     }
 
-    void AfficheAllActualise(String s) throws IOException, BadLocationException {
+    void AfficheAllActualise() throws IOException, BadLocationException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
-        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
+        contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.updateUI();
     }
