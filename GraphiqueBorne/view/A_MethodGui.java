@@ -6,6 +6,9 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
 import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
 import java.awt.event.*;
@@ -59,7 +62,7 @@ public class A_MethodGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     menu();
-                } catch (IOException e1) {
+                } catch (IOException | BadLocationException e1) {
                     e1.printStackTrace();
                 }
 
@@ -84,7 +87,7 @@ public class A_MethodGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     menu();
-                } catch (IOException e1) {
+                } catch (IOException | BadLocationException e1) {
                     e1.printStackTrace();
                 }
 
@@ -119,7 +122,7 @@ public class A_MethodGui extends JFrame {
         return statusBar;
     }
 
-    protected void menu() throws IOException {
+    protected void menu() throws IOException, BadLocationException {
         JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(new JLabel(), BorderLayout.NORTH);
@@ -152,46 +155,69 @@ public class A_MethodGui extends JFrame {
         return "";
     }
 
-    // *j'ai pas trouvé de flex ou autre donc pour la taille si ça dépasse la moitié
-    // * de la largeur de l'écran je rend le text Area plus grand
-    protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
+    protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
 
         JPanel vitrine = new JPanel();
-        vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Scooter disponible"));
+        vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Liste des scooters "));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
-        // crée le textArea
-        JTextArea textArea; // premier paramètre ligne , deuxième colonne
-        int n = tabScooterDispo.size();
-        // permet d'avoir les dimensions
+
+        /*
+         * crée le textPane et met la propriété html dedans
+         */
+
+        JTextPane textPane = new JTextPane();
+        textPane.setContentType("text/html");
+
+        /*
+         * permet d'avoir les dimensions
+         */
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
+        Font font25 = new Font("Serif", Font.ITALIC, 14);
+        Font font50 = new Font("Serif", Font.ITALIC, 18);
+        Font font75 = new Font("Serif", Font.ITALIC, 22);
+        Font font100 = new Font("Serif", Font.ITALIC, 26);
+
         // pour gerer le plein écran et l'agrandissement
         if (usageScreen < 25) {
-            textArea = new JTextArea(n, 22);
-            textArea.setFont(textArea.getFont().deriveFont(12f));
+            textPane.setFont(font25);
         } else if (usageScreen < 50) {
-            textArea = new JTextArea(n, 35);
-            textArea.setFont(textArea.getFont().deriveFont(15f));
+            textPane.setFont(font50);
         } else if (usageScreen < 75) {
-            textArea = new JTextArea(n, 50);
-            textArea.setFont(textArea.getFont().deriveFont(20f));
+            textPane.setFont(font75);
         } else {
-            textArea = new JTextArea(n, 80);
-            textArea.setFont(textArea.getFont().deriveFont(22f));
-        }
-        // propriété du textArea
-        textArea.setEditable(false);
-        JScrollPane scroll = new JScrollPane(textArea);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        for (Scooter s : tabScooterDispo) {
-            // il faut mettre append si on met setText on perd le text d'avant
-            textArea.append("id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle " + s.getModele()
-                    + "  kilométrage :" + s.getKilometrage() + "  " + switchBool(s.getEnreparation()));
-            textArea.append("\n");
+            textPane.setFont(font100);
         }
 
+        textPane.setEditable(false); // propriété du textPane
+
+        /*
+         * le stringbuilder permet de créer et modifier un texte et de rajouter de
+         * l'html
+         */
+        StringBuilder sb = new StringBuilder();
+        // le noir classique du texte
+        String normalFont = "<FONT COLOR=\"#17202A\">";
+
+        for (Scooter s : tabScooterDispo) {
+
+            sb.append(normalFont + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
+                    + s.getModele()
+                    + "  kilométrage :" + s.getKilometrage() + "<br>");
+
+            if (s.getEnreparation()) {
+                sb.append(
+                        "<FONT COLOR=\"#FF2D00\"><b>Le scooter est actuellement en réparation </b><br><br>");
+            } else {
+                sb.append("<FONT COLOR=\"#55FF00\"><b> Le scooter est disponible </b> <br><br>");
+            }
+        }
+        textPane.setText(sb.toString());
+
+        // ajout scrollbar et propriété
+        JScrollPane scroll = new JScrollPane(textPane);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         vitrine.add(scroll);
         return vitrine;
     }

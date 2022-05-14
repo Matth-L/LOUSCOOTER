@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.text.BadLocationException;
+
 import GraphiqueBorne.controller.Controller;
 
 import java.awt.event.*;
@@ -12,7 +14,7 @@ import java.awt.event.*;
 public class D_Gui extends C_ActualiseGui {
     // init button
 
-    public D_Gui() throws IOException {
+    public D_Gui() throws IOException, BadLocationException {
         super("louscooter");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(600, 400);
@@ -51,7 +53,7 @@ public class D_Gui extends C_ActualiseGui {
             public void actionPerformed(ActionEvent e) {
                 try {
                     AfficheAllActualise("");
-                } catch (IOException e1) {
+                } catch (IOException | BadLocationException e1) {
                     e1.printStackTrace();
                 }
             }
@@ -89,7 +91,6 @@ public class D_Gui extends C_ActualiseGui {
                 try {
                     VerifAdminActualise("");
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
@@ -128,7 +129,7 @@ public class D_Gui extends C_ActualiseGui {
     }
 
     // throw lookNell
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException, BadLocationException {
         UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
         new D_Gui().setVisible(true);
     }

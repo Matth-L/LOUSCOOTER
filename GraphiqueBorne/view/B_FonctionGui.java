@@ -3,6 +3,8 @@ package GraphiqueBorne.view;
 import java.io.IOException;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+
 import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
 
@@ -26,7 +28,7 @@ public class B_FonctionGui extends A_MethodGui {
         contentPane.updateUI();
     }
 
-    void ModeAdminActualise(String s) throws IOException {
+    void ModeAdminActualise(String s) throws IOException, BadLocationException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
@@ -53,7 +55,7 @@ public class B_FonctionGui extends A_MethodGui {
         }
     }
 
-    void messageTextAdmin(int valueTest) throws IOException {
+    void messageTextAdmin(int valueTest) throws IOException, BadLocationException {
         switch (valueTest) {
             case 0:
                 ModeAdminActualise("");
@@ -124,7 +126,7 @@ public class B_FonctionGui extends A_MethodGui {
 
                 try {
                     messageTextAdmin(c.testIDandP());
-                } catch (IOException e1) {
+                } catch (IOException | BadLocationException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }

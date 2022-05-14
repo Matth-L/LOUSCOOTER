@@ -3,6 +3,8 @@ package GraphiqueBorne.view;
 import java.io.IOException;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+
 import GraphiqueBorne.controller.Controller;
 
 public class C_ActualiseGui extends B_FonctionGui {
@@ -50,7 +52,7 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.updateUI();
     }
 
-    void AfficheAllActualise(String s) throws IOException {
+    void AfficheAllActualise(String s) throws IOException, BadLocationException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
