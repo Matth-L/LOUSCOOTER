@@ -163,6 +163,23 @@ public class A_MethodGui extends JFrame {
         return "";
     }
 
+    void resize(JTextPane textPane) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
+
+        // pour gerer le plein écran et l'agrandissement
+        if (usageScreen < 25) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 14));
+        } else if (usageScreen < 50) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 18));
+        } else if (usageScreen < 75) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 22));
+        } else {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 26));
+        }
+
+    }
+
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
 
         JPanel vitrine = new JPanel();
@@ -179,21 +196,7 @@ public class A_MethodGui extends JFrame {
         /*
          * permet d'avoir les dimensions
          */
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
-
-        // pour gerer le plein écran et l'agrandissement
-        if (usageScreen < 25) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 14));
-        } else if (usageScreen < 50) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 18));
-        } else if (usageScreen < 75) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 22));
-        } else {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 26));
-        }
-
+        resize(textPane);
         textPane.setEditable(false); // propriété du textPane
 
         /*

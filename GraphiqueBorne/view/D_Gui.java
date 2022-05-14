@@ -109,8 +109,6 @@ public class D_Gui extends C_ActualiseGui {
         });
         // resize automatique
         this.addComponentListener(new ComponentAdapter() {
-            @Override
-
             public void componentResized(ComponentEvent componentEvent) {
                 try {
                     AfficheAllActualise();
