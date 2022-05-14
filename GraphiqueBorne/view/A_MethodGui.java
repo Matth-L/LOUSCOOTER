@@ -7,8 +7,6 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
-
 import GraphiqueBorne.controller.Controller;
 import GraphiqueBorne.model.Scooter;
 import java.awt.event.*;
@@ -174,20 +172,16 @@ public class A_MethodGui extends JFrame {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
-        Font font25 = new Font("Serif", Font.ITALIC, 14);
-        Font font50 = new Font("Serif", Font.ITALIC, 18);
-        Font font75 = new Font("Serif", Font.ITALIC, 22);
-        Font font100 = new Font("Serif", Font.ITALIC, 26);
 
         // pour gerer le plein écran et l'agrandissement
         if (usageScreen < 25) {
-            textPane.setFont(font25);
+            textPane.setFont(new Font("Serif", Font.ITALIC, 14));
         } else if (usageScreen < 50) {
-            textPane.setFont(font50);
+            textPane.setFont(new Font("Serif", Font.ITALIC, 18));
         } else if (usageScreen < 75) {
-            textPane.setFont(font75);
+            textPane.setFont(new Font("Serif", Font.ITALIC, 22));
         } else {
-            textPane.setFont(font100);
+            textPane.setFont(new Font("Serif", Font.ITALIC, 26));
         }
 
         textPane.setEditable(false); // propriété du textPane
@@ -198,13 +192,17 @@ public class A_MethodGui extends JFrame {
          */
         StringBuilder sb = new StringBuilder();
         // le noir classique du texte
-        String normalFont = "<FONT COLOR=\"#17202A\">";
+        String normalFontColor = "<FONT COLOR=\"#17202A\">";
 
         for (Scooter s : tabScooterDispo) {
 
-            sb.append(normalFont + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
+            sb.append(normalFontColor + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
                     + s.getModele()
                     + "  kilométrage :" + s.getKilometrage() + "<br>");
+
+            /*
+             * change la couleur en fonction de si le scooter est en réparation ou non
+             */
 
             if (s.getEnreparation()) {
                 sb.append(
@@ -213,6 +211,7 @@ public class A_MethodGui extends JFrame {
                 sb.append("<FONT COLOR=\"#55FF00\"><b> Le scooter est disponible </b> <br><br>");
             }
         }
+        // c'est la que le text est mis dans le textPane
         textPane.setText(sb.toString());
 
         // ajout scrollbar et propriété
