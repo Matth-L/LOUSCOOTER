@@ -85,4 +85,13 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.updateUI();
     }
+
+    void suppLocActualise() {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
+        contentPane.add(fctRetirerUneLocation(), BorderLayout.CENTER);
+        contentPane.updateUI();
+    }
 }

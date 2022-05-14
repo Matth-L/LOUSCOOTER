@@ -28,16 +28,18 @@ public class A_MethodGui extends JFrame {
     JButton deleteScoot = new JButton("Supprimer un scooter");
     JButton MettreEnReparation = new JButton("Mettre En Reparatoion");
     JButton RetirerDeMaRep = new JButton("Mettre Disponible");
+    JButton SuppUneLocation = new JButton("Supp Un Location");
     JButton modeAminButton = new JButton("modeAdmin");
     JButton quit = new JButton("Quitter");
 
     protected JPanel createRightPanel() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(6, 1));
+        JPanel panel = new JPanel(new GridLayout(7, 1));
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
+        panel.add(SuppUneLocation);
         panel.add(modeAminButton);
         // panel.add(deleteScoot);
         panel.add(quit);
@@ -47,7 +49,7 @@ public class A_MethodGui extends JFrame {
 
     protected JPanel createRightPanel2() {
         // init panel + button
-        JPanel panel = new JPanel(new GridLayout(7, 1));
+        JPanel panel = new JPanel(new GridLayout(8, 1));
 
         panel.add(louer);
         panel.add(retour);
@@ -64,6 +66,7 @@ public class A_MethodGui extends JFrame {
             }
         });
 
+        panel.add(SuppUneLocation);
         panel.add(retourMenu);
         panel.add(modeAminButton);
         panel.add(quit);

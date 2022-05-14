@@ -267,4 +267,16 @@ public class Controller {
         }
     }
 
+    public int btnsuppLoc() {
+        try {
+            // on donne les valeurs de l'utilisateur aux Controller
+            int scootID = Integer.parseInt(zoneID.getText());
+            String dateDeb = zoneDB.getText();
+            String dateFin = zoneDF.getText();
+            return Menu.suppLoc(scootID, tabScooter, dateDeb, dateFin);
+        } catch (Exception s) {
+            return 1;
+        }
+    }
+
 }

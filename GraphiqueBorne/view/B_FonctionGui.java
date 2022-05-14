@@ -279,7 +279,7 @@ public class B_FonctionGui extends A_MethodGui {
     }
 
     protected JPanel fctRetirereEtatReparation() {
-        JPanel pannel = new JPanel(new GridLayout(2, 1));
+        JPanel panel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         Controller c = new Controller(idRentrer);
         c.ghostText(idRentrer);
@@ -290,12 +290,38 @@ public class B_FonctionGui extends A_MethodGui {
 
             }
         });
-        pannel.add(idRentrer);
-        pannel.add(rep);
+        panel.add(idRentrer);
+        panel.add(rep);
+        return panel;
+    }
+
+    protected JPanel fctRetirerUneLocation() {
+        JPanel pannel = new JPanel(new GridLayout(4, 1, 5, 5));
+        JTextField idscoot = new JTextField("id Scoot");
+        JTextField dateDeb = new JTextField("jj/mm/ann");
+        JTextField dateFin = new JTextField("jj/mm/ann");
+        Controller c = new Controller(idscoot, dateDeb, dateFin);
+        c.ghostText(idscoot);
+        c.ghostText(dateDeb);
+        c.ghostText(dateFin);
+
+        JButton supprimerloc = new JButton("Appuyez pour Retirer la location.");
+
+        supprimerloc.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                messageText(c.btnsuppLoc());
+            }
+        });
+
+        pannel.add(idscoot);
+        pannel.add(dateDeb);
+        pannel.add(dateFin);
+        pannel.add(supprimerloc);
+
         return pannel;
     }
 
-    public void EtatActualise(String s) {
+    protected void EtatActualise(String s) {
         JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
@@ -304,7 +330,7 @@ public class B_FonctionGui extends A_MethodGui {
         contentPane.updateUI();
     }
 
-    public void EtatActualiseEtDonne(Scooter s) {
+    protected void EtatActualiseEtDonne(Scooter s) {
         JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(createRightPanel2(), BorderLayout.EAST);

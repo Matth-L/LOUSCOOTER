@@ -22,7 +22,6 @@ public class Menu {
     public static int louerDate(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
             throws IOException {
         Scooter S;
-        System.out.println(G);
         if ((S = getScooter(tabScooter, G)) == null) {
             return 1;
         }
@@ -61,5 +60,37 @@ public class Menu {
                 calendar.get(Calendar.DATE) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/"
                         + calendar.get(Calendar.YEAR)));
         return true;
+    }
+
+    public static int suppLoc(int G, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin) {
+        Scooter S;
+        if ((S = getScooter(tabScooter, G)) == null) {
+            return 1;
+        }
+        ArrayList<Location> tabLocation = S.tabLocation;
+        Date debutDate = Location.stringToDate(dateDeb);
+        Date finDate = Location.stringToDate(dateFin);
+
+        if (debutDate == null || finDate == null) {
+            return 2;
+        }
+
+        for (Location l : tabLocation) { // boucle for Each
+            if (l.getDate(true).equals(debutDate) && l.getDate(false).equals(finDate)) {
+                tabLocation.remove(l);
+                return 0;
+            }
+        }
+        return 2;
+
+        // if (!S.isDispoActual()) {
+        // return 2;
+        // }
+        // if (S.isDispo(debutDate, finDate) && !S.getEnreparation()) {
+        // S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
+        // return 0;
+        // } else {
+        // return 2;
+        // }
     }
 }

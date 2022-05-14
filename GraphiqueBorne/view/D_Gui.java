@@ -78,6 +78,12 @@ public class D_Gui extends C_ActualiseGui {
             }
         });
 
+        SuppUneLocation.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                suppLocActualise();
+            }
+        });
+
         modeAminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
