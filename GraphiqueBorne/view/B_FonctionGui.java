@@ -1,6 +1,7 @@
 package GraphiqueBorne.view;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.awt.*;
 import javax.swing.*;
 import GraphiqueBorne.controller.Controller;
@@ -26,6 +27,15 @@ public class B_FonctionGui extends A_MethodGui {
         contentPane.updateUI();
     }
 
+    void ModeAdminActualise(String s) throws IOException {
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.removeAll();
+        contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
+        contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
+        contentPane.add(createRightPanel3(), BorderLayout.EAST);
+        contentPane.updateUI();
+    }
+
     void messageText(int valueTest) {
         switch (valueTest) {
             case 0:
@@ -36,6 +46,24 @@ public class B_FonctionGui extends A_MethodGui {
                 break;
             case 2:
                 ActionActualise("Le scooter n'est pas disponible a la date demandé", Color.RED);
+                break;
+            default:
+                ActionActualise("Erreur", Color.RED);
+                break;
+
+        }
+    }
+
+    void messageTextAdmin(int valueTest) throws IOException {
+        switch (valueTest) {
+            case 0:
+                ModeAdminActualise("");
+                break;
+            case 1:
+                ActionActualise("Wrong Passord", Color.RED);
+                break;
+            case 2:
+                ActionActualise("Username not found", Color.RED);
                 break;
             default:
                 ActionActualise("Erreur", Color.RED);
@@ -73,6 +101,47 @@ public class B_FonctionGui extends A_MethodGui {
         pannel.add(louer2);
 
         return pannel;
+    }
+
+    protected JPanel fctVerifAdmin() {
+        JButton loginButtons = new JButton("login");
+        JButton resetButtons = new JButton("Reset");
+        JTextField userIDield = new JTextField();
+        JPasswordField userPasswordField = new JPasswordField();
+        JLabel userIDlabel = new JLabel("UserID:");
+        JLabel userPassordlabel = new JLabel("Passord:");
+        JLabel messageLabel = new JLabel("");
+
+        JPanel panel = new JPanel(new GridLayout(4, 2));
+        Controller c = new Controller(userIDield, userPasswordField);
+        resetButtons.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                userIDield.setText("");
+                userPasswordField.setText("");
+            }
+        });
+        loginButtons.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    messageTextAdmin(c.testIDandP());
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
+        }));
+        userIDlabel.setFocusable(true);
+        panel.add(userIDlabel);
+        panel.add(userIDield);
+        panel.add(userPassordlabel);
+        panel.add(userPasswordField);
+        panel.add(loginButtons);
+        panel.add(resetButtons);
+        panel.add(messageLabel);
+
+        return panel;
     }
 
     protected JPanel fctAjoutScoot() {

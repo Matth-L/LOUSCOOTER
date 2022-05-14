@@ -43,6 +43,54 @@ public class A_MethodGui extends JFrame {
         return panel;
     }
 
+    protected JPanel createRightPanel2() {
+        // init panel + button
+        JPanel panel = new JPanel(new GridLayout(7, 1));
+
+        panel.add(louer);
+        panel.add(retour);
+        panel.add(etatScoot);
+        panel.add(afficheAll);
+        retourMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    menu();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+
+        panel.add(retourMenu);
+        panel.add(modeAminButton);
+        panel.add(quit);
+
+        return panel;
+    }
+
+    public JPanel createRightPanel3() {
+        // init panel + button
+        JPanel panel = new JPanel(new GridLayout(4, 1));
+
+        panel.add(ajoutScoot);
+        panel.add(deleteScoot);
+        retourMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    menu();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+        panel.add(retourMenu);
+        panel.add(quit);
+
+        return panel;
+    }
+
     // le classique
     public JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -72,54 +120,6 @@ public class A_MethodGui extends JFrame {
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
         contentPane.updateUI();
-    }
-
-    protected JPanel createRightPanel2() {
-        // init panel + button
-        JPanel panel = new JPanel(new GridLayout(8, 1));
-
-        panel.add(louer);
-        panel.add(retour);
-        panel.add(etatScoot);
-        panel.add(afficheAll);
-        retourMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    menu();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-        panel.add(retourMenu);
-        panel.add(ajoutScoot);
-        panel.add(deleteScoot);
-        panel.add(quit);
-
-        return panel;
-    }
-
-    public JPanel createRightPanel3() {
-        // init panel + button
-        JPanel panel = new JPanel(new GridLayout(4, 1));
-
-        panel.add(ajoutScoot);
-        panel.add(deleteScoot);
-        retourMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    menu();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-        panel.add(quit);
-
-        return panel;
     }
 
     protected JPanel AfficheDonne(Scooter s) {

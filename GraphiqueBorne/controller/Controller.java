@@ -5,6 +5,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.*;
 import GraphiqueBorne.model.*;
 
@@ -17,6 +19,7 @@ public class Controller {
     JTextField zoneDB;
     JTextField zoneDF;
     JTextField zoneR;
+    JPasswordField zonePass;
 
     public Controller() {
         JFrame frame = new JFrame();
@@ -30,6 +33,11 @@ public class Controller {
     public Controller(JTextField zt, JTextField zR) {
         zoneID = zt;
         zoneR = zR;
+    }
+
+    public Controller(JTextField zt, JPasswordField zR) {
+        zoneID = zt;
+        zonePass = zR;
     }
 
     public Controller(JTextField zt, JTextField db, JTextField df) {
@@ -232,6 +240,31 @@ public class Controller {
             return 3;
         }
 
+    }
+
+    public int testIDandP() throws IOException {
+        String userID = zoneID.getText();
+        String passord = String.valueOf(zonePass.getPassword());
+        IDandPassord idandPassord = new IDandPassord();
+        HashMap<String, String> logininfo = idandPassord.getLogininfo();
+        if (logininfo.containsKey(userID)) {
+            if (logininfo.get(userID).equals(IDandPassord.encrypt(passord))) {
+                return 0;
+                // messageLabel.setForeground(Color.GREEN);
+                // messageLabel.setText("Login Successful");
+                // dispose();
+                // super.ModeAdminActualise("");
+
+            } else {
+                return 1;
+                // messageLabel.setForeground(Color.RED);
+                // messageLabel.setText("Wrong Passord");
+            }
+        } else {
+            return 2;
+            // messageLabel.setForeground(Color.RED);
+            // messageLabel.setText("Username not found");
+        }
     }
 
 }
