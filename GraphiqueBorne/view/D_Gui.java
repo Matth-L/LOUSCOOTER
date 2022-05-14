@@ -32,6 +32,7 @@ public class D_Gui extends C_ActualiseGui {
         // icon
         ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
         setIconImage(icon.getImage());
+
         // on attribue a chaque bouton un actionListener
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -106,6 +107,18 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
+        // resize automatique
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+
+            public void componentResized(ComponentEvent componentEvent) {
+                try {
+                    AfficheAllActualise();
+                } catch (IOException | BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         // à voire pour le mettre dans le controller
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -124,18 +137,9 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
-        // resize automatique
-        this.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent componentEvent) {
-                try {
-                    AfficheAllActualise();
-                } catch (IOException | BadLocationException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
         contentPane.add(afficheAll(new Controller().chgtDonne()), BorderLayout.CENTER);
         menu();
+
     }
 
     // throw lookNell

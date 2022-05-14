@@ -108,12 +108,4 @@ public class Scooter {
     public void setEnreparation(boolean x) {
         this.enReparation = x;
     }
-
-    public void setEnreparation(String x) {
-        if (x.equals("true")) {
-            this.enReparation = true;
-        } else {
-            this.enReparation = false;
-        }
-    }
 }
