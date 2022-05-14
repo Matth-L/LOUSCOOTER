@@ -197,6 +197,7 @@ public class A_MethodGui extends JFrame {
         /*
          * permet d'avoir les dimensions
          */
+
         resize(textPane);
         textPane.setEditable(false); // propriété du textPane
 
@@ -204,7 +205,9 @@ public class A_MethodGui extends JFrame {
          * le stringbuilder permet de créer et modifier un texte et de rajouter de
          * l'html
          */
+
         StringBuilder sb = new StringBuilder();
+        
         // le noir classique du texte
         String normalFontColor = "<FONT COLOR=\"#17202A\">";
 
