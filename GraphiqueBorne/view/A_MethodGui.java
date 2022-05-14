@@ -180,7 +180,7 @@ public class A_MethodGui extends JFrame {
 
     }
 
-    JTextPane textPane = new JTextPane();
+    protected JTextPane textPane = new JTextPane();
 
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
 
