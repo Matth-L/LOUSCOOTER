@@ -12,7 +12,7 @@ public class Scooter {
     private int kilometrage;
     private String marque;
     private String modele;
-    private boolean enReparation = false;
+    private boolean enReparation = false; // si true -> en réparation, sinon non
 
     // un tableau contenant les locations du scooters
     ArrayList<Location> tabLocation = new ArrayList<Location>();
@@ -109,4 +109,11 @@ public class Scooter {
         this.enReparation = x;
     }
 
+    public void setEnreparation(String x) {
+        if (x.equals("true")) {
+            this.enReparation = true;
+        } else {
+            this.enReparation = false;
+        }
+    }
 }

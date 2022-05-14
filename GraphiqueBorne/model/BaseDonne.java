@@ -45,18 +45,20 @@ public class BaseDonne {
         // tant qu'on est pas au marqueur la fin du fichier
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
             Scooter temp = new Scooter();
-            temp.setId(sc.nextInt());
             /*
              * obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
              * next Boolean etc il ne fait pas le \n seul
              */
+            temp.setId(sc.nextInt());
             sc.nextLine();
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
             temp.setMarque(sc.nextLine());
             temp.setModele(sc.nextLine());
+            temp.setEnreparation(sc.nextBoolean());
             sc.nextLine();
             temp.tabLocation = getLoc(temp, tab.size());
+            sc.nextLine();// pour skip le EOS
             tab.add(temp);
         }
         sc.close();
@@ -90,6 +92,13 @@ public class BaseDonne {
         return tabLoc;
     }
 
+    static String boolToCaps(boolean x) {
+        if (x) {
+            return "True";
+        }
+        return "False";
+    }
+
     // permet de sauvegarder les scooters dans un txt
     // !0 pour Scooter 1 pour locatoin
     public static void saveDB(ArrayList<Scooter> tab) throws IOException {
@@ -107,6 +116,7 @@ public class BaseDonne {
             pw.println(s.getKilometrage());
             pw.println(s.getMarque());
             pw.println(s.getModele());
+            pw.println(s.getEnreparation());
             saveLocation(fileDejaCree, s);
             pw.println("EOS");
             fileDejaCree = true;

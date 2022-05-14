@@ -142,6 +142,13 @@ public class A_MethodGui extends JFrame {
         return pannel;
     }
 
+    String switchBool(boolean x) {
+        if (x) {
+            return "Le scooter est actuellement en réparation";
+        }
+        return "";
+    }
+
     // *j'ai pas trouvé de flex ou autre donc pour la taille si ça dépasse la moitié
     // * de la largeur de l'écran je rend le text Area plus grand
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) {
@@ -178,7 +185,7 @@ public class A_MethodGui extends JFrame {
         for (Scooter s : tabScooterDispo) {
             // il faut mettre append si on met setText on perd le text d'avant
             textArea.append("id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle " + s.getModele()
-                    + "  kilométrage :" + s.getKilometrage());
+                    + "  kilométrage :" + s.getKilometrage() + "  " + switchBool(s.getEnreparation()));
             textArea.append("\n");
         }
 
