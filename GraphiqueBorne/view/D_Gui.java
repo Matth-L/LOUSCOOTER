@@ -2,7 +2,6 @@ package GraphiqueBorne.view;
 
 import java.io.File;
 import java.io.IOException;
-import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.BadLocationException;
