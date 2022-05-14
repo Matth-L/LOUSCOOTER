@@ -134,10 +134,7 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
-        // contentPane.add(afficheAll(new Controller().chgtDonne()),
-        // BorderLayout.CENTER);
         menu();
-
     }
 
     // throw lookNell

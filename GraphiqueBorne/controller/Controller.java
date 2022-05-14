@@ -5,6 +5,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -177,6 +178,34 @@ public class Controller {
 
     public ArrayList<Scooter> btnafficheAllScoot() {
         return tabScooter;
+    }
+
+    public ArrayList<Scooter> btnRechercheDate(ActionEvent e) throws IOException {
+        
+        /*
+         * erreur intercepter
+         * lorsque l'utilisateur ne rentre pas un entier
+         */
+        try {
+            // on donne les valeurs de l'utilisateur aux Controller
+            tabScooterDispo.clear();
+            String dateDeb = zoneID.getText();
+            String dateFin = zoneR.getText();
+            Date debutDate = Location.stringToDate(dateDeb);
+            Date finDate = Location.stringToDate(dateFin);
+            if (debutDate == null || finDate == null) {
+                return null;
+            }
+            for (Scooter s : tabScooter) {
+                // liste des id pour les scooter dispo
+                if (s.isDispo(debutDate, finDate)) {
+                    tabScooterDispo.add(s);
+                }
+            }
+            return tabScooterDispo;
+        } catch (Exception s) {
+            return null;
+        }
     }
 
     public void btnquit() throws IOException {
