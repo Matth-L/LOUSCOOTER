@@ -79,9 +79,9 @@ public class B_FonctionGui extends A_MethodGui {
         JTextField dateDeb = new JTextField("jj/mm/ann");
         JTextField dateFin = new JTextField("jj/mm/ann");
         Controller c = new Controller(idscoot, dateDeb, dateFin);
-        c.ghostText(idscoot);
-        c.ghostText(dateDeb);
-        c.ghostText(dateFin);
+        c.ghostText(idscoot, "id Scoot");
+        c.ghostText(dateDeb, "jj/mm/ann");
+        c.ghostText(dateFin, "jj/mm/ann");
 
         JButton louer2 = new JButton("Appuyez pour louer !");
 
@@ -152,10 +152,10 @@ public class B_FonctionGui extends A_MethodGui {
         JTextField mod = new JTextField("modèle");
         JTextField nb = new JTextField("nombre de scooter à ajouter");
         Controller c = new Controller(kmge, marque, mod, nb);
-        c.ghostText(kmge);
-        c.ghostText(marque);
-        c.ghostText(mod);
-        c.ghostText(nb);
+        c.ghostText(kmge, "kilométrage");
+        c.ghostText(marque, "marque");
+        c.ghostText(mod, "modèle");
+        c.ghostText(nb, "nombre de scooter à ajouter");
 
         JButton valider = new JButton("Appuyez valider");
 
@@ -185,7 +185,7 @@ public class B_FonctionGui extends A_MethodGui {
         JTextField idScoot = new JTextField("id Scooter");
 
         Controller c = new Controller(idScoot);
-        c.ghostText(idScoot);
+        c.ghostText(idScoot, "id Scooter");
 
         JButton retour = new JButton("Appuyez pour rendre votre location !");
         retour.addActionListener(new ActionListener() {
@@ -209,7 +209,7 @@ public class B_FonctionGui extends A_MethodGui {
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         Controller c = new Controller(idRentrer);
-        c.ghostText(idRentrer);
+        c.ghostText(idRentrer, "id scoot");
         JButton chercher = new JButton("chercher !");
         chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -232,7 +232,7 @@ public class B_FonctionGui extends A_MethodGui {
         JPanel panel = new JPanel(new GridLayout(2, 1));
         JTextField idScoot = new JTextField("id Scooter");
         Controller c = new Controller(idScoot);
-        c.ghostText(idScoot);
+        c.ghostText(idScoot, "id Scooter");
         JButton chercher = new JButton("Chercher");
         chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -250,7 +250,7 @@ public class B_FonctionGui extends A_MethodGui {
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         Controller c = new Controller(idRentrer);
-        c.ghostText(idRentrer);
+        c.ghostText(idRentrer, "id scoot");
         JButton rep = new JButton("Mettre le scooter en disponible");
         rep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -267,7 +267,7 @@ public class B_FonctionGui extends A_MethodGui {
         JPanel pannel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         Controller c = new Controller(idRentrer);
-        c.ghostText(idRentrer);
+        c.ghostText(idRentrer, "id scoot");
         JButton rep = new JButton("Le mettre en réparation.");
         rep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -284,7 +284,7 @@ public class B_FonctionGui extends A_MethodGui {
         JPanel panel = new JPanel(new GridLayout(2, 1));
         JTextField idRentrer = new JTextField("id scoot");
         Controller c = new Controller(idRentrer);
-        c.ghostText(idRentrer);
+        c.ghostText(idRentrer, "id scoot");
         JButton rep = new JButton("Mettre le scooter en disponible");
         rep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -303,9 +303,9 @@ public class B_FonctionGui extends A_MethodGui {
         JTextField dateDeb = new JTextField("jj/mm/ann");
         JTextField dateFin = new JTextField("jj/mm/ann");
         Controller c = new Controller(idscoot, dateDeb, dateFin);
-        c.ghostText(idscoot);
-        c.ghostText(dateDeb);
-        c.ghostText(dateFin);
+        c.ghostText(idscoot, "id Scoot");
+        c.ghostText(dateDeb, "jj/mm/ann");
+        c.ghostText(dateFin, "jj/mm/ann");
 
         JButton supprimerloc = new JButton("Appuyez pour Retirer la location.");
 
@@ -347,8 +347,8 @@ public class B_FonctionGui extends A_MethodGui {
         JTextField dateFin = new JTextField("jj/mm/ann");
         JButton rechercher = new JButton("Rechercher");
         Controller c = new Controller(dateDeb, dateFin);
-        c.ghostText(dateDeb);
-        c.ghostText(dateFin);
+        c.ghostText(dateDeb, "jj/mm/ann");
+        c.ghostText(dateFin, "jj/mm/ann");
         vitrine.add(dateDeb);
         vitrine.add(dateFin);
         vitrine.add(rechercher);

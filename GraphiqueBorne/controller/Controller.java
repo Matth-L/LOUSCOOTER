@@ -188,12 +188,18 @@ public class Controller {
         tabScooter.remove(Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText())));
     }
 
-    public void ghostText(JTextField a) {
+    public void ghostText(JTextField a, String m) {
         a.addFocusListener(new FocusListener() {
 
             @Override
             public void focusGained(FocusEvent e) {
-                a.setText("");
+                String txt = a.getText();
+                if (txt.equals(m)) {
+                    a.setText("");
+                } else {
+                    a.setText(txt);
+
+                }
 
             }
 
