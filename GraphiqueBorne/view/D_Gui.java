@@ -67,6 +67,17 @@ public class D_Gui extends C_ActualiseGui {
             }
         });
 
+        MettreEnReparation.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mettreEnReparationActualise("");
+            }
+        });
+        RetirerDeMaRep.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                retirerEnReparationActualise("");
+            }
+        });
+
         modeAminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {

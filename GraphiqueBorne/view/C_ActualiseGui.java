@@ -62,7 +62,7 @@ public class C_ActualiseGui extends B_FonctionGui {
     void mettreEnReparationActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.add(createRightPanel3(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctMettreEnReparation(), BorderLayout.CENTER);
         contentPane.updateUI();
@@ -71,7 +71,7 @@ public class C_ActualiseGui extends B_FonctionGui {
     void retirerEnReparationActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(createRightPanel2(), BorderLayout.EAST);
+        contentPane.add(createRightPanel3(), BorderLayout.EAST);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(fctRetirereEtatReparation(), BorderLayout.CENTER);
         contentPane.updateUI();

@@ -28,7 +28,6 @@ public class A_MethodGui extends JFrame {
     JButton deleteScoot = new JButton("Supprimer un scooter");
     JButton MettreEnReparation = new JButton("Mettre En Reparatoion");
     JButton RetirerDeMaRep = new JButton("Mettre Disponible");
-
     JButton modeAminButton = new JButton("modeAdmin");
     JButton quit = new JButton("Quitter");
 
