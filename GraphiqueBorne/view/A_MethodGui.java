@@ -225,12 +225,14 @@ public class A_MethodGui extends JFrame {
             }
         }
         // c'est la que le text est mis dans le textPane
-        textPane.setText(sb.toString());
-
         // ajout scrollbar et propriété
         JScrollPane scroll = new JScrollPane(textPane);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        textPane.setSelectionStart(0);
         vitrine.add(scroll);
+        textPane.setText(sb.toString());
+        textPane.setCaretPosition(0);
+
         return vitrine;
     }
 
