@@ -111,7 +111,7 @@ public class D_Gui extends C_ActualiseGui {
         this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
                 try {
-                    AfficheAllActualise();
+                    menu();
                 } catch (IOException | BadLocationException e1) {
                     e1.printStackTrace();
                 }
@@ -135,7 +135,8 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
-        contentPane.add(afficheAll(new Controller().chgtDonne()), BorderLayout.CENTER);
+        // contentPane.add(afficheAll(new Controller().chgtDonne()),
+        // BorderLayout.CENTER);
         menu();
 
     }
