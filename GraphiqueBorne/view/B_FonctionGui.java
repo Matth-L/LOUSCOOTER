@@ -59,10 +59,10 @@ public class B_FonctionGui extends A_MethodGui {
                 ModeAdminActualise("");
                 break;
             case 1:
-                ActionActualise("Wrong Passord", Color.RED);
+                ActionActualise("Mauvais mot de Passe", Color.RED);
                 break;
             case 2:
-                ActionActualise("Username not found", Color.RED);
+                ActionActualise("Nom d'utilisateur invalide", Color.RED);
                 break;
             default:
                 ActionActualise("Erreur", Color.RED);
@@ -103,12 +103,12 @@ public class B_FonctionGui extends A_MethodGui {
     }
 
     protected JPanel fctVerifAdmin() {
-        JButton loginButtons = new JButton("login");
-        JButton resetButtons = new JButton("Reset");
+        JButton loginButtons = new JButton("Se connecter");
+        JButton resetButtons = new JButton("Réinitialiser la saisie");
         JTextField userIDield = new JTextField();
         JPasswordField userPasswordField = new JPasswordField();
-        JLabel userIDlabel = new JLabel("UserID:");
-        JLabel userPassordlabel = new JLabel("Passord:");
+        JLabel userIDlabel = new JLabel("Id utilisateur:");
+        JLabel userPassordlabel = new JLabel("Mot de passe:");
         JLabel messageLabel = new JLabel("");
 
         JPanel panel = new JPanel(new GridLayout(4, 2));
