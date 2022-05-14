@@ -34,5 +34,6 @@ public class IDandPassord {
             logininfo.put(sc.nextLine(), sc.nextLine());
 
         }
+        sc.close();
     }
 }

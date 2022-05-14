@@ -1,7 +1,6 @@
 package GraphiqueBorne.view;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.awt.*;
 import javax.swing.*;
 import GraphiqueBorne.controller.Controller;
