@@ -341,4 +341,19 @@ public class B_FonctionGui extends A_MethodGui {
         contentPane.updateUI();
     }
 
+    protected JPanel rechercheDate() {
+        JPanel vitrine = new JPanel(new GridLayout(1, 3));
+        JTextField dateDeb = new JTextField("jj/mm/ann");
+        JTextField dateFin = new JTextField("jj/mm/ann");
+        JButton rechercher = new JButton("Rechercher");
+        Controller c = new Controller(dateDeb, dateFin);
+        c.ghostText(dateDeb);
+        c.ghostText(dateFin);
+        vitrine.add(dateDeb);
+        vitrine.add(dateFin);
+        vitrine.add(rechercher);
+
+        return vitrine;
+    }
+
 }
