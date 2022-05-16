@@ -16,7 +16,7 @@ public class Menu {
                 return s;
             }
         }
-        return null;
+        return null; // si le scooter n'est pas trouver dans la bd
     }
 
     public static int louerDate(int id, ArrayList<Scooter> tabScooter, String dateDeb, String dateFin)
@@ -26,20 +26,26 @@ public class Menu {
             return 1;
         }
 
-        Date debutDate = Location.stringToDate(dateDeb);
+        Date debutDate = Location.stringToDate(dateDeb); // converti les date de type String en type date
         Date finDate = Location.stringToDate(dateFin);
 
-        if (debutDate == null || finDate == null) {
+        if (debutDate == null || finDate == null) { // si une erreur quelconque lors de la conversion
             return 2;
         }
-        if (!S.isDispoActual()) {
+        if (!S.isDispoActual() && S.getEnreparation()) { // vérification de la disponibilité
+            return 3;
+        } else if (!S.isDispoActual()) {
             return 2;
         }
         if (S.isDispo(debutDate, finDate) && !S.getEnreparation()) {
             S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
             return 0;
         } else {
-            return 2;
+            if (S.getEnreparation()) {
+                return 3;
+            } else {
+                return 2;
+            }
         }
 
     }
@@ -50,13 +56,13 @@ public class Menu {
         if ((S = getScooter(tabScooter, id)) == null) {
             return false;
         }
-        // converti temps actuelle en date
-        // met la date de retour dans l'arraylist
-        // ! dernier changement effecuté but -> mettre ça dans les autres fonction qui
-        // !ont besoin de date pour que les heure ne soit pas compté
+        /*
+         * converti temps actuelle en date
+         * met la date de retour (celle du jour j) dans l'arraylist
+         */
         Calendar calendar = Calendar.getInstance();
         Location l = S.getLocation();
-        l.setDateFin(Location.stringToDate(
+        l.setDatefin(Location.stringToDate(
                 calendar.get(Calendar.DATE) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/"
                         + calendar.get(Calendar.YEAR)));
         return true;
@@ -82,15 +88,5 @@ public class Menu {
             }
         }
         return 2;
-
-        // if (!S.isDispoActual()) {
-        // return 2;
-        // }
-        // if (S.isDispo(debutDate, finDate) && !S.getEnreparation()) {
-        // S.tabLocation.add(new Location(debutDate, finDate, S.getId()));
-        // return 0;
-        // } else {
-        // return 2;
-        // }
     }
 }

@@ -12,7 +12,9 @@ public class Location {
     private Date dateFin;
     int scootId;
 
-    // getter
+    /*
+     * getter
+     */
     Date getDate(boolean x) {
         if (x) {
             return dateDebut;
@@ -63,8 +65,10 @@ public class Location {
         return dateFrt.format(d);
     }
 
-    // teste si une date est dans un autre intervalle de date.
-    // Si elle y est retourne faux sinon vrai.
+    /*
+     * teste si une date est dans un autre intervalle de date.
+     * Si elle y est retourne faux sinon vrai.
+     */
     boolean dateInter(Date dateDebInput, Date dateFinInput) {
         // date actuelle
         Date in = new Date();
@@ -76,7 +80,13 @@ public class Location {
             return true;
         }
 
-        else if (dateTest(dateDebInput) || dateTest(dateFinInput) || dateDebInput.after(dateFinInput) ||  (dateDebInput.before(dateDebut)&& dateFinInput.after(dateDebut))) {
+        /*
+         * On vérifie si la date est soit la date de début ou de fin de location est
+         * dans un intervalle de location du scoote, ou si elle englobe une location
+         * déjà existante
+         */
+        else if (dateTest(dateDebInput) || dateTest(dateFinInput) || dateDebInput.after(dateFinInput)
+                || (dateDebInput.before(dateDebut) && dateFinInput.after(dateDebut))) {
             return true;
         } else {
             return false;
@@ -84,11 +94,7 @@ public class Location {
     }
 
     boolean dateTest(Date dat) {
-        return ( (dat.after(dateDebut) && dat.before(dateFin)) || (dateFin.equals(dat) || dateDebut.equals(dat)) );
-    }
-
-    void setDateFin(Date f) {
-        this.dateFin = f;
+        return ((dat.after(dateDebut) && dat.before(dateFin)) || (dateFin.equals(dat) || dateDebut.equals(dat)));
     }
 
 }

@@ -22,26 +22,30 @@ public class A_MethodGui extends JFrame {
 
     // couleur utilisé pour l'html du JtextPane
     private final String black = "<FONT COLOR=\"#17202A\">";
-    private final String red = "<FONT COLOR=\"#FF2D00\">";
-    private final String green = "<FONT COLOR=\"#55FF00\">";
+    private final String red = "<FONT COLOR=\"#e60000\">";
+    private final String green = "<FONT COLOR=\"#29a329\">";
     private final String yellow = "<FONT COLOR=\"#F1C40F\">";
-    
+
     // bouton utilisé dans l'application
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
-    JButton etatScoot = new JButton("Etat Scooter");
-    JButton afficheAll = new JButton("Affiche All");
-    JButton retourMenu = new JButton("Menu");
+    JButton etatScoot = new JButton("Etat du Scooter");
+    JButton afficheAll = new JButton("Nos Scooters");
+    JButton retourMenu = new JButton("Acceuil");
     JButton ajoutScoot = new JButton("Ajouter un scooter");
     JButton deleteScoot = new JButton("Supprimer un scooter");
-    JButton MettreEnReparation = new JButton("Mettre En Reparatoion");
-    JButton RetirerDeMaRep = new JButton("Mettre Disponible");
-    JButton SuppUneLocation = new JButton("Supp Un Location");
-    JButton modeAminButton = new JButton("modeAdmin");
+    JButton MettreEnReparation = new JButton("Mettre en maintenace");
+    JButton RetirerDeMaRep = new JButton("Retirer de la maintenance");
+    JButton SuppUneLocation = new JButton("Supprimer une Location");
+    JButton modeAminButton = new JButton("Mode Admin");
     JButton quit = new JButton("Quitter");
 
+    protected JTextPane textPane = new JTextPane(); // crée l'espace texte
+
     protected JPanel createRightPanel() {
-        // init panel + button
+        /*
+         * initialisation du panel + bouton
+         */
         JPanel panel = new JPanel(new GridLayout(7, 1));
         panel.add(louer);
         panel.add(retour);
@@ -55,39 +59,20 @@ public class A_MethodGui extends JFrame {
     }
 
     protected JPanel createRightPanel2() {
-        // init panel + button
         JPanel panel = new JPanel(new GridLayout(8, 1));
 
         panel.add(louer);
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
-        //ajout d'un 
-        retourMenu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    menu();
-                } catch (IOException | BadLocationException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
         panel.add(SuppUneLocation);
         panel.add(retourMenu);
         panel.add(modeAminButton);
         panel.add(quit);
 
-        return panel;
-    }
-
-    public JPanel createRightPanel3() {
-        // init panel + button
-        JPanel panel = new JPanel(new GridLayout(6, 1));
-
-        panel.add(ajoutScoot);
-        panel.add(deleteScoot);
+        /*
+         * ajout d'un action Listener permettant de revenir au menu
+         */
         retourMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -98,15 +83,37 @@ public class A_MethodGui extends JFrame {
 
             }
         });
-        panel.add(MettreEnReparation);
-        panel.add(RetirerDeMaRep);
-        panel.add(retourMenu);
-        panel.add(quit);
 
         return panel;
     }
 
-    public JPanel creatStatusBar() {
+    protected JPanel createRightPanel3() {
+        JPanel panel = new JPanel(new GridLayout(6, 1));
+
+        panel.add(ajoutScoot);
+        panel.add(deleteScoot);
+        panel.add(MettreEnReparation);
+        panel.add(RetirerDeMaRep);
+        panel.add(retourMenu);
+        panel.add(quit);
+        retourMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    menu();
+                } catch (IOException | BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+
+        return panel;
+    }
+
+    /*
+     * la zone de texte en bas est pour la confirmation les erreurs, etc
+     */
+    protected JPanel creatStatusBar() {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JLabel lblStatus1 = new JLabel();
@@ -115,7 +122,8 @@ public class A_MethodGui extends JFrame {
         return statusBar;
     }
 
-    public JPanel creatStatusBar(String S) {
+    // permet de rentrer du texte
+    protected JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JLabel lblStatus1 = new JLabel(S);
@@ -125,7 +133,7 @@ public class A_MethodGui extends JFrame {
     }
 
     // avec l'ajout de couleur
-    public JPanel creatStatusBar(String S, Color c) {
+    protected JPanel creatStatusBar(String S, Color c) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JLabel lblStatus1 = new JLabel(S);
@@ -140,8 +148,8 @@ public class A_MethodGui extends JFrame {
         contentPane.removeAll();
         contentPane.add(new JLabel(), BorderLayout.NORTH);
         /*
-         * prend en paramètre 2 arraylist , l'une est tous les scooters et l'autre les
-         * scooters dispo
+         * Affiche menu prend en paramètre 2 arraylist , l'une est tous les scooters et
+         * l'autre les scooters dispo
          */
         contentPane.add(afficheMenu(new Controller().btnafficheAllScoot(), new Controller().btnMenu()),
                 BorderLayout.CENTER);
@@ -150,6 +158,7 @@ public class A_MethodGui extends JFrame {
         contentPane.updateUI();
     }
 
+    // permet d'afficher les données d'un scooter j
     protected JPanel AfficheDonne(Scooter s) {
         JPanel pannel = new JPanel(new GridLayout(5, 1));
         pannel.add(new JLabel("id Scooter : " + s.getId()));
@@ -166,42 +175,28 @@ public class A_MethodGui extends JFrame {
         return pannel;
     }
 
-    void resize(JTextPane textPane) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
-
-        // pour gerer le plein écran et l'agrandissement
-        if (usageScreen < 25) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 14));
-        } else if (usageScreen < 50) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 18));
-        } else if (usageScreen < 75) {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 22));
-        } else {
-            textPane.setFont(new Font("Serif", Font.ITALIC, 26));
-        }
-
-    }
-
-    protected JTextPane textPane = new JTextPane(); // crée l'espace texte
-
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
         JPanel vitrine = new JPanel();
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Liste des scooters "));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
+
         /*
          * crée le textPane et met la propriété html dedans
          */
+
         textPane.setContentType("text/html");
         /*
          * permet d'avoir les dimensions
          */
+
         resize(textPane);
         textPane.setEditable(false); // propriété du textPane
+
         /*
          * le stringbuilder permet de créer et modifier un texte et de rajouter de
          * l'html
          */
+
         StringBuilder sb = new StringBuilder();
         sb.append("<b>Nombre de scooter disponible : </b>" + tabScooterDispo.size() + "<br><br>");
 
@@ -210,9 +205,11 @@ public class A_MethodGui extends JFrame {
             sb.append(black + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
                     + s.getModele()
                     + "  kilométrage :" + s.getKilometrage() + "<br>");
+
             /*
              * change la couleur en fonction de si le scooter est en réparation ou non
              */
+
             if (s.getEnreparation()) {
                 sb.append(
                         red + "<b>Le scooter est actuellement en maintenance </b><br><br>");
@@ -254,8 +251,8 @@ public class A_MethodGui extends JFrame {
          * l'html
          */
         StringBuilder sb = new StringBuilder();
-        sb.append("<b>Nombre de scooter dans le parc : </b>" + tabScoot.size() + "<br><br>");
-        sb.append("<b>Nombre de scooter disponible dans le parc : </b>" + tabScootDispo.size() + "<br><br>");
+        sb.append("<b>Nombre de scooter dans le parc : " + tabScoot.size() + "</b><br><br>");
+        sb.append("<b>Nombre de scooter disponible dans le parc : " + tabScootDispo.size() + "</b><br><br>");
         /*
          * Pour avoir le kilométrage moyen et l'id des scooters du parc
          */
@@ -323,4 +320,20 @@ public class A_MethodGui extends JFrame {
         return vitrine;
     }
 
+    protected void resize(JTextPane textPane) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
+
+        // pour gerer le plein écran et l'agrandissement
+        if (usageScreen < 25) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 14));
+        } else if (usageScreen < 50) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 18));
+        } else if (usageScreen < 75) {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 22));
+        } else {
+            textPane.setFont(new Font("Serif", Font.ITALIC, 26));
+        }
+
+    }
 }

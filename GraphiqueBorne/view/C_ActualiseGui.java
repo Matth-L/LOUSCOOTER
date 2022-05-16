@@ -17,6 +17,12 @@ public class C_ActualiseGui extends B_FonctionGui {
         super(titre);
     }
 
+    /*
+     * toutes les fontions crée un panel et initilaliste la barre de droite et la
+     * barre de status pour les message a l'utilisateur ainsi que la fonction
+     * adéquate fctLouer pour louer etc etc
+     */
+
     void louerActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
@@ -61,7 +67,6 @@ public class C_ActualiseGui extends B_FonctionGui {
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.updateUI();
     }
-
 
     void mettreEnReparationActualise(String s) {
         JPanel contentPane = (JPanel) this.getContentPane();

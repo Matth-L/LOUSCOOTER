@@ -10,13 +10,24 @@ import java.awt.event.*;
 
 public class D_Gui extends C_ActualiseGui {
     public D_Gui() throws IOException, BadLocationException {
-        super("louscooter");
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        super("louscooter"); // donne le titre de l'application
+
+        /*
+         * donne la taille du panel , sa position et comment l'application se comporte
+         * quand on appuie sur la croix rouge
+         */
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         JPanel contentPane = (JPanel) this.getContentPane();
         this.setContentPane(contentPane);
-        // init bd
+
+        /*
+         * charge la base de donnée si les fichiers existe, sinon elle fait appel a base
+         * de donnée pour crée les fichier et les initialiser
+         */
         File bd = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
         File loc = new File("GraphiqueBorne/model/baseDonne/location.txt");
         if (bd.isFile() && loc.isFile()) {
@@ -24,11 +35,14 @@ public class D_Gui extends C_ActualiseGui {
         } else {
             new Controller().initBD();
         }
-        // icon
+
+        // donne une icone a l'application
         ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
         setIconImage(icon.getImage());
 
-        // on attribue a chaque bouton un actionListener
+        /*
+         * on attribue a chaque bouton un actionListener qui va faire appel au fichier C
+         */
         louer.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 louerActualise("");
@@ -92,7 +106,6 @@ public class D_Gui extends C_ActualiseGui {
             }
         });
         quit.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 try {
                     new Controller().btnquit();
@@ -101,13 +114,14 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
+
         // resize automatique
         this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
                 resize(textPane);
             }
         });
-        // à voire pour le mettre dans le controller
+        // message de confirmation lorsque l'utilisateur décide de fermer la page
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -125,12 +139,15 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
+
+        // appel le menu
         menu();
     }
 
-    // throw lookNell
+    // on jette tous ce qui peut causer une erreur non prévu
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException, BadLocationException {
-        UIManager.setLookAndFeel(new NimbusLookAndFeel()); // On peut télécharger des Look'n feel
+        // On peut télécharger des Look'n feel
+        UIManager.setLookAndFeel(new NimbusLookAndFeel());
         new D_Gui().setVisible(true);
     }
 }
