@@ -28,12 +28,6 @@ Honda
 A
 false
 EOS
-7
-40
-Honda
-A
-false
-EOS
 8
 40
 Yamaha

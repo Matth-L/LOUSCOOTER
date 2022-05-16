@@ -20,6 +20,11 @@ public class A_MethodGui extends JFrame {
         super(titre);
     }
 
+    private final String black = "<FONT COLOR=\"#17202A\">";
+    private final String red = "<FONT COLOR=\"#FF2D00\">";
+    private final String green = "<FONT COLOR=\"#55FF00\">";
+    private final String yellow = "<FONT COLOR=\"#F1C40F\">";
+
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
     JButton etatScoot = new JButton("Etat Scooter");
@@ -134,7 +139,8 @@ public class A_MethodGui extends JFrame {
         JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(new JLabel(), BorderLayout.NORTH);
-        contentPane.add(afficheAll(new Controller().btnMenu()), BorderLayout.CENTER);
+        contentPane.add(afficheMenu(new Controller().btnafficheAllScoot(), new Controller().btnMenu()),
+                BorderLayout.CENTER);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
         contentPane.add(createRightPanel(), BorderLayout.EAST);
         contentPane.updateUI();
@@ -207,13 +213,13 @@ public class A_MethodGui extends JFrame {
          */
 
         StringBuilder sb = new StringBuilder();
-        
+
+        sb.append("<b>Nombre de scooter disponible : </b>" + tabScooterDispo.size() + "<br><br>");
         // le noir classique du texte
-        String normalFontColor = "<FONT COLOR=\"#17202A\">";
 
         for (Scooter s : tabScooterDispo) {
 
-            sb.append(normalFontColor + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
+            sb.append(black + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
                     + s.getModele()
                     + "  kilométrage :" + s.getKilometrage() + "<br>");
 
@@ -223,9 +229,9 @@ public class A_MethodGui extends JFrame {
 
             if (s.getEnreparation()) {
                 sb.append(
-                        "<FONT COLOR=\"#FF2D00\"><b>Le scooter est actuellement en maintenance </b><br><br>");
+                        red + "<b>Le scooter est actuellement en maintenance </b><br><br>");
             } else {
-                sb.append("<FONT COLOR=\"#55FF00\"><b> Le scooter est disponible </b> <br><br>");
+                sb.append(green + "<b> Le scooter est disponible </b> <br><br>");
             }
         }
         // c'est la que le text est mis dans le textPane
@@ -234,6 +240,94 @@ public class A_MethodGui extends JFrame {
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         textPane.setSelectionStart(0);
         vitrine.add(scroll);
+        // met les informations du stringbuilder en texte
+        textPane.setText(sb.toString());
+        textPane.setCaretPosition(0);
+
+        return vitrine;
+    }
+
+    protected JPanel afficheMenu(ArrayList<Scooter> tabScoot, ArrayList<Scooter> tabScootDispo)
+            throws BadLocationException {
+
+        JPanel vitrine = new JPanel();
+        vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Informations sur le parc de scooter :  "));
+        vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
+
+        /*
+         * crée le textPane et met la propriété html dedans
+         */
+
+        textPane.setContentType("text/html");
+
+        /*
+         * permet d'avoir les dimensions
+         */
+
+        resize(textPane);
+        textPane.setEditable(false); // propriété du textPane
+
+        /*
+         * le stringbuilder permet de créer et modifier un texte et de rajouter de
+         * l'html
+         */
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<b>Nombre de scooter dans le parc : </b>" + tabScoot.size() + "<br><br>");
+        sb.append("<b>Nombre de scooter disponible dans le parc : </b>" + tabScootDispo.size() + "<br><br>");
+        /*
+         * Pour avoir le kilométrage moyen et l'id des scooters du parc
+         */
+        int kmMoyen = 0;
+        /*
+         * donne le km moyen et le nombre de scooter disponible
+         */
+        sb.append("Kilométrage moyen : ");
+        for (Scooter s : tabScoot) {
+            kmMoyen += s.getKilometrage();
+        }
+        sb.append(kmMoyen + "<br><br>");
+        /*
+         * Donne l'id des scooter dispo
+         */
+        sb.append(green + "Scooter disponible : <br>");
+        sb.append(black);
+        for (Scooter s : tabScootDispo) {
+            if (s.getEnreparation()) {
+                sb.append(red);
+
+            }
+            sb.append(s.getId() + "<br>");
+            sb.append(black);
+        }
+        sb.append("<br><br>");
+        /*
+         * Donne l'id des scooter non dispo
+         */
+        sb.append(yellow + "Scooter en location : <br>");
+        sb.append(black);
+        for (Scooter s : tabScoot) {
+            if (!s.isDispoActual()) {
+                sb.append(s.getId() + "<br>");
+            }
+        }
+        sb.append("<br><br>");
+        sb.append(red + "Scooter en maintenance : <br>");
+        sb.append(black);
+        for (Scooter s : tabScoot) {
+            if (s.getEnreparation()) {
+                sb.append(s.getId() + "<br>");
+            }
+        }
+        sb.append("<br><br><br><br><br><i><small> un id rouge signifie qu'il est en maintenance ");
+        // Création scrollbar + propriété
+        JScrollPane scroll = new JScrollPane(textPane);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        textPane.setSelectionStart(0);
+        // ajout scrollbar a la vitrine
+        vitrine.add(scroll);
+        // met les informations du stringbuilder en texte
         textPane.setText(sb.toString());
         textPane.setCaretPosition(0);
 
