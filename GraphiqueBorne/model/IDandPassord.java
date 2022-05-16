@@ -21,8 +21,14 @@ public class IDandPassord {
 
     public static String encrypt(String value) {
         try {
+            /*
+            * permet de crypter le texte rendtré en base 64, dans un format UFT8.
+            */
             return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8.toString()));
         } catch (Exception e) {
+            /*
+            * en cas d'erreur.
+            */
             return null;
         }
     }
@@ -30,7 +36,13 @@ public class IDandPassord {
     public void getDB() throws IOException {
         File file = new File("GraphiqueBorne/model/baseDonne/bdID.txt");
         Scanner sc = new Scanner(file);
+        /*
+        * charge l'identifiant et le mot passe stocké dans le fichier texte.
+        */
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
+            /*
+            * formulaire de connexion contenant l'id et le mot de passe.
+            */
             logininfo.put(sc.nextLine(), sc.nextLine());
 
         }

@@ -5,9 +5,7 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.BadLocationException;
-
 import GraphiqueBorne.controller.Controller;
-
 import java.awt.event.*;
 
 public class D_Gui extends C_ActualiseGui {
@@ -93,7 +91,6 @@ public class D_Gui extends C_ActualiseGui {
                 }
             }
         });
-
         quit.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {

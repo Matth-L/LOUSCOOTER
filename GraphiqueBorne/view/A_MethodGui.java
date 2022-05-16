@@ -20,11 +20,13 @@ public class A_MethodGui extends JFrame {
         super(titre);
     }
 
+    // couleur utilisé pour l'html du JtextPane
     private final String black = "<FONT COLOR=\"#17202A\">";
     private final String red = "<FONT COLOR=\"#FF2D00\">";
     private final String green = "<FONT COLOR=\"#55FF00\">";
     private final String yellow = "<FONT COLOR=\"#F1C40F\">";
-
+    
+    // bouton utilisé dans l'application
     JButton louer = new JButton("Louer");
     JButton retour = new JButton("Retour");
     JButton etatScoot = new JButton("Etat Scooter");
@@ -47,7 +49,6 @@ public class A_MethodGui extends JFrame {
         panel.add(afficheAll);
         panel.add(SuppUneLocation);
         panel.add(modeAminButton);
-        // panel.add(deleteScoot);
         panel.add(quit);
 
         return panel;
@@ -61,6 +62,7 @@ public class A_MethodGui extends JFrame {
         panel.add(retour);
         panel.add(etatScoot);
         panel.add(afficheAll);
+        //ajout d'un 
         retourMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -104,7 +106,6 @@ public class A_MethodGui extends JFrame {
         return panel;
     }
 
-    // le classique
     public JPanel creatStatusBar() {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -113,7 +114,6 @@ public class A_MethodGui extends JFrame {
 
         return statusBar;
     }
-    // le classique
 
     public JPanel creatStatusBar(String S) {
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -139,6 +139,10 @@ public class A_MethodGui extends JFrame {
         JPanel contentPane = (JPanel) getContentPane();
         contentPane.removeAll();
         contentPane.add(new JLabel(), BorderLayout.NORTH);
+        /*
+         * prend en paramètre 2 arraylist , l'une est tous les scooters et l'autre les
+         * scooters dispo
+         */
         contentPane.add(afficheMenu(new Controller().btnafficheAllScoot(), new Controller().btnMenu()),
                 BorderLayout.CENTER);
         contentPane.add(creatStatusBar(""), BorderLayout.SOUTH);
@@ -162,13 +166,6 @@ public class A_MethodGui extends JFrame {
         return pannel;
     }
 
-    String switchBool(boolean x) {
-        if (x) {
-            return "Le scooter est actuellement en réparation";
-        }
-        return "";
-    }
-
     void resize(JTextPane textPane) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double usageScreen = (getWidth() / screenSize.getWidth() * 100);// pourcentage d'utilisation de l'écran
@@ -186,47 +183,36 @@ public class A_MethodGui extends JFrame {
 
     }
 
-    protected JTextPane textPane = new JTextPane();
+    protected JTextPane textPane = new JTextPane(); // crée l'espace texte
 
     protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
-
         JPanel vitrine = new JPanel();
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Liste des scooters "));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
-
         /*
          * crée le textPane et met la propriété html dedans
          */
-
         textPane.setContentType("text/html");
-
         /*
          * permet d'avoir les dimensions
          */
-
         resize(textPane);
         textPane.setEditable(false); // propriété du textPane
-
         /*
          * le stringbuilder permet de créer et modifier un texte et de rajouter de
          * l'html
          */
-
         StringBuilder sb = new StringBuilder();
-
         sb.append("<b>Nombre de scooter disponible : </b>" + tabScooterDispo.size() + "<br><br>");
-        // le noir classique du texte
 
         for (Scooter s : tabScooterDispo) {
 
             sb.append(black + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
                     + s.getModele()
                     + "  kilométrage :" + s.getKilometrage() + "<br>");
-
             /*
              * change la couleur en fonction de si le scooter est en réparation ou non
              */
-
             if (s.getEnreparation()) {
                 sb.append(
                         red + "<b>Le scooter est actuellement en maintenance </b><br><br>");
@@ -234,8 +220,10 @@ public class A_MethodGui extends JFrame {
                 sb.append(green + "<b> Le scooter est disponible </b> <br><br>");
             }
         }
-        // c'est la que le text est mis dans le textPane
-        // ajout scrollbar et propriété
+        /*
+         * c'est la que le text est mis dans le textPane
+         * ajout scrollbar et propriété
+         */
         JScrollPane scroll = new JScrollPane(textPane);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         textPane.setSelectionStart(0);
@@ -316,13 +304,19 @@ public class A_MethodGui extends JFrame {
             }
         }
         sb.append("<br><br><br><br><br><i><small> un id rouge signifie qu'il est en maintenance ");
-        // Création scrollbar + propriété
+        /*
+         * Création scrollbar + propriété
+         */
         JScrollPane scroll = new JScrollPane(textPane);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         textPane.setSelectionStart(0);
-        // ajout scrollbar a la vitrine
+        /*
+         * ajout scrollbar a la vitrine
+         */
         vitrine.add(scroll);
-        // met les informations du stringbuilder en texte
+        /*
+         * met les informations du stringbuilder en texte
+         */
         textPane.setText(sb.toString());
         textPane.setCaretPosition(0);
 
