@@ -72,6 +72,8 @@ public class Controller {
      * datedb, datefn)
      */
     public ArrayList<Scooter> chgtDonne() throws IOException {
+
+        tabScooterDispo.clear();
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
             if (s.isDispoActual()) {

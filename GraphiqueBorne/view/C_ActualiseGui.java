@@ -62,7 +62,7 @@ public class C_ActualiseGui extends B_FonctionGui {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
         contentPane.add(rechercheDate(), BorderLayout.NORTH);
-        contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
+        contentPane.add(afficheAll(new Controller().chgtDonne()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(), BorderLayout.SOUTH);
         contentPane.add(createRightPanel2(), BorderLayout.EAST);
         contentPane.updateUI();
