@@ -37,7 +37,7 @@ public class A_MethodGui extends JFrame {
     JButton MettreEnReparation = new JButton("Mettre en maintenace");
     JButton RetirerDeMaRep = new JButton("Retirer de la maintenance");
     JButton SuppUneLocation = new JButton("Supprimer une Location");
-    JButton modeAminButton = new JButton("Mode Admin");
+    JButton modeAdminButton = new JButton("Mode Admin");
     JButton quit = new JButton("Quitter");
 
     protected JTextPane textPane = new JTextPane(); // crée l'espace texte
@@ -52,7 +52,7 @@ public class A_MethodGui extends JFrame {
         panel.add(etatScoot);
         panel.add(afficheAll);
         panel.add(SuppUneLocation);
-        panel.add(modeAminButton);
+        panel.add(modeAdminButton);
         panel.add(quit);
 
         return panel;
@@ -67,7 +67,7 @@ public class A_MethodGui extends JFrame {
         panel.add(afficheAll);
         panel.add(SuppUneLocation);
         panel.add(retourMenu);
-        panel.add(modeAminButton);
+        panel.add(modeAdminButton);
         panel.add(quit);
 
         /*

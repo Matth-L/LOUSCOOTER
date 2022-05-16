@@ -96,7 +96,7 @@ public class D_Gui extends C_ActualiseGui {
             }
         });
 
-        modeAminButton.addActionListener(new ActionListener() {
+        modeAdminButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     VerifAdminActualise("");
