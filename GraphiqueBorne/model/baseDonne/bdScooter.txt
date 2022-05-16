@@ -52,16 +52,4 @@ Honda
 A
 false
 EOS
-10
-12
-MARQUE
-MODELE
-false
-EOS
-11
-12
-MARQUE
-MODELE
-false
-EOS
 EOF
