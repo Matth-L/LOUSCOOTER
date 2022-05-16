@@ -34,7 +34,7 @@ public class IDandPassord {
     }
 
     public void getDB() throws IOException {
-        File file = new File("GraphiqueBorne/src/model/baseDonne/bdID.txt");
+        File file = new File("../src/model/baseDonne/bdID.txt");
         Scanner sc = new Scanner(file);
         /*
          * charge l'identifiant et le mot passe stocké dans le fichier texte.
