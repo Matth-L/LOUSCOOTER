@@ -25,11 +25,14 @@ public class B_FonctionGui extends A_MethodGui {
 
     // actualise la status Bar
     protected void ActionActualise(String s, Color c) {
-        JPanel contentPane = (JPanel) this.getContentPane();
-        BorderLayout layout = (BorderLayout) contentPane.getLayout();
-        contentPane.remove(layout.getLayoutComponent(BorderLayout.SOUTH));
-        contentPane.add(creatStatusBar(s, c), BorderLayout.SOUTH);
-        contentPane.updateUI();
+        try {
+            JPanel contentPane = (JPanel) this.getContentPane();
+            BorderLayout layout = (BorderLayout) contentPane.getLayout();
+            contentPane.remove(layout.getLayoutComponent(BorderLayout.SOUTH));
+            contentPane.add(creatStatusBar(s, c), BorderLayout.SOUTH);
+            contentPane.updateUI();
+        } catch (NullPointerException e1) {
+        }
     }
 
     // visible uniquement lors de la connexion
