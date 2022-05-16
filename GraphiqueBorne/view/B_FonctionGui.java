@@ -339,11 +339,7 @@ public class B_FonctionGui extends A_MethodGui {
         chercher.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 c.btnSuppr();// la fonction suppr fait un .remove de l'élément de l'arraylist
-                try {
-                    ModeAdminActualise("Action effectué");
-                } catch (IOException e1) {
-                } catch (BadLocationException e1) {
-                }
+                messageText(0);
             }
 
         });
