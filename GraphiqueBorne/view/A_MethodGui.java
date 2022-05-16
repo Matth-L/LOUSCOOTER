@@ -169,7 +169,7 @@ public class A_MethodGui extends JFrame {
         if (s.getEnreparation()) {
             pannel.add(new JLabel("Ce scooter est actuellement en maintenance"));
         } else if (!s.isDispoActual()) {
-            new JLabel("Ce scooter est actuellement indisponible");
+            pannel.add(new JLabel("Ce scooter est actuellement indisponible"));
         } else {
             pannel.add(new JLabel("Ce scooter est actuellement disponible"));
         }
