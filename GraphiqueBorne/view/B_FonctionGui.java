@@ -13,6 +13,8 @@ import java.awt.event.*;
 
 public class B_FonctionGui extends A_MethodGui {
 
+    public static final Color darkGreen = new Color(0, 153, 0);
+
     // pour ne pas perdre le super()
     public B_FonctionGui() {
 
@@ -52,7 +54,7 @@ public class B_FonctionGui extends A_MethodGui {
     void messageText(int valueTest) {
         switch (valueTest) {
             case 0:
-                ActionActualise("L'opération s'est bien effectué", Color.GREEN);
+                ActionActualise("L'opération s'est bien effectué", darkGreen);
                 break;
             case 1:
                 ActionActualise("L'id rentré est invalide", Color.RED);
