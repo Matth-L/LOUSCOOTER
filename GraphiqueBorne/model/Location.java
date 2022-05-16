@@ -74,9 +74,8 @@ public class Location {
         Date in = new Date();
         LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
         Date dateAct = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
-
         // si la date de fin est avant la date d'aujourd'hui
-        if (dateFinInput.before(dateAct)) {
+        if (dateDebInput.before(dateAct) || dateFinInput.before(dateAct)) {
             return true;
         }
 
