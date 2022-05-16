@@ -1,4 +1,4 @@
-package GraphiqueBorne.model; //le temps du travaille ... 
+package GraphiqueBorne.src.model; //le temps du travaille ... 
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -93,7 +93,7 @@ public class BaseDonne {
          * il faut créer un fichier -> un lecteur de fichier -> puis une instance qui va
          * écrire dans le fichier, c'est pw
          */
-        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
+        File file = new File("GraphiqueBorne/src/model/baseDonne/bdScooter.txt");
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         // on parcourt le tableau et on écrit chaque propriété
@@ -121,7 +121,7 @@ public class BaseDonne {
      */
     static void saveLocation(boolean fichierCree, Scooter s) throws IOException {
 
-        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        File file = new File("GraphiqueBorne/src/model/baseDonne/location.txt");
         FileWriter fw;
 
         if (fichierCree) {
@@ -149,7 +149,7 @@ public class BaseDonne {
     // * crée le tableau a partir de la bd
     public void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
 
-        File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
+        File file = new File("GraphiqueBorne/src/model/baseDonne/bdScooter.txt");
 
         /*
          * il faut créer un scanner pour le fichier
@@ -194,7 +194,7 @@ public class BaseDonne {
      */
     ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
 
-        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        File file = new File("GraphiqueBorne/src/model/baseDonne/location.txt");
 
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);

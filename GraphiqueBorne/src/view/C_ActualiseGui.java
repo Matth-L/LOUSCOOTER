@@ -1,11 +1,11 @@
-package GraphiqueBorne.view;
+package GraphiqueBorne.src.view;
 
 import java.io.IOException;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
-import GraphiqueBorne.controller.Controller;
+import GraphiqueBorne.src.controller.Controller;
 
 public class C_ActualiseGui extends B_FonctionGui {
 

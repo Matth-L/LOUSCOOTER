@@ -1,4 +1,4 @@
-package GraphiqueBorne.controller;
+package GraphiqueBorne.src.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -9,7 +9,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.*;
-import GraphiqueBorne.model.*;
+
+import GraphiqueBorne.src.model.*;
 
 /*
 * Cette parti n'est présente que pour pouvoir visualiser le code dans une version où nous nous sommes contenté de répondre à lattente du client. 

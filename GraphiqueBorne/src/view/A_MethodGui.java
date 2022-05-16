@@ -1,4 +1,4 @@
-package GraphiqueBorne.view;
+package GraphiqueBorne.src.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,8 +7,10 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
-import GraphiqueBorne.controller.Controller;
-import GraphiqueBorne.model.Scooter;
+
+import GraphiqueBorne.src.controller.Controller;
+import GraphiqueBorne.src.model.Scooter;
+
 import java.awt.event.*;
 
 public class A_MethodGui extends JFrame {

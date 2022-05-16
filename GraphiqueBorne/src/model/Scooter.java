@@ -1,4 +1,4 @@
-package GraphiqueBorne.model;
+package GraphiqueBorne.src.model;
 
 import java.util.Date;
 import java.time.LocalDateTime;

@@ -1,11 +1,13 @@
-package GraphiqueBorne.view;
+package GraphiqueBorne.src.view;
 
 import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.BadLocationException;
-import GraphiqueBorne.controller.Controller;
+
+import GraphiqueBorne.src.controller.Controller;
+
 import java.awt.event.*;
 
 public class D_Gui extends C_ActualiseGui {
@@ -28,8 +30,8 @@ public class D_Gui extends C_ActualiseGui {
          * charge la base de donnée si les fichiers existe, sinon elle fait appel a base
          * de donnée pour crée les fichier et les initialiser
          */
-        File bd = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
-        File loc = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        File bd = new File("./GraphiqueBorne/src/model/baseDonne/bdScooter.txt");
+        File loc = new File("./GraphiqueBorne/src/model/baseDonne/location.txt");
         if (bd.isFile() && loc.isFile()) {
             new Controller().set();
         } else {
