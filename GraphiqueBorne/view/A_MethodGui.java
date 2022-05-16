@@ -249,31 +249,23 @@ public class A_MethodGui extends JFrame {
 
     protected JPanel afficheMenu(ArrayList<Scooter> tabScoot, ArrayList<Scooter> tabScootDispo)
             throws BadLocationException {
-
         JPanel vitrine = new JPanel();
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Informations sur le parc de scooter :  "));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
-
         /*
          * crée le textPane et met la propriété html dedans
          */
-
         textPane.setContentType("text/html");
-
         /*
          * permet d'avoir les dimensions
          */
-
         resize(textPane);
         textPane.setEditable(false); // propriété du textPane
-
         /*
          * le stringbuilder permet de créer et modifier un texte et de rajouter de
          * l'html
          */
-
         StringBuilder sb = new StringBuilder();
-
         sb.append("<b>Nombre de scooter dans le parc : </b>" + tabScoot.size() + "<br><br>");
         sb.append("<b>Nombre de scooter disponible dans le parc : </b>" + tabScootDispo.size() + "<br><br>");
         /*
@@ -313,6 +305,9 @@ public class A_MethodGui extends JFrame {
             }
         }
         sb.append("<br><br>");
+        /*
+         * Donne l'id des scooter en maintenance
+         */
         sb.append(red + "Scooter en maintenance : <br>");
         sb.append(black);
         for (Scooter s : tabScoot) {

@@ -11,8 +11,6 @@ import GraphiqueBorne.controller.Controller;
 import java.awt.event.*;
 
 public class D_Gui extends C_ActualiseGui {
-    // init button
-
     public D_Gui() throws IOException, BadLocationException {
         super("louscooter");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
