@@ -36,7 +36,7 @@ public class B_FonctionGui extends A_MethodGui {
     void ModeAdminActualise(String s) throws IOException, BadLocationException {
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.removeAll();
-        contentPane.add(afficheAll(new Controller().btnafficheAllScoot()), BorderLayout.CENTER);
+        contentPane.add(afficheAll(new Controller().chgtDonne()), BorderLayout.CENTER);
         contentPane.add(creatStatusBar(s), BorderLayout.SOUTH);
         contentPane.add(createRightPanel3(), BorderLayout.EAST);
         contentPane.updateUI();
