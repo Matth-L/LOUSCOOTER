@@ -1,4 +1,3 @@
-package BorneConsole;
 
 import java.util.Date;
 import java.text.ParseException;

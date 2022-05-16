@@ -1,7 +1,7 @@
-package BorneConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 //! ce qui est demander par l'énoncé 
 public class Menu2Option extends Menu1Method {

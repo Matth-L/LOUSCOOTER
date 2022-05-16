@@ -1,4 +1,3 @@
-package BorneConsole; //le temps du travaille ... 
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
 
 // tout ce qui traite la base de donnée est la 
 public class BaseDonne {
@@ -36,7 +36,7 @@ public class BaseDonne {
 
     // crée le tableau a partir de la bd
     public static void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
-        File file = new File("BorneConsole/baseDonne/bdScooter.txt");
+        File file = new File("baseDonne/bdScooter.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
         // tant qu'on est pas au marqueur la fin du fichier
@@ -60,7 +60,7 @@ public class BaseDonne {
     }
 
     static ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
-        File file = new File("BorneConsole/baseDonne/location.txt");
+        File file = new File("baseDonne/location.txt");
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
         ArrayList<Location> tabLoc = new ArrayList<Location>();
@@ -95,7 +95,7 @@ public class BaseDonne {
          * si on souhaitait écraser les données ou append on aurait rajouter un booléan
          * sur le pw
          */
-        File file = new File("BorneConsole/baseDonne/bdScooter.txt");
+        File file = new File("baseDonne/bdScooter.txt");
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
         for (Scooter s : tab) {
@@ -113,7 +113,7 @@ public class BaseDonne {
     }
 
     static void saveLocation(boolean test, Scooter s) throws IOException {
-        File file = new File("BorneConsole/baseDonne/location.txt");
+        File file = new File("baseDonne/location.txt");
         FileWriter fw;
         if (test) {
             // on efface le fichier lors de la premiere création de location

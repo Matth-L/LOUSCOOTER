@@ -1,7 +1,7 @@
-package BorneConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class Menu4 extends Menu3Erreur {
     void choixMenu(ArrayList<Scooter> tabScooter) throws IOException {

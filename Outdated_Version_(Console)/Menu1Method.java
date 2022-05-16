@@ -1,7 +1,7 @@
-package BorneConsole;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 //! MenuMethod -> OptionMenu -> ErreurMenu -> FinalMenu
 public class Menu1Method {
