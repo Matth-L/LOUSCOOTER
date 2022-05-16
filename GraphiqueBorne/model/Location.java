@@ -1,10 +1,9 @@
 package GraphiqueBorne.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class Location {
     static int numDeRetour = 0;
@@ -71,11 +70,13 @@ public class Location {
      */
     boolean dateInter(Date dateDebInput, Date dateFinInput) {
         // date actuelle
-        Date in = new Date();
-        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
-        Date dateAct = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        Calendar calendar = Calendar.getInstance();
+        Date dateAct = Location
+                .stringToDate(calendar.get(Calendar.DATE) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/"
+                        + calendar.get(Calendar.YEAR));
         // si la date de fin est avant la date d'aujourd'hui
         if (dateDebInput.before(dateAct) || dateFinInput.before(dateAct)) {
+
             return true;
         }
 
