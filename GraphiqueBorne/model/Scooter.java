@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Scooter {
     static int countScoot = 0;
@@ -49,11 +50,12 @@ public class Scooter {
 
     // si le scooter est dispo -> true
     public boolean isDispoActual() {
-        SimpleDateFormat dateFrt = new SimpleDateFormat("dd/MM/yyyy");
-        Date t = new Date(System.currentTimeMillis());
-        dateFrt.format(t);
+        Calendar calendar = Calendar.getInstance();
+        Date dateAct = Location
+                .stringToDate(calendar.get(Calendar.DATE) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/"
+                        + calendar.get(Calendar.YEAR));
         for (Location l : tabLocation) {
-            if (l.scootId == this.id && l.dateTest(t)) {
+            if (l.scootId == this.id && l.dateTest(dateAct)) {
                 return false;
             }
         }
