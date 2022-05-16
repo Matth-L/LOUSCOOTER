@@ -266,7 +266,6 @@ public class B_FonctionGui extends A_MethodGui {
                 try {
                     messageTextAdmin(c.testIDandP());
                 } catch (IOException | BadLocationException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
 
