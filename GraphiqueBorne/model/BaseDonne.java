@@ -33,12 +33,12 @@ public class BaseDonne {
     static Scooter i = new Scooter(9, 40, "Honda", "A");
 
     // création de qq location pour les scooters pour mettre dans la base de donnée
-    static Location j = new Location(Location.stringToDate("20/10/2022"), Location.stringToDate("23/10/2022"), 1);
-    static Location k = new Location(Location.stringToDate("22/5/2022"), Location.stringToDate("30/5/2022"), 2);
-    static Location l = new Location(Location.stringToDate("18/01/2022"), Location.stringToDate("20/01/2022"), 4);
-    static Location m = new Location(Location.stringToDate("14/9/2022"), Location.stringToDate("19/9/2022"), 5);
-    static Location n = new Location(Location.stringToDate("27/12/2022"), Location.stringToDate("28/12/2022"), 72);
-    static Location o = new Location(Location.stringToDate("12/3/2022"), Location.stringToDate("13/3/2022"), 88);
+    static Location j = new Location(Location.stringToDate("20/10/2021"), Location.stringToDate("23/10/2021"), 1);
+    static Location k = new Location(Location.stringToDate("22/5/2021"), Location.stringToDate("30/5/2021"), 2);
+    static Location l = new Location(Location.stringToDate("18/01/2021"), Location.stringToDate("20/01/2021"), 4);
+    static Location m = new Location(Location.stringToDate("14/9/2021"), Location.stringToDate("19/9/2021"), 5);
+    static Location n = new Location(Location.stringToDate("27/12/2021"), Location.stringToDate("28/12/2021"), 72);
+    static Location o = new Location(Location.stringToDate("12/3/2021"), Location.stringToDate("13/3/2021"), 88);
 
     // permet de rajouter les scooters aux tab
     static void setScooterInDB(ArrayList<Scooter> tab) {
