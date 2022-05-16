@@ -31,7 +31,7 @@ public class A_MethodGui extends JFrame {
     JButton retour = new JButton("Retour");
     JButton etatScoot = new JButton("Etat du Scooter");
     JButton afficheAll = new JButton("Nos Scooters");
-    JButton retourMenu = new JButton("Acceuil");
+    JButton retourMenu = new JButton("Accueil");
     JButton ajoutScoot = new JButton("Ajouter un scooter");
     JButton deleteScoot = new JButton("Supprimer un scooter");
     JButton MettreEnReparation = new JButton("Mettre en maintenace");
@@ -264,7 +264,7 @@ public class A_MethodGui extends JFrame {
         for (Scooter s : tabScoot) {
             kmMoyen += s.getKilometrage();
         }
-        sb.append(kmMoyen + "<br><br>");
+        sb.append(kmMoyen / tabScoot.size() + "<br><br>");
         /*
          * Donne l'id des scooter dispo
          */
