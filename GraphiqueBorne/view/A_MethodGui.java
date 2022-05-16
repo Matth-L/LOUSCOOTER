@@ -166,12 +166,12 @@ public class A_MethodGui extends JFrame {
         pannel.add(new JLabel("Modéle " + s.getModele()));
         pannel.add(new JLabel("kilométrage :" + s.getKilometrage()));
 
-        if (s.isDispoActual() && !s.getEnreparation()) {
-            pannel.add(new JLabel("Ce scooter est actuellement disponible"));
-        } else if (s.getEnreparation()) {
-            new JLabel("Ce scooter est actuellement en réparation");
+        if (s.getEnreparation()) {
+            pannel.add(new JLabel("Ce scooter est actuellement en maintenance"));
+        } else if (!s.isDispoActual()) {
+            new JLabel("Ce scooter est actuellement indisponible");
         } else {
-            pannel.add(new JLabel("Ce scooter est actuellement indisponible"));
+            pannel.add(new JLabel("Ce scooter est actuellement disponible"));
         }
 
         return pannel;
