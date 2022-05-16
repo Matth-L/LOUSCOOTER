@@ -10,8 +10,18 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class BaseDonne {
+    /*
+     * une arrayList est un tableau dont la taille est modifié automatiquement et la
+     * mémoire géré automatiquement
+     */
+    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
 
-    // création de qq scooter pour mettre dans la base de donnée
+    /*
+     * -----------------------------------------------------------------------------
+     * création de qq scooter pour mettre dans la base de donnée, pour tester mais
+     * faisable directement dans ajout Scooter
+     * Appeler que si le ficher n'est pas créer, n'existe pas déjà.
+     */
     static Scooter a = new Scooter(1, 40, "Honda", "A");
     static Scooter b = new Scooter(2, 40, "Yamaha", "A");
     static Scooter c = new Scooter(3, 40, "Honda", "A");
@@ -29,12 +39,6 @@ public class BaseDonne {
     static Location m = new Location(Location.stringToDate("14/9/2022"), Location.stringToDate("19/9/2022"), 5);
     static Location n = new Location(Location.stringToDate("27/12/2022"), Location.stringToDate("28/12/2022"), 72);
     static Location o = new Location(Location.stringToDate("12/3/2022"), Location.stringToDate("13/3/2022"), 88);
-
-    /*
-     * une arrayList est un tableau dont la taille est modifié automatiquement et la
-     * mémoire géré automatiquement
-     */
-    ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
 
     // permet de rajouter les scooters aux tab
     static void setScooterInDB(ArrayList<Scooter> tab) {
@@ -60,6 +64,8 @@ public class BaseDonne {
         tab.add(o);
     }
 
+    // ----------------------------------------------------------------------------------------------------
+
     /*
      * il y a des marqueurs a la fin du texte cela vérifie juste qu'il n'y a pas eu
      * de problème dans le fichier texte EOS -> End of Scooter
@@ -70,6 +76,7 @@ public class BaseDonne {
             System.exit(1);
         }
     }
+    // ----------------------------------------------------------------------------------------------------
 
     // * permet de sauvegarder les scooters dans un txt
     public static void saveDB(ArrayList<Scooter> tab) throws IOException {
@@ -101,49 +108,106 @@ public class BaseDonne {
             fileDejaCree = true;
         }
 
-        pw.println("EOF");// marqueur de fin EOF -> END OF FILE
+        pw.println("EOF"); // marqueur de fin EOF -> END OF FILE
+
         // si pw n'est pas fermé , rien n'est écrit (un peu comme le stringbuilder)
         pw.close();
     }
 
-    // crée le tableau a partir de la bd
+    /*
+     * permet de sauvegarder les locations dans un txt,c'est le meme*
+     * fonctionnement globalement que saveScooter on supprime juste le
+     * fichier de location a chaque fois
+     */
+    static void saveLocation(boolean fichierCree, Scooter s) throws IOException {
+
+        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
+        FileWriter fw;
+
+        if (fichierCree) {
+            // on efface le fichier lors de la premiere création de location
+            fw = new FileWriter(file, true);
+        } else {
+            fw = new FileWriter(file);
+        }
+
+        // une fois que le lecteur de fichier est crée on peut mettre l'écriture
+        PrintWriter pw = new PrintWriter(fw);
+        // ecrit les location
+        for (Location l : s.tabLocation) {
+            pw.println(Location.dateToString(l.getDate(true)));
+            pw.println(Location.dateToString(l.getDate(false)));
+        }
+
+        // EOL -> End Of Location
+        pw.println("EOL");
+        pw.close();
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+
+    // * crée le tableau a partir de la bd
     public void getDB(ArrayList<Scooter> tab) throws FileNotFoundException {
+
         File file = new File("GraphiqueBorne/model/baseDonne/bdScooter.txt");
-        // il faut créer un scanner pour le fichier
+
+        /*
+         * il faut créer un scanner pour le fichier
+         */
         Scanner sc = new Scanner(file);
-        // tant qu'on est pas au marqueur la fin du fichier
+
+        /*
+         * tant qu'on est pas au marqueur la fin du fichier et qu'il reste des lignes
+         */
         while ((sc.hasNextLine()) && !(sc.hasNext("EOF"))) {
-            Scooter temp = new Scooter();
+            Scooter temp = new Scooter(); // on crée un scooter et on ajoute les propriété a celui ci
             /*
              * obligé de mettre nextLine pour passer a la prochaine ligne car pour nextInt
              * next Boolean etc il ne fait pas le \n seul
              */
             temp.setId(sc.nextInt());
             sc.nextLine();
+
             temp.setKilometrage(sc.nextInt());
             sc.nextLine();
+
             temp.setMarque(sc.nextLine());
+
             temp.setModele(sc.nextLine());
+
             temp.setEnreparation(sc.nextBoolean());
             sc.nextLine();
+
             temp.tabLocation = getLoc(temp, tab.size());
             sc.nextLine();// pour skip le EOS
+
+            // une fois tt les propriété mise on l'ajoute au tab
             tab.add(temp);
         }
+
         sc.close();
     }
 
-    //
+    /*
+     * crée le tableau de location a partir du fichier txt fonctionnement similaire
+     * getDB
+     */
     ArrayList<Location> getLoc(Scooter s, int sizeTab) throws FileNotFoundException {
+
         File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
+
         // il faut créer un scanner pour le fichier
         Scanner sc = new Scanner(file);
+
+        Date deb, fin; // on a besoin de deux date temp pour récupérer les informations
         ArrayList<Location> tabLoc = new ArrayList<Location>();
-        Date deb, fin;
+
         /*
          * le but est de compter le nombre de EOL qu'on possède car il s'arrete toujours
-         * pour ne pas enregistrer les memes premières lignes
+         * pour ne pas enregistrer les memes premières lignes, pas trouvé de pointeur
+         * permettant de reprendre a l'endroit précedant donc bcp de parcours
          */
+
         int count = 1;
         while (count <= sizeTab) {
             if (sc.hasNext("EOL")) {
@@ -151,7 +215,11 @@ public class BaseDonne {
             }
             sc.nextLine();
         }
-        // tant qu'on est pas au marqueur la fin du fichier
+
+        /*
+         * tant qu'on est pas au marqueur la fin de location on continue de mettre les
+         * locations
+         */
         while ((sc.hasNextLine()) && !(sc.hasNext("EOL"))) {
             deb = Location.stringToDate(sc.nextLine());
             fin = Location.stringToDate(sc.nextLine());
@@ -161,31 +229,22 @@ public class BaseDonne {
         return tabLoc;
     }
 
-    static void saveLocation(boolean test, Scooter s) throws IOException {
-        File file = new File("GraphiqueBorne/model/baseDonne/location.txt");
-        FileWriter fw;
-        if (test) {
-            // on efface le fichier lors de la premiere création de location
-            fw = new FileWriter(file, true);
-        } else {
-            fw = new FileWriter(file);
-        }
-        PrintWriter pw = new PrintWriter(fw);
-        for (Location l : s.tabLocation) {
-            pw.println(Location.dateToString(l.getDate(true)));
-            pw.println(Location.dateToString(l.getDate(false)));
-        }
-        // EOL -> End Of Location
-        pw.println("EOL");
-        pw.close();
-    }
+    // ----------------------------------------------------------------------------------------------------
 
     // ajout des élements dans le tab lors de la fermeture du fichier
     public static void setAll(ArrayList<Scooter> tabScooter) throws IOException {
+
+        // on met chaque scooter dans le tableau
         setScooterInDB(tabScooter);
+
+        /*
+         * et pour chaque scooter on met les locations (c'est les meme pour tester
+         * l'application )
+         */
         for (int i = 0; i < tabScooter.size(); i++) {
             setLocationScoot(tabScooter.get(i).tabLocation);
         }
+
         saveDB(tabScooter);
     }
 

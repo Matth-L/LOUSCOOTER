@@ -30,12 +30,16 @@ public class Scooter {
         modele = mod;
     }
 
-    // filtre pour la disponibilité d'un scouteur
-    // getDate -> si true renvoie la premiere date si fausse la 2e
+    /*
+     * filtre pour la disponibilité d'un scouteur
+     * getDate -> si true renvoie la premiere date si fausse la 2e
+     */
     public boolean isDispo(Date debut, Date fin) {
         for (Location l : tabLocation) {
-            // dateInter | true si entre , faux sinon
-            // l.dateInter(l.getDate(true),l.getDate(false))
+            /*
+             * dateInter | true si entre , faux sinon
+             * l.dateInter(l.getDate(true),l.getDate(false))
+             */
             if (l.dateInter(debut, fin)) {
                 return false;
             }

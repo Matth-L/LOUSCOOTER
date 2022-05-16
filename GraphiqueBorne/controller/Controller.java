@@ -11,6 +11,10 @@ import java.util.HashMap;
 import javax.swing.*;
 import GraphiqueBorne.model.*;
 
+/*
+* Cette parti n'est présente que pour pouvoir visualiser le code dans une version où nous nous sommes contenté de répondre à lattente du client. 
+*/
+
 public class Controller {
 
     static ArrayList<Scooter> tabScooter = new ArrayList<Scooter>();
@@ -63,8 +67,10 @@ public class Controller {
         new BaseDonne().getDB(tabScooter);
     }
 
-    // lorsque l'utilisateur appuyer sur louer pour valider les info (id scoot,
-    // datedb, datefn)
+    /*
+     * lorsque l'utilisateur appuyer sur louer pour valider les info (id scoot,
+     * datedb, datefn)
+     */
     public ArrayList<Scooter> chgtDonne() throws IOException {
         for (Scooter s : tabScooter) {
             // liste des id pour les scooter dispo
@@ -86,8 +92,6 @@ public class Controller {
         return tabScooterDispo;
     }
 
-    // à améliorer: faire de tel sorte qu'on garde les info rentrer dans la zone de
-    // texte ap quelqu'onque action.
     public int btnLouer(ActionEvent e) throws IOException {
         int scootID;
         /*
@@ -156,16 +160,10 @@ public class Controller {
 
     public Scooter btnetatScoot() {
         /*
-         * rend un scooter en prenant le tableau de scooter et l'id rentré par
-         * l'utilisateur dans zoneID
+         * cherche le scooter dans la base de donné. Si erreur on retourne null. (erreur
+         * identifier par le système)
          */
-        // Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
-        // if (s != null) {
-        // EtatActualiseEtDonne(s);
-        // } else {
 
-        // new ActualiseGui_3().EtatActualise("id invalide");
-        // }
         try {
             Scooter s = Menu.getScooter(tabScooter, Integer.parseInt(zoneID.getText()));
             return s;
@@ -181,7 +179,7 @@ public class Controller {
     }
 
     public ArrayList<Scooter> btnRechercheDate(ActionEvent e) throws IOException {
-        
+
         /*
          * erreur intercepter
          * lorsque l'utilisateur ne rentre pas un entier
@@ -280,25 +278,24 @@ public class Controller {
     public int testIDandP() throws IOException {
         String userID = zoneID.getText();
         String passord = String.valueOf(zonePass.getPassword());
+        /*
+         * on récupère notre formulaire contenant les id et mot de passe enregistrer
+         * dans la base de donnée.
+         */
         IDandPassord idandPassord = new IDandPassord();
         HashMap<String, String> logininfo = idandPassord.getLogininfo();
         if (logininfo.containsKey(userID)) {
+            /*
+             * On compare le mot de passe rentré en le cryptant avec celui enregistrer dans
+             * la base de données.
+             */
             if (logininfo.get(userID).equals(IDandPassord.encrypt(passord))) {
                 return 0;
-                // messageLabel.setForeground(Color.GREEN);
-                // messageLabel.setText("Login Successful");
-                // dispose();
-                // super.ModeAdminActualise("");
-
             } else {
                 return 1;
-                // messageLabel.setForeground(Color.RED);
-                // messageLabel.setText("Wrong Passord");
             }
         } else {
             return 2;
-            // messageLabel.setForeground(Color.RED);
-            // messageLabel.setText("Username not found");
         }
     }
 
