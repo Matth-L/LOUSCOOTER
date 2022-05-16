@@ -175,7 +175,7 @@ public class A_MethodGui extends JFrame {
         return pannel;
     }
 
-    protected JPanel afficheAll(ArrayList<Scooter> tabScooterDispo) throws BadLocationException {
+    protected JPanel afficheAll(ArrayList<Scooter> tabScooter) throws BadLocationException {
         JPanel vitrine = new JPanel();
         vitrine.setBorder(new TitledBorder(new EtchedBorder(), "Liste des scooters "));
         vitrine.setLayout(new BorderLayout());// fais en sorte que le texte ne déborde pas
@@ -198,9 +198,9 @@ public class A_MethodGui extends JFrame {
          */
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<b>Nombre de scooter disponible : </b>" + tabScooterDispo.size() + "<br><br>");
+        sb.append("<b>Nombre de scooter disponible : </b>" + tabScooter.size() + "<br><br>");
 
-        for (Scooter s : tabScooterDispo) {
+        for (Scooter s : tabScooter) {
 
             sb.append(black + " id Scooter : " + s.getId() + "  Marque: " + s.getMarque() + "  Modéle "
                     + s.getModele()
@@ -211,8 +211,7 @@ public class A_MethodGui extends JFrame {
              */
 
             if (s.getEnreparation()) {
-                sb.append(
-                        red + "<b>Le scooter est actuellement en maintenance </b><br><br>");
+                sb.append(red + "<b>Le scooter est actuellement en maintenance </b><br><br>");
             } else {
                 sb.append(green + "<b> Le scooter est disponible </b> <br><br>");
             }
