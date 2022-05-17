@@ -39,7 +39,7 @@ public class D_Gui extends C_ActualiseGui {
         }
 
         // donne une icone a l'application
-        ImageIcon icon = new ImageIcon("GraphiqueBorne/pictures/scoot.png");
+        ImageIcon icon = new ImageIcon("../src/view/pictures/scoot.png");
         setIconImage(icon.getImage());
 
         /*
